@@ -5,7 +5,6 @@ library(scales)
 library(ggrepel)
 
 ####
-
 leer_tabla <- function(un_html) {
   un_html %>%
     html_nodes(css = ".index-price-table-paper tbody tr") %>%
@@ -90,9 +89,32 @@ crear_simulacion <- function(tabla, iteraciones = 100) {
 }
 
 
+
+prob_exito <- function(precio_cajas, costo_caja) {
+
+  media <- mean(precio_cajas)
+  ds <- sd(precio_cajas)
+  densidad <- density(precio_cajas)
+
+  prob <- integrate(approxfun(densidad), lower= min(precio_cajas), upper = 100)
+
+  exito <- paste0("Prob. de tablas:\n",
+                  round(1 - prob$value, 4) * 100, "%")
+
+  ggplot() +
+    aes(x = precio_cajas) +
+    geom_density(fill = "white") +
+    geom_vline(xintercept = costo_caja, alpha = .75, linetype = "dashed") +
+    scale_y_continuous(expand = c(0, 0)) +
+    annotate(geom = "text", x = costo_caja, y = 0, label = exito, size = 3, vjust = -0.3) +
+    theme_minimal()
+}
+
+
 #####
 
-download_html(url = "https://www.mtggoldfish.com/index/BBD#paper", file = "goldfish.html")
+download_html(url = "https://www.mtggoldfish.com/index/BBD",
+              file = "goldfish.html")
 
 goldfish <- read_html("goldfish.html")
 
@@ -104,12 +126,25 @@ precio_densidad(pez)
 crear_caja(pez) %>%
   precio_boxplot()
 
+set.seed(21)
+escuela
 
-set.seed(25)
-escuela <- crear_simulacion(pez)
+crear_simulacion(pez)
+prob_exito(precio_cajas = escuela, costo_caja = 120)
 
-ggplot() +
-  aes(x = escuela) +
-  geom_density() +
-  geom_vline(xintercept = 100)
+crear_simulacion <- function(tabla, iteraciones = 100) {
+  precio_df <-
+    map(1:iteraciones, function(x) {
+    crear_caja(tabla) %>%
+      filter(Rareza != "Common") %>%
+        group_by(Rareza) %>%
+        summarize(Valor = sum(Precio)) %>%
+        mutate(caja = x)
+  }) %>%
+    reduce(bind_rows)
+
+  precio_df
+}
+
+
 
