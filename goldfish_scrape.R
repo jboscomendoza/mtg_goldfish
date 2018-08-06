@@ -89,62 +89,138 @@ crear_simulacion <- function(tabla, iteraciones = 100) {
 }
 
 
-
-prob_exito <- function(precio_cajas, costo_caja) {
-
-  media <- mean(precio_cajas)
-  ds <- sd(precio_cajas)
-  densidad <- density(precio_cajas)
-
-  prob <- integrate(approxfun(densidad), lower= min(precio_cajas), upper = 100)
-
-  exito <- paste0("Prob. de tablas:\n",
-                  round(1 - prob$value, 4) * 100, "%")
-
-  ggplot() +
-    aes(x = precio_cajas) +
-    geom_density(fill = "white") +
-    geom_vline(xintercept = costo_caja, alpha = .75, linetype = "dashed") +
-    scale_y_continuous(expand = c(0, 0)) +
-    annotate(geom = "text", x = costo_caja, y = 0, label = exito, size = 3, vjust = -0.3) +
-    theme_minimal()
-}
-
-
-#####
-
-download_html(url = "https://www.mtggoldfish.com/index/BBD",
-              file = "goldfish.html")
-
-goldfish <- read_html("goldfish.html")
-
-pez <- leer_tabla(goldfish)
-
-precio_boxplot(pez)
-precio_densidad(pez)
-
-crear_caja(pez) %>%
-  precio_boxplot()
-
-set.seed(21)
-escuela
-
-crear_simulacion(pez)
-prob_exito(precio_cajas = escuela, costo_caja = 120)
-
 crear_simulacion <- function(tabla, iteraciones = 100) {
   precio_df <-
     map(1:iteraciones, function(x) {
-    crear_caja(tabla) %>%
-      filter(Rareza != "Common") %>%
+      crear_caja(tabla) %>%
+        filter(Rareza != "Common") %>%
         group_by(Rareza) %>%
         summarize(Valor = sum(Precio)) %>%
-        mutate(caja = x)
-  }) %>%
+        mutate(Caja = x) %>%
+        group_by(Caja) %>%
+        mutate(Prop = Valor / sum(Valor)) %>%
+        ungroup()
+    }) %>%
     reduce(bind_rows)
 
   precio_df
 }
 
+prop_valor <- function(res_simulacion){
+  medias <-
+    res_simulacion %>%
+    group_by(Rareza) %>%
+    summarise(Media = mean(Prop)) %>%
+    mutate(Etiqueta = paste0(round(Media * 100, 1), "%"))
+
+  tope_y <- max(medias[["Media"]])
 
 
+     ggplot(medias) +
+     aes(Rareza, Media, fill = Rareza, color = Rareza) +
+     geom_col(alpha = .5) +
+       geom_text(aes(label = Etiqueta), vjust = -.3) +
+     scale_fill_manual(values = col_rarezas[-1]) +
+       scale_color_manual(values = col_rarezas[-1]) +
+    scale_y_continuous(expand = c(0, 0), labels = percent_format()) +
+     coord_cartesian(ylim = c(0, tope_y + (tope_y / 10))) +
+     theme_minimal() +
+     theme(legend.position = "none") +
+       labs(title = paste0("Proporción del valor de caja que aporta cada rareza"))
+}
+
+prob_exito <- function(res_simulacion, costo_caja) {
+  precio_cajas <-
+    res_simulacion %>%
+    group_by(Caja) %>%
+    summarize(Suma = sum(Valor)) %>%
+    pull(Suma)
+
+  media <- mean(precio_cajas)
+  ds <- sd(precio_cajas)
+  densidad <- density(precio_cajas)
+
+  segmento <-
+    densidad[c("x", "y")] %>%
+    tbl_df() %>%
+    mutate(Tipo = ifelse(x < costo_caja,
+                         paste0("Menor que ", costo_caja, " USD"),
+                         paste0("Mayor que ", costo_caja, " USD"))
+    )%>%
+    filter(x > min(precio_cajas) & x < max(precio_cajas))
+
+  prob <- integrate(approxfun(densidad), lower= min(precio_cajas),
+                    upper = costo_caja)
+
+  titulo <- paste0("Probabilidad de recuperar inversión: ",
+                  round(1 - prob$value, 4) * 100,
+                  "%")
+
+  subtitulo <- paste0("Simulación con ",
+                      max(res_simulacion[["Caja"]]), " cajas\nValor medio: ", round(media, 1), " USD")
+
+  ggplot(segmento) +
+    aes(x, y, fill = Tipo) +
+    geom_area(alpha = c(.5)) +
+    geom_vline(xintercept = media, linetype = "dashed", alpha = .5) +
+    scale_y_continuous(expand = c(0, 0)) +
+    scale_x_continuous(expand = c(0, 0)) +
+    theme_minimal() +
+    theme(legend.position = "top") +
+    labs(title = titulo, subtitle = subtitulo,
+         x = "Valor de cajas (USD)", y = "Densidad") +
+    scale_fill_manual(values = col_rarezas[c(4, 2)])
+}
+
+obtener_precios <- function(expansion, forzar_descarga = FALSE){
+  goldfish_url <-
+    paste0("https://www.mtggoldfish.com/index/",
+           expansion)
+  goldfish_html <- paste0("goldfish_", expansion, ".html")
+
+  if(!file.exists(goldfish_html) | forzar_descarga == TRUE) {
+    download_html(url = goldfish_url,
+                  file = goldfish_html)
+  }
+
+  goldfish <- read_html(goldfish_html)
+
+  precios <- leer_tabla(un_html = goldfish)
+
+  precios
+}
+
+simular_precios <- function(precios, costo_caja, iteraciones = 100) {
+  simulacion <- list()
+
+  simulacion$sim <-
+    crear_simulacion(tabla = precios, iteraciones = iteraciones)
+  simulacion$prop <-
+    prop_valor(res_simulacion = simulacion$sim)
+  simulacion$prob <-
+    prob_exito(res_simulacion = simulacion$sim, costo_caja = costo_caja)
+
+  simulacion
+}
+
+#
+analizar_set <- function(expansion, costo_caja = 100, iteraciones = 100, forzar_descarga = FALSE) {
+  mi_set <- list()
+
+  mi_set$precios <-
+    obtener_precios(expansion = expansion, forzar_descarga = forzar_descarga)
+  mi_set$boxplot <-
+    precio_boxplot(precio_tabla = mi_set$precios)
+  mi_set$densidad <-
+    precio_densidad(precio_tabla = mi_set$precios)
+
+  mi_set$simulacion <-
+    simular_precios(precios = mi_set$precios, costo_caja = costo_caja, iteraciones = iteraciones)
+
+  mi_set
+}
+###
+
+amonketh <- analizar_set("AKH")
+M19 <- analizar_set("M19")
+hora_devastada <- analizar_set("HOU")
