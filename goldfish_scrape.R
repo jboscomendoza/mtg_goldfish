@@ -1,3 +1,4 @@
+# Paquetes necesarios ----
 library(tidyverse)
 library(rvest)
 library(xml2)
@@ -5,6 +6,28 @@ library(scales)
 library(ggrepel)
 
 ####
+col_rarezas <- c("#ffffff", "#93b2c4", "#c0aa70", "#d66a26")
+
+obtener_sets <- function(actualizar = FALSE) {
+  if(!file.exists("mtg_sets.html") | actualizar) {
+    download_html(url = "https://mtg.gamepedia.com/Template:List_of_Magic_sets",
+                  file = "mtg_sets.html")
+  }
+
+  read_html("mtg_sets.html") %>%
+    html_nodes(css = "table tr") %>%
+    html_text() %>%
+    str_split(pattern = "\\n", simplify = TRUE) %>%
+    as.data.frame() %>%
+    tbl_df() %>%
+    slice(-1) %>%
+    select("Set" = V2, "Clave" = V4) %>%
+    mutate_all(~trimws(as.character(.))) %>%
+    mutate(Clave = gsub(" \\(.*", "", Clave))
+}
+
+mtg_sets <- obtener_sets()
+
 leer_tabla <- function(un_html) {
   un_html %>%
     html_nodes(css = ".index-price-table-paper tbody tr") %>%
@@ -14,13 +37,12 @@ leer_tabla <- function(un_html) {
     tbl_df() %>%
     select("Carta" = V1, "Set" = V2, "Rareza" = V3, "Precio" = V5) %>%
     mutate(Precio = as.numeric(as.character(Precio)),
-           Rareza = factor(Rareza, levels = c("Basic Land","Common",
-                                              "Uncommon", "Rare", "Mythic"))) %>%
+           Rareza = factor(Rareza,
+                           levels = c("Basic Land","Common",
+                                      "Uncommon", "Rare", "Mythic"))) %>%
     mutate_at(c("Carta", "Set"), as.character) %>%
     filter(Rareza != "Basic Land")
 }
-
-col_rarezas <- c("#ffffff", "#93b2c4", "#c0aa70", "#d66a26")
 
 tag_outlier <- function(datos) {
   ifelse(datos < quantile(datos, .25) - IQR(datos) * 1.5 | datos > quantile(datos, .75) + IQR(datos) * 1.5, TRUE, FALSE)
@@ -67,7 +89,12 @@ crear_booster <- function(tabla) {
 
     tabla %>%
       filter(Rareza == x[1]) %>%
-      sample_n(size = as.numeric(x[2]))
+     # sample_n(size = as.numeric(x[2]), replace = FALSE)
+    {
+      . <- .[sample(x = nrow(.), size = x[2], replace = FALSE), ]
+      .
+      }
+
   }) %>%
     reduce(bind_rows)
 }
@@ -76,18 +103,6 @@ crear_caja <- function(tabla) {
   map(1:36, ~crear_booster(tabla)) %>%
     reduce(bind_rows)
 }
-
-
-crear_simulacion <- function(tabla, iteraciones = 100) {
-  map(1:iteraciones, function(x) {
-    crear_caja(tabla) %>%
-      filter(Rareza != "Common") %>%
-      summarize(Total = sum(Precio)) %>%
-      pull(Total)
-  }) %>%
-    reduce(c)
-}
-
 
 crear_simulacion <- function(tabla, iteraciones = 100) {
   precio_df <-
@@ -219,8 +234,11 @@ analizar_set <- function(expansion, costo_caja = 100, iteraciones = 100, forzar_
 
   mi_set
 }
-###
 
+###
 amonketh <- analizar_set("AKH")
 M19 <- analizar_set("M19")
 hora_devastada <- analizar_set("HOU")
+kaladesh <- analizar_set("KLD")
+battlebond <- analizar_set("BBD")
+dragon_maze <- analizar_set("DGM", costo_caja = 50)
