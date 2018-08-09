@@ -28,6 +28,18 @@ obtener_sets <- function(actualizar = FALSE) {
 
 mtg_sets <- obtener_sets()
 
+verificar_set <- function(clave) {
+  if(clave %in% mtg_sets$Clave) {
+    message(paste0(clave, " encontrado.\nProcesando." ))
+    mtg_sets[mtg_sets$Clave == clave, "Set"]
+
+  } else {
+    return(
+      message(paste0(clave, " no encontrado.\nDetenido."))
+    )
+  }
+}
+
 leer_tabla <- function(un_html) {
   un_html %>%
     html_nodes(css = ".index-price-table-paper tbody tr") %>%
@@ -219,7 +231,12 @@ simular_precios <- function(precios, costo_caja, iteraciones = 100) {
 }
 
 #
-analizar_set <- function(expansion, costo_caja = 100, iteraciones = 100, forzar_descarga = FALSE) {
+analizar_set <- function(expansion, costo_caja = 100, iteraciones = 100, forzar_descarga = FALSE, ...) {
+
+  mtg_sets <- obtener_sets()
+
+  verificar_set(expansion)
+
   mi_set <- list()
 
   mi_set$precios <-
