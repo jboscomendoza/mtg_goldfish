@@ -8,8 +8,10 @@ library(ggrepel)
 ####
 col_rarezas <- c("#ffffff", "#93b2c4", "#c0aa70", "#d66a26")
 
-obtener_sets <- function(actualizar = FALSE) {
-  if(!file.exists("mtg_sets.html") | actualizar) {
+obtener_sets <- function(actualizar_sets = FALSE, mostrar_sets = FALSE) {
+  if(!file.exists("mtg_sets.html") | actualizar_sets) {
+    message("Actualizando sets.")
+
     download_html(url = "https://mtg.gamepedia.com/Template:List_of_Magic_sets",
                   file = "mtg_sets.html")
   }
@@ -34,9 +36,7 @@ verificar_set <- function(clave) {
     mtg_sets[mtg_sets$Clave == clave, "Set"]
 
   } else {
-    return(
-      message(paste0(clave, " no encontrado.\nDetenido."))
-    )
+    stop(paste0(clave, " no encontrado.\nDetenido.\nIntenta obtener_sets(actualizar_sets = TRUE) antes de probar de nuevo."), call. = FALSE)
   }
 }
 
@@ -57,7 +57,9 @@ leer_tabla <- function(un_html) {
 }
 
 tag_outlier <- function(datos) {
-  ifelse(datos < quantile(datos, .25) - IQR(datos) * 1.5 | datos > quantile(datos, .75) + IQR(datos) * 1.5, TRUE, FALSE)
+  ifelse(datos < quantile(datos, .25) - IQR(datos) * 1.5 |
+           datos > quantile(datos, .75) + IQR(datos) * 1.5,
+         TRUE, FALSE)
 }
 
 precio_densidad <- function(precio_tabla) {
@@ -74,6 +76,7 @@ precio_densidad <- function(precio_tabla) {
 
 precio_boxplot <- function(precio_tabla) {
   precio_tabla %>%
+    filter(Rareza != "Common") %>%
     group_by(Rareza) %>%
     mutate(Outlier = tag_outlier(Precio),
            Outlier = ifelse(Outlier, Carta, NA)) %>%
@@ -83,7 +86,7 @@ precio_boxplot <- function(precio_tabla) {
     geom_text_repel(aes(label = Outlier), na.rm = TRUE, size = 2.8) +
     theme_minimal() +
     scale_y_continuous(labels = dollar_format()) +
-    scale_fill_manual(values = col_rarezas) +
+    scale_fill_manual(values = col_rarezas[-1]) +
     theme(legend.position = "none")
 }
 
@@ -98,15 +101,11 @@ crear_booster <- function(tabla) {
     if(x[1] == "Rare") {
       x[1] <- sample(size = 1, x = c(rep("Rare", 7), "Mythic"))
     }
-
     tabla %>%
       filter(Rareza == x[1]) %>%
-     # sample_n(size = as.numeric(x[2]), replace = FALSE)
-    {
-      . <- .[sample(x = nrow(.), size = x[2], replace = FALSE), ]
-      .
+      {
+        .[sample(x = nrow(.), size = x[2], replace = FALSE), ]
       }
-
   }) %>%
     reduce(bind_rows)
 }
@@ -142,18 +141,17 @@ prop_valor <- function(res_simulacion){
 
   tope_y <- max(medias[["Media"]])
 
-
-     ggplot(medias) +
-     aes(Rareza, Media, fill = Rareza, color = Rareza) +
-     geom_col(alpha = .5) +
-       geom_text(aes(label = Etiqueta), vjust = -.3) +
-     scale_fill_manual(values = col_rarezas[-1]) +
-       scale_color_manual(values = col_rarezas[-1]) +
+  ggplot(medias) +
+    aes(Rareza, Media, fill = Rareza, color = Rareza) +
+    geom_col(alpha = .5) +
+    geom_text(aes(label = Etiqueta), vjust = -.3) +
+    scale_fill_manual(values = col_rarezas[-1]) +
+    scale_color_manual(values = col_rarezas[-1]) +
     scale_y_continuous(expand = c(0, 0), labels = percent_format()) +
-     coord_cartesian(ylim = c(0, tope_y + (tope_y / 10))) +
-     theme_minimal() +
-     theme(legend.position = "none") +
-       labs(title = paste0("Proporción del valor de caja que aporta cada rareza"))
+    coord_cartesian(ylim = c(0, tope_y + (tope_y / 10))) +
+    theme_minimal() +
+    theme(legend.position = "none") +
+    labs(title = paste0("Proporción del valor de caja que aporta cada rareza"))
 }
 
 prob_exito <- function(res_simulacion, costo_caja) {
@@ -167,12 +165,20 @@ prob_exito <- function(res_simulacion, costo_caja) {
   ds <- sd(precio_cajas)
   densidad <- density(precio_cajas)
 
+  if(costo_caja > max(precio_cajas)) {
+    costo_caja <- max(precio_cajas)
+    nota <- "\n(El valor máximo fue menor al precio por caja)"
+    message(nota)
+  } else {
+    nota <- ""
+  }
+
   segmento <-
     densidad[c("x", "y")] %>%
     tbl_df() %>%
     mutate(Tipo = ifelse(x < costo_caja,
-                         paste0("Menor que ", costo_caja, " USD"),
-                         paste0("Mayor que ", costo_caja, " USD"))
+                         paste0("Inferior a ", costo_caja, " USD"),
+                         paste0("Superior a ", costo_caja, " USD"))
     )%>%
     filter(x > min(precio_cajas) & x < max(precio_cajas))
 
@@ -180,11 +186,12 @@ prob_exito <- function(res_simulacion, costo_caja) {
                     upper = costo_caja)
 
   titulo <- paste0("Probabilidad de recuperar inversión: ",
-                  round(1 - prob$value, 4) * 100,
-                  "%")
+                   round(1 - prob$value, 4) * 100,
+                   "%", nota)
 
   subtitulo <- paste0("Simulación con ",
-                      max(res_simulacion[["Caja"]]), " cajas\nValor medio: ", round(media, 1), " USD")
+                      max(res_simulacion[["Caja"]]), " cajas\nValor medio: ",
+                      round(media, 1), " USD")
 
   ggplot(segmento) +
     aes(x, y, fill = Tipo) +
@@ -196,7 +203,7 @@ prob_exito <- function(res_simulacion, costo_caja) {
     theme(legend.position = "top") +
     labs(title = titulo, subtitle = subtitulo,
          x = "Valor de cajas (USD)", y = "Densidad") +
-    scale_fill_manual(values = col_rarezas[c(4, 2)])
+    scale_fill_manual(values = col_rarezas[c(2, 4)])
 }
 
 obtener_precios <- function(expansion, forzar_descarga = FALSE){
@@ -206,8 +213,12 @@ obtener_precios <- function(expansion, forzar_descarga = FALSE){
   goldfish_html <- paste0("goldfish_", expansion, ".html")
 
   if(!file.exists(goldfish_html) | forzar_descarga == TRUE) {
+    message("Descargando precios.")
     download_html(url = goldfish_url,
                   file = goldfish_html)
+  } else {
+    fecha_precios <- file.info(goldfish_html)$ctime
+    message("Usando precios descargados en ", fecha_precios, ".")
   }
 
   goldfish <- read_html(goldfish_html)
@@ -218,6 +229,8 @@ obtener_precios <- function(expansion, forzar_descarga = FALSE){
 }
 
 simular_precios <- function(precios, costo_caja, iteraciones = 100) {
+  message("Iniciando simulación.")
+
   simulacion <- list()
 
   simulacion$sim <-
@@ -227,13 +240,13 @@ simular_precios <- function(precios, costo_caja, iteraciones = 100) {
   simulacion$prob <-
     prob_exito(res_simulacion = simulacion$sim, costo_caja = costo_caja)
 
+  message("Simulación concluida.")
   simulacion
 }
 
 #
-analizar_set <- function(expansion, costo_caja = 100, iteraciones = 100, forzar_descarga = FALSE, ...) {
-
-  mtg_sets <- obtener_sets()
+analizar_set <- function(expansion, costo_caja = 100, iteraciones = 100, forzar_descarga = FALSE, actualizar_sets = FALSE) {
+  mtg_sets <- obtener_sets(actualizar_sets = actualizar_sets)
 
   verificar_set(expansion)
 
@@ -258,4 +271,11 @@ M19 <- analizar_set("M19")
 hora_devastada <- analizar_set("HOU")
 kaladesh <- analizar_set("KLD")
 battlebond <- analizar_set("BBD")
+analizar_set("DGM")
 dragon_maze <- analizar_set("DGM", costo_caja = 50)
+
+analizar_set("ZZZ")
+
+analizar_set("RTR", costo_caja = 100)
+
+
