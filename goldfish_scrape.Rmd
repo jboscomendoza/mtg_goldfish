@@ -1,0 +1,213 @@
+---
+title: "MTG Goldfish"
+author: "Juan Bosco Mendoza Vega"
+date: "20 de agosto de 2018"
+output: 
+  html_document: 
+    fig_height: 6
+    fig_width: 7.5
+    highlight: haddock
+    theme: yeti
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Para este análisis usaremos los datos del sitio MTG Goldfish.
+
+Visita MTG Goldfish, es un sitio excelente.
+
+
+
+Vamos a realizar este análisis en varios pasos:
+
+* Descarga de los precios y procesamiento para análisis.
+* Simulación de valores, por sobre abierto y por caja abierta.
+* Cálculo de probabilidad de quedar tablas.
+* Sistematización del análisis para poder ejecutarlo eficientemente de manera repetida.
+
+# Paquetes necesarios
+
+Para este proyecto usaremos los siguientes paquetes:
+
+* **tidiverse**: Una familia de paquetes para importar, manipular, exportar y visualizar datos.
+* **rvest**: Funciones para extraer información de páginas web (*scrapping*).
+* **xml2**: Este paquete nos permite importar y manipular datos con estructuras xml.
+* **scales**: Funciones para mejorar la presentación de datos en gráficos.
+* **ggrepel**: Un paquete que expande las funciones de **ggplot2** (parte de *tidyverse*), para mostrar etiquetas sin sobreposiciones entre ellas.
+
+```{r, message=FALSE}
+library(tidyverse)
+library(rvest)
+library(xml2)
+library(scales)
+library(ggrepel)
+```
+
+Como es usual, puedes instalar estos paquetes usando la función `install.packages()`.
+
+# Obtener la información de precios
+
+En MTG Goldfish, La información de los precios de un set de MtG es presentada en su propia pagina, usando el código del set.
+
+Los sets de MtG son identificados por un código de tres cracteres, en mayúsculas. Por ejemplo, para Dominaria, el código del set es "DOM", por lo que el URL en el que encontramos sus precios se ecuentran en:
+ 
+ * https://www.mtggoldfish.com/index/DOM
+ 
+Una lista de los códigos de sets de Magic se encuentra disponible en:
+
+* https://mtg.gamepedia.com/Template:List_of_Magic_sets
+
+Usamos `download_html()` para descargar una página de internet a nuestra carpeta de trabajo como "goldfish_DOM.html".
+```{r descarga precios, eval = FALSE}
+download_html(url = "https://www.mtggoldfish.com/index/DOM",
+              file = "goldfish_DOM.html")
+```
+
+Importamos entonces el html descargado y lo asignamos al objeto mtg_dom.
+
+```{r importar_fom}
+mtg_dom <- read_html("goldfish_DOM.html")
+```
+
+Si llamamos a este objeto, podremos ver que es un documento con estructura de xml.
+
+```{r mtg_dom_xml}
+mtg_dom
+```
+
+Con este formato no podemos hacer mucho. Necesitamos extraer los datos que contiene y para ello, usaremos las funciones del paquete **rvest**.
+
+**rvest** extrae información de un documento que contiene html o xml usando los identificadores de **css**.
+
+Como vamos a recuperar los datos de precios de las cartas, necesitamos los identificadores css de estos datos. Para obtenerlos hay distintas maneras, pero nosotros simplemente exploraremos la página original y daremos un vistazo a su código fuente.
+
+Bueno, para este artículo ya he hecho esa tarea, así que veamos los resultados, usando la función `html_node()`.
+```{r css_dom}
+mtg_dom %>% 
+  html_node(css = ".index-price-table-paper tbody tr")
+```
+
+Aún no es un formato útil para el análisis necesitamos la función `html_text()`. Esto nos devolverá una cantidad considerable de texto, asi que pediremos sólo las primeras líneas con `head()`.
+
+```{r css_dom_text}
+mtg_dom %>% 
+  html_nodes(css = ".index-price-table-paper tbody tr") %>% 
+  html_text() %>% 
+  head()
+```
+
+Esto ya es más manejable. Usamos la función `str_split()` con `as.data.frame()` y `tbl_df()` para convertir estos datos a un data frame, que llamaremos df_dom
+
+```{r css_dom_text_tbldf}
+df_dom <- 
+  mtg_dom %>% 
+  html_nodes(css = ".index-price-table-paper tbody tr") %>% 
+  html_text() %>% 
+  str_split(pattern = "\\n", simplify = T) %>%
+  as.data.frame() %>%
+  tbl_df()
+```
+
+Veamos el resultado.
+```{r}
+df_dom
+```
+
+Tenemos que pulir un poco nuestro data frame, seleccionando sólo las columnas que nos interesan con `select()` de **dplyr**
+```{r}
+df_dom <- 
+  df_dom %>% 
+  select("Carta" = V1, "Set" = V2, "Rareza" = V3, "Precio" = V5) %>% mutate(Precio = as.numeric(as.character(Precio)),
+           Rareza = factor(Rareza, levels = c("Basic Land","Common",
+                                              "Uncommon", "Rare", "Mythic"))) %>% 
+  mutate_at(c("Carta", "Set"), as.character) %>% 
+  filter(Rareza != "Basic Land")
+```
+
+Veamos nuestro resultado.
+
+```{r}
+df_dom
+```
+
+Ya casi estamos listos para continuar, pero antes tenemos que hacer una recodificación.
+
+## Identificando *outliers*
+Como nuestro interés en este proyecto es analizar el valor monetario de un set de Magic, nos conviene identificar aquellas cartas que tienen un valor excepcionalente alto, con respecto a las demás. 
+
+Esto es, aquellas que son *outliers*.
+
+En cuanto a *outliers* no hay concenso 
+
+Nosotros usaremos como criterio el usando al generar gráficos de caja y bigote (*boxplot*), que es:
+
+* Un dato menor a: el valor del primer cuartil menos una vez y media el rango intercuartílico.
+* Un dato mayor a: el valor del tercer cuartil más una vez y media el rango intercuartílico.
+
+Estos son los datos que se salen de los "bigotes" de un *boxplot* y son mostrados como puntos.
+
+Podemos convertir el criterio anterior en una función:
+```{r tag_outliers}
+tag_outlier <- function(datos) {
+  ifelse(datos < quantile(datos, .25) - IQR(datos) * 1.5 | datos > quantile(datos, .75) + IQR(datos) * 1.5, 
+         TRUE, FALSE)
+}
+```
+
+Ahora aplicamos esta función, agrupando por rareza de las cartas. Nos interesa que una carta sea excepcionalmente cara o barata con respecto al mismo tipo de carta. No tiene mucho sentido comparar los precios de No comunes con Míticas, pues estas últimas *siempre* tienen un precio más alto que las primeras.
+
+Hacemos un `mutate()` adicional para etiquetar los outlier con el nombre de la carta, esto nos será útil más adelante (podría usar una sola llamada de `mutate()`, pero he preferido presentarlo así para hacer más claro qué está ocurriendo).
+
+```{r tag_outliers_name}
+df_dom <- 
+  df_dom %>% 
+  group_by(Rareza) %>% 
+  mutate(Outlier = tag_outlier(Precio)) %>% 
+  mutate(Outlier = ifelse(Outlier, Carta, NA))
+```
+
+Nuestro resultado es el siguiente.
+```{r}
+df_dom
+```
+
+Ahora sí, es hora de la simulación.
+
+# Simulaciones
+Vamos a hacer dos simulaciones, una de sobre y una de caja de sobres.
+
+Los sets de Magic, normalmente, son vendidos en sobres que contienen 15 cartas, distribuidas de la misma manera:
+
+* 1 cara de tierra básica.
+* 10 cartas comunes.
+* 3 cartas no comunes.
+* 1 carta rara, o 1 carta mítica en uno de cada ocho sobres, aproximadamente.
+
+Estos sobres, a su vez, generalmente se venden en cajas que contienen 36 sobres.
+
+Por lo tanto, necesitamos simular el contenido de un sobre, para repetir ese ejercicio 36 veces, para así determinar el valor monetario de una caja de Magic.
+
+Empecemos con la simulación de un sobre.
+
+## Simulación de un sobre
+Crearemos una lista con pares con las rarezas de las cartas y la frecuencia con la que aparecen. Omitimos las cartas de tierra básica, pues ellas generalmente no tienen ningún valor financiero.
+
+```{r rareza_frecuencia}
+rareza_frecuencia <- list(
+  c("Rare", 1),
+  c("Uncommon", 3),
+  c("Common", 10)
+)
+```
+
+Ahora, usamos esta lista con la función `map()` de **purrr**.
+
+```{r}
+map(rareza_frecuencia)
+```
+
+
+
