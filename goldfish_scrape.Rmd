@@ -193,21 +193,82 @@ Por lo tanto, necesitamos simular el contenido de un sobre, para repetir ese eje
 Empecemos con la simulación de un sobre.
 
 ## Simulación de un sobre
-Crearemos una lista con pares con las rarezas de las cartas y la frecuencia con la que aparecen. Omitimos las cartas de tierra básica, pues ellas generalmente no tienen ningún valor financiero.
+Crearemos una lista con listas de pares con las rarezas de las cartas y la frecuencia con la que aparecen. Omitimos las cartas de tierra básica, pues ellas generalmente no tienen ningún valor financiero.
 
 ```{r rareza_frecuencia}
 rareza_frecuencia <- list(
-  c("Rare", 1),
-  c("Uncommon", 3),
-  c("Common", 10)
+  list("Rare", 1),
+  list("Uncommon", 3),
+  list("Common", 10)
 )
 ```
 
-Ahora, usamos esta lista con la función `map()` de **purrr**.
+Usaremos esta lista con la función `map()` de **purrr**.
+
+Lo que haremos dentro con esta función será filtrar de nuestro data frame con el set Dominaria, las cartas por rareza, y luego extraer una muestra de ellas igual a la frecuencia con la que aparecen.
+
+Usaremos, en conjunto con `map()`, las funciones `filter()` y `sample_n()` de **dplyr**. Hagamos esto con `set.seed()`, para que obtengas los mismos resultados.
 
 ```{r}
-map(rareza_frecuencia)
+set.seed(2018)
+
+map(rareza_frecuencia, function(pareja){
+  df_dom %>% 
+    filter(Rareza == pareja[[1]]) %>% 
+    sample_n(size = pareja[[2]])
+})
 ```
 
+El resultado es una lista, que representa un sobre de Magic.
 
+Como usaremos mucho esta función anónima, es mejor que de una vez le demos nombre. La llamaremos `pareja()`.
+
+```{r funcion_pareja}
+pareja <- function(lista, datos) {
+  datos %>% 
+    filter(Rareza == lista[1]) %>% 
+    sample_n(size = as.numeric(lista[2]))
+}
+```
+
+De esta manera, podemos usar `map()` para generar sobres con una sola línea.
+```{r map_con_pareja}
+set.seed(2018)
+map(rareza_frecuencia, pareja, datos = df_dom)
+```
+
+Como necesitamos un data frame para análisis posteriores, corremos lo anterior seguido de `reduce()` de *purrr*, que aplica una función de manera secuencial a todos los elementos de una lista. Aplicaremos `bind_rows()` de *dplyr* para obtener como resultado un data frame.
+
+```{r map_con_pareja_reduce}
+set.seed(8102)
+map(rareza_frecuencia, pareja, datos = df_dom) %>% 
+  reduce(bind_rows)
+```
+
+Lo anterior, sin embargo, no nos permite crear sobres con cartas míticas. Necesitamos solucionar esto.
+
+### Las cartas míticas
+Dado que las cartas míticas aparecen en un sobre una de cada ocho veces ($p = 1/8$), podemos simular este comportamiento con una distribución binomial.
+
+Usamos la función `rbinom()`, para generar 1 y 0 al azar, teniendo el 1 una probabilidad de $1/8$ ocurrir. 
+
+Pongamos esto a prueba, generando 40 números.
+```{r}
+rbinom(n = 40, size = 1, prob = 1/8)
+```
+
+Luce razonable.
+
+Entonces, lo que haremos es que 
+
+```{r}
+rareza_frecuencia %>% 
+  map(function(x) {
+    if(x[[1]] == "Rare" & rbinom(n = 1, size = 1, prob = 1/8)) {
+      "Mythic"
+    } else {
+      x[[1]]
+    }
+  })
+```
 
