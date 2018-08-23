@@ -250,7 +250,7 @@ Lo anterior, sin embargo, no nos permite crear sobres con cartas míticas. Neces
 ### Las cartas míticas
 Dado que las cartas míticas aparecen en un sobre una de cada ocho veces ($p = 1/8$), podemos simular este comportamiento con una distribución binomial.
 
-Usamos la función `rbinom()`, para generar 1 y 0 al azar, teniendo el 1 una probabilidad de $1/8$ ocurrir. 
+Usamos la función `rbinom()`, para generar 1 y 0 al azar, teniendo el 1 una probabilidad de $1/8$ ocurrir, esto es, 12.5%  de los casos.
 
 Pongamos esto a prueba, generando 40 números.
 ```{r}
@@ -259,9 +259,11 @@ rbinom(n = 40, size = 1, prob = 1/8)
 
 Luce razonable.
 
-Entonces, lo que haremos es que 
+Entonces, lo que haremos es que  es establecer una condición con `ìf`. Si la rareza de la que estamos extrayendo cartas es "Rare" y al mismo tiempo obtenemos un 1 con la distribución binomial anterior.
 
+Lo siguiente nos devolverá una carta Rara.
 ```{r}
+set.seed(6)
 rareza_frecuencia %>% 
   map(function(x) {
     if(x[[1]] == "Rare" & rbinom(n = 1, size = 1, prob = 1/8)) {
@@ -271,4 +273,99 @@ rareza_frecuencia %>%
     }
   })
 ```
+
+Y lo siguiente una mítica.
+```{r}
+set.seed(7)
+rareza_frecuencia %>% 
+  map(function(x) {
+    if(x[[1]] == "Rare" & rbinom(n = 1, size = 1, prob = 1/8)) {
+      "Mythic"
+    } else {
+      x[[1]]
+    }
+  })
+```
+
+Combinamos esto con la función `pareja()` para crear sobres como data frames. Definimos una función llamada `simular_sobre()`.
+```{r crear_sobre}
+simular_sobre <- function(tabla) {
+  rareza_frecuencia <- list(
+    c("Rare", 1),
+    c("Uncommon", 3),
+    c("Common", 10)
+  )
+  
+  rareza_frecuencia <- 
+    map(rareza_frecuencia, function(x) {
+      if(x[[1]] == "Rare" & rbinom(n = 1, size = 1, prob = 1/8)) {
+        x[[1]] <- "Mythic"
+      } else {
+        x[[1]]
+      }
+      x
+    })
+  
+  map(rareza_frecuencia, pareja, datos = tabla) %>% 
+    reduce(bind_rows)
+}
+```
+
+Pongamos a prueba nuestra función `simular_sobre()`.
+```{r crear_sobre_probar}
+set.seed(7)
+simular_sobre(tabla = df_dom)
+```
+
+Con esta función, podemos crear cajas de sobres fácilmente.
+
+# Simular caja de sobres
+Usamos la función `map()` para crear 36 sobres, repitiendo ese mismo número de veces la función `simular_sobre()`.
+
+```{r}
+set.seed(8244)
+caja_dom <- map(1:36, ~simular_sobre(tabla = df_dom))
+```
+
+De esta manera obtenemos una lista con 36 elementos, cada uno de ellos representando un sobre de Magic. Por ejemplo, este es el cuarto sobre.
+```{r}
+caja_dom[[4]]
+```
+
+Vamos a crear una función para simular una caja de Magic, que nos de como resultado un data frame con los 36 sobres.
+
+```{r}
+simular_caja <- function(datos) {
+  map(1:36, ~simular_sobre(tabla = df_dom)) %>% 
+    reduce(bind_rows)
+}
+```
+
+Probamos nuestra función.
+```{r}
+set.seed(8244)
+caja_dom <- simular_caja(datos = df_fom)
+```
+
+Comprobamos que hemos generado 36 cartas Raras o Míticas.
+```{r}
+caja_dom %>% 
+  filter(Rareza %in% c("Rare", "Mythic"))
+```
+
+Hora del análisis del valor monetario de la caja.
+
+# Análisis monetario
+
+Ahora podemos calcular, en promedio, cual es el valor de una caja de Dominaria.
+
+Digamos que abrimos 100 cajas.
+```{r}
+map(1:100, ~simular_caja(df_dom)) %>% 
+  reduce(bind_rows) %>% 
+  summarize(Valor = sum(Precio)) 
+```
+
+
+
 

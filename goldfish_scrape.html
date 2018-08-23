@@ -392,6 +392,8 @@ $(document).ready(function () {
 <li><a href="#las-cartas-miticas">Las cartas míticas</a></li>
 </ul></li>
 </ul></li>
+<li><a href="#simular-caja-de-sobres">Simular caja de sobres</a></li>
+<li><a href="#analisis-monetario">Análisis monetario</a></li>
 </ul>
 </div>
 
@@ -708,19 +710,23 @@ $(document).ready(function () {
 <div id="las-cartas-miticas" class="section level3">
 <h3>Las cartas míticas</h3>
 <p>Dado que las cartas míticas aparecen en un sobre una de cada ocho veces (<span class="math inline">\(p = 1/8\)</span>), podemos simular este comportamiento con una distribución binomial.</p>
-<p>Usamos la función <code>rbinom()</code>, para generar 1 y 0 al azar, teniendo el 1 una probabilidad de <span class="math inline">\(1/8\)</span> ocurrir.</p>
+<p>Usamos la función <code>rbinom()</code>, para generar 1 y 0 al azar, teniendo el 1 una probabilidad de <span class="math inline">\(1/8\)</span> ocurrir, esto es, 12.5% de los casos.</p>
 <p>Pongamos esto a prueba, generando 40 números.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">40</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">8</span>)</a></code></pre></div>
 <pre><code>##  [1] 0 0 1 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0
 ## [36] 0 0 0 0 0</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">rareza_frecuencia <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="st">  </span><span class="kw">map</span>(<span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb30-3" data-line-number="3">    <span class="cf">if</span>(x[[<span class="dv">1</span>]] <span class="op">==</span><span class="st"> &quot;Rare&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">8</span>)) {</a>
-<a class="sourceLine" id="cb30-4" data-line-number="4">      <span class="st">&quot;Mythic&quot;</span></a>
-<a class="sourceLine" id="cb30-5" data-line-number="5">    } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb30-6" data-line-number="6">      x[[<span class="dv">1</span>]]</a>
-<a class="sourceLine" id="cb30-7" data-line-number="7">    }</a>
-<a class="sourceLine" id="cb30-8" data-line-number="8">  })</a></code></pre></div>
+<p>Luce razonable.</p>
+<p>Entonces, lo que haremos es que es establecer una condición con <code>ìf</code>. Si la rareza de la que estamos extrayendo cartas es “Rare” y al mismo tiempo obtenemos un 1 con la distribución binomial anterior.</p>
+<p>Lo siguiente nos devolverá una carta Rara.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">rareza_frecuencia <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"><span class="st">  </span><span class="kw">map</span>(<span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">    <span class="cf">if</span>(x[[<span class="dv">1</span>]] <span class="op">==</span><span class="st"> &quot;Rare&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">8</span>)) {</a>
+<a class="sourceLine" id="cb30-5" data-line-number="5">      <span class="st">&quot;Mythic&quot;</span></a>
+<a class="sourceLine" id="cb30-6" data-line-number="6">    } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb30-7" data-line-number="7">      x[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb30-8" data-line-number="8">    }</a>
+<a class="sourceLine" id="cb30-9" data-line-number="9">  })</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;Rare&quot;
 ## 
@@ -729,8 +735,137 @@ $(document).ready(function () {
 ## 
 ## [[3]]
 ## [1] &quot;Common&quot;</code></pre>
+<p>Y lo siguiente una mítica.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">rareza_frecuencia <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="st">  </span><span class="kw">map</span>(<span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb32-4" data-line-number="4">    <span class="cf">if</span>(x[[<span class="dv">1</span>]] <span class="op">==</span><span class="st"> &quot;Rare&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">8</span>)) {</a>
+<a class="sourceLine" id="cb32-5" data-line-number="5">      <span class="st">&quot;Mythic&quot;</span></a>
+<a class="sourceLine" id="cb32-6" data-line-number="6">    } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb32-7" data-line-number="7">      x[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb32-8" data-line-number="8">    }</a>
+<a class="sourceLine" id="cb32-9" data-line-number="9">  })</a></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;Mythic&quot;
+## 
+## [[2]]
+## [1] &quot;Uncommon&quot;
+## 
+## [[3]]
+## [1] &quot;Common&quot;</code></pre>
+<p>Combinamos esto con la función <code>pareja()</code> para crear sobres como data frames. Definimos una función llamada <code>simular_sobre()</code>.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">simular_sobre &lt;-<span class="st"> </span><span class="cf">function</span>(tabla) {</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">  rareza_frecuencia &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">    <span class="kw">c</span>(<span class="st">&quot;Rare&quot;</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb34-4" data-line-number="4">    <span class="kw">c</span>(<span class="st">&quot;Uncommon&quot;</span>, <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb34-5" data-line-number="5">    <span class="kw">c</span>(<span class="st">&quot;Common&quot;</span>, <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb34-6" data-line-number="6">  )</a>
+<a class="sourceLine" id="cb34-7" data-line-number="7">  </a>
+<a class="sourceLine" id="cb34-8" data-line-number="8">  rareza_frecuencia &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb34-9" data-line-number="9"><span class="st">    </span><span class="kw">map</span>(rareza_frecuencia, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb34-10" data-line-number="10">      <span class="cf">if</span>(x[[<span class="dv">1</span>]] <span class="op">==</span><span class="st"> &quot;Rare&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">prob =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">8</span>)) {</a>
+<a class="sourceLine" id="cb34-11" data-line-number="11">        x[[<span class="dv">1</span>]] &lt;-<span class="st"> &quot;Mythic&quot;</span></a>
+<a class="sourceLine" id="cb34-12" data-line-number="12">      } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb34-13" data-line-number="13">        x[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb34-14" data-line-number="14">      }</a>
+<a class="sourceLine" id="cb34-15" data-line-number="15">      x</a>
+<a class="sourceLine" id="cb34-16" data-line-number="16">    })</a>
+<a class="sourceLine" id="cb34-17" data-line-number="17">  </a>
+<a class="sourceLine" id="cb34-18" data-line-number="18">  <span class="kw">map</span>(rareza_frecuencia, pareja, <span class="dt">datos =</span> tabla) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-19" data-line-number="19"><span class="st">    </span><span class="kw">reduce</span>(bind_rows)</a>
+<a class="sourceLine" id="cb34-20" data-line-number="20">}</a></code></pre></div>
+<p>Pongamos a prueba nuestra función <code>simular_sobre()</code>.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="kw">simular_sobre</span>(<span class="dt">tabla =</span> df_dom)</a></code></pre></div>
+<pre><code>## # A tibble: 14 x 5
+## # Groups:   Rareza [3]
+##    Carta                 Set   Rareza   Precio Outlier            
+##    &lt;chr&gt;                 &lt;chr&gt; &lt;fct&gt;     &lt;dbl&gt; &lt;chr&gt;              
+##  1 Karn, Scion of Urza   DOM   Mythic   32.6   Karn, Scion of Urza
+##  2 The Eldest Reborn     DOM   Uncommon  0.290 &lt;NA&gt;               
+##  3 Warcry Phoenix        DOM   Uncommon  0.2   &lt;NA&gt;               
+##  4 Final Parting         DOM   Uncommon  0.24  &lt;NA&gt;               
+##  5 Cloudreader Sphinx    DOM   Common    0.12  &lt;NA&gt;               
+##  6 Skittering Surveyor   DOM   Common    0.15  &lt;NA&gt;               
+##  7 Guardians of Koilos   DOM   Common    0.14  &lt;NA&gt;               
+##  8 Fiery Intervention    DOM   Common    0.12  &lt;NA&gt;               
+##  9 Fungal Infection      DOM   Common    0.15  &lt;NA&gt;               
+## 10 Short Sword           DOM   Common    0.13  &lt;NA&gt;               
+## 11 Artificer's Assistant DOM   Common    0.15  &lt;NA&gt;               
+## 12 Frenzied Rage         DOM   Common    0.14  &lt;NA&gt;               
+## 13 Llanowar Scout        DOM   Common    0.15  &lt;NA&gt;               
+## 14 Keldon Overseer       DOM   Common    0.14  &lt;NA&gt;</code></pre>
+<p>Con esta función, podemos crear cajas de sobres fácilmente.</p>
 </div>
 </div>
+</div>
+<div id="simular-caja-de-sobres" class="section level1">
+<h1>Simular caja de sobres</h1>
+<p>Usamos la función <code>map()</code> para crear 36 sobres, repitiendo ese mismo número de veces la función <code>simular_sobre()</code>.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">8244</span>)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">caja_dom &lt;-<span class="st"> </span><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">36</span>, <span class="op">~</span><span class="kw">simular_sobre</span>(<span class="dt">tabla =</span> df_dom))</a></code></pre></div>
+<p>De esta manera obtenemos una lista con 36 elementos, cada uno de ellos representando un sobre de Magic. Por ejemplo, este es el cuarto sobre.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">caja_dom[[<span class="dv">4</span>]]</a></code></pre></div>
+<pre><code>## # A tibble: 14 x 5
+## # Groups:   Rareza [3]
+##    Carta                 Set   Rareza   Precio Outlier
+##    &lt;chr&gt;                 &lt;chr&gt; &lt;fct&gt;     &lt;dbl&gt; &lt;chr&gt;  
+##  1 Fall of the Thran     DOM   Rare       0.39 &lt;NA&gt;   
+##  2 Icy Manipulator       DOM   Uncommon   0.2  &lt;NA&gt;   
+##  3 Sage of Lat-Nam       DOM   Uncommon   0.19 &lt;NA&gt;   
+##  4 Memorial to Folly     DOM   Uncommon   0.25 &lt;NA&gt;   
+##  5 Llanowar Envoy        DOM   Common     0.14 &lt;NA&gt;   
+##  6 Bloodtallow Candle    DOM   Common     0.13 &lt;NA&gt;   
+##  7 Pardic Wanderer       DOM   Common     0.14 &lt;NA&gt;   
+##  8 Deathbloom Thallid    DOM   Common     0.13 &lt;NA&gt;   
+##  9 Blessing of Belzenlok DOM   Common     0.13 &lt;NA&gt;   
+## 10 Primordial Wurm       DOM   Common     0.13 &lt;NA&gt;   
+## 11 Adventurous Impulse   DOM   Common     0.17 &lt;NA&gt;   
+## 12 Temporal Machinations DOM   Common     0.14 &lt;NA&gt;   
+## 13 Fire Elemental        DOM   Common     0.13 &lt;NA&gt;   
+## 14 Yavimaya Sapherd      DOM   Common     0.15 &lt;NA&gt;</code></pre>
+<p>Vamos a crear una función para simular una caja de Magic, que nos de como resultado un data frame con los 36 sobres.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">simular_caja &lt;-<span class="st"> </span><span class="cf">function</span>(datos) {</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2">  <span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">36</span>, <span class="op">~</span><span class="kw">simular_sobre</span>(<span class="dt">tabla =</span> df_dom)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="st">    </span><span class="kw">reduce</span>(bind_rows)</a>
+<a class="sourceLine" id="cb40-4" data-line-number="4">}</a></code></pre></div>
+<p>Probamos nuestra función.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">8244</span>)</a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">caja_dom &lt;-<span class="st"> </span><span class="kw">simular_caja</span>(<span class="dt">datos =</span> df_fom)</a></code></pre></div>
+<p>Comprobamos que hemos generado 36 cartas Raras o Míticas.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">caja_dom <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(Rareza <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Rare&quot;</span>, <span class="st">&quot;Mythic&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 36 x 5
+## # Groups:   Rareza [2]
+##    Carta                     Set   Rareza Precio Outlier                
+##    &lt;chr&gt;                     &lt;chr&gt; &lt;fct&gt;   &lt;dbl&gt; &lt;chr&gt;                  
+##  1 Dread Shade               DOM   Rare     0.61 &lt;NA&gt;                   
+##  2 The Mending of Dominaria  DOM   Rare     0.46 &lt;NA&gt;                   
+##  3 Naban, Dean of Iteration  DOM   Rare     0.61 &lt;NA&gt;                   
+##  4 Fall of the Thran         DOM   Rare     0.39 &lt;NA&gt;                   
+##  5 Shalai, Voice of Plenty   DOM   Rare     2.84 Shalai, Voice of Plenty
+##  6 Urza's Ruinous Blast      DOM   Rare     0.63 &lt;NA&gt;                   
+##  7 Torgaar, Famine Incarnate DOM   Rare     0.5  &lt;NA&gt;                   
+##  8 Cabal Stronghold          DOM   Rare     1.1  &lt;NA&gt;                   
+##  9 Karn, Scion of Urza       DOM   Mythic  32.6  Karn, Scion of Urza    
+## 10 Fall of the Thran         DOM   Rare     0.39 &lt;NA&gt;                   
+## # ... with 26 more rows</code></pre>
+<p>Hora del análisis del valor monetario de la caja.</p>
+</div>
+<div id="analisis-monetario" class="section level1">
+<h1>Análisis monetario</h1>
+<p>Ahora podemos calcular, en promedio, cual es el valor de una caja de Dominaria.</p>
+<p>Digamos que abrimos 100 cajas.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">map</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>, <span class="op">~</span><span class="kw">simular_caja</span>(df_dom)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="st">  </span><span class="kw">reduce</span>(bind_rows) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">Valor =</span> <span class="kw">sum</span>(Precio)) </a></code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   Rareza   Valor
+##   &lt;fct&gt;    &lt;dbl&gt;
+## 1 Common   5329.
+## 2 Uncommon 3140.
+## 3 Rare     3180.
+## 4 Mythic   4394.</code></pre>
 </div>
 
 
