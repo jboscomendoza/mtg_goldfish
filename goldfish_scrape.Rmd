@@ -149,10 +149,12 @@ Nosotros usaremos como criterio el usando al generar gráficos de caja y bigote 
 
 Estos son los datos que se salen de los "bigotes" de un *boxplot* y son mostrados como puntos.
 
+Sólo etiquetaremos los outliers "altos", pues estos son los relevantes para el análisis que haremos.
+
 Podemos convertir el criterio anterior en una función:
 ```{r tag_outliers}
 tag_outlier <- function(datos) {
-  ifelse(datos < quantile(datos, .25) - IQR(datos) * 1.5 | datos > quantile(datos, .75) + IQR(datos) * 1.5, 
+  ifelse(datos > quantile(datos, .75) + IQR(datos) * 1.5, 
          TRUE, FALSE)
 }
 ```
@@ -356,16 +358,94 @@ caja_dom %>%
 Hora del análisis del valor monetario de la caja.
 
 # Análisis monetario
-
 Ahora podemos calcular, en promedio, cual es el valor de una caja de Dominaria.
 
-Digamos que abrimos 100 cajas.
+Usamos `map()` para repetir 100 veces la función simular caja y así obtenr esa cantidad de precios. De nuevo usamos `reduce()` para obtener como resultado un data frame.
 ```{r}
-map(1:100, ~simular_caja(df_dom)) %>% 
-  reduce(bind_rows) %>% 
-  summarize(Valor = sum(Precio)) 
+set.seed(3356)
+
+ciencajas_dom <- 
+  map(1:100, function(x) {
+    simular_caja(datos = df_dom) %>% 
+      summarize(Valor = sum(Precio))
+  }) %>% 
+  reduce(bind_rows)
 ```
 
+Como anteriormente dejamos agrupados nuestros datos por rareza, obtendremos un data frame con cerca de 400 renglones, uno por rareza de cada caja de Magic simulada. No siempre será 400, pues hay una probabilidad de que una desafortunada caja no tenga ni una sola carta Mítica.
+```{r}
+ciencajas_dom
+```
+
+De esta manera podemos otener el valor promedio por rareza de las cartas.
+```{r}
+ciencajas_dom %>% 
+  group_by(Rareza) %>% 
+  summarize(Promedio = mean(Valor))
+```
+
+Sin embargo, necesitamos hacer un pequeño ajuste. 
+
+Necesitamos proporcionar un identificador para caja, para así poder obtener un valor total por caja y, con ello, el valor promedio por caja.
+
+Hagamos el cambio y de una vez definamos una función llamada `simular_ciencajas()`, aunque en realidad, podremos definir el número de iteraciones que deseemos, no sólo 100.
+```{r def_simular_ciencajas}
+simular_ciencajas <- function(datos, iteraciones = 100) {
+  map(1:iteraciones, function(num_caja) {
+    simular_caja(datos = datos) %>% 
+      summarize(Valor = sum(Precio)) %>% 
+      mutate(Id_caja = num_caja)
+  }) %>% 
+  reduce(bind_rows)
+}
+```
+
+Pongamos a prueba nuestra función.
+```{r}
+set.seed(3356)
+
+ciencajas_dom <- simular_ciencajas(datos = df_dom)
+```
+
+Nuestro resultado es muy similar al anterior, sólo que ahora tenemos identificador por caja.
+```{r}
+ciencajas_dom
+```
+
+Con este identificador podemos obtener el valor promedio de una caja de sobres de Dominaria .
+```{r}
+ciencajas_dom %>% 
+  group_by(Id_caja) %>% 
+  summarize(Suma = sum(Valor)) %>% 
+  summarize(Media = mean(Suma))
+```
+
+La cosa marcha bien, pero nos falta considerar una característica del valor de una caja de Magic: las cartas comunes tiene poca "liquidez". Aunque nominalmente pueden tener algún valor, a menos que sea una carta de alta demanda, lo cual es reflejado en su precio, es un poco más difícil venderlas y recuperar lo invertido en obtenerlas
+
+Esto es, las cartas comunes que más fácilmente pueden venderse, son las más caras. Por suerte ya las hemos etiquetado con nuestra función  `tag_outlier()`.
+
+Así que vamos a obtener la media de valor de una caja, excluyendo las cartas comunes que no tienen un Precio particularmente alto.
+```{r}
+simular_ciencajas <- function(datos, iteraciones = 100) {
+  map(1:iteraciones, function(num_caja) {
+    simular_caja(datos = datos) %>% 
+      filter(Rareza != "Common" | (Rareza == "Common" & !is.na(Outlier)) ) %>% 
+      summarize(Valor = sum(Precio)) %>% 
+      mutate(Id_caja = num_caja)
+  }) %>% 
+  reduce(bind_rows)
+}
+
+set.seed(3356)
+ciencajas_dom <- simular_ciencajas(datos = df_dom)
+
+ciencajas_dom
+
+ciencajas_dom %>% 
+  group_by(Id_caja) %>% 
+  summarize(Suma = sum(Valor)) %>% 
+  summarize(Media = mean(Suma))
+```
 
 
 
