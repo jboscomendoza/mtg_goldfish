@@ -264,7 +264,7 @@ Luce razonable.
 Entonces, lo que haremos es que  es establecer una condición con `ìf`. Si la rareza de la que estamos extrayendo cartas es "Rare" y al mismo tiempo obtenemos un 1 con la distribución binomial anterior.
 
 Lo siguiente nos devolverá una carta Rara.
-```{r}
+```{r obtener_rara}
 set.seed(6)
 rareza_frecuencia %>% 
   map(function(x) {
@@ -277,7 +277,7 @@ rareza_frecuencia %>%
 ```
 
 Y lo siguiente una mítica.
-```{r}
+```{r obtener_mitica}
 set.seed(7)
 rareza_frecuencia %>% 
   map(function(x) {
@@ -324,7 +324,7 @@ Con esta función, podemos crear cajas de sobres fácilmente.
 # Simular caja de sobres
 Usamos la función `map()` para crear 36 sobres, repitiendo ese mismo número de veces la función `simular_sobre()`.
 
-```{r}
+```{r simular_caja_dom}
 set.seed(8244)
 caja_dom <- map(1:36, ~simular_sobre(tabla = df_dom))
 ```
@@ -336,7 +336,7 @@ caja_dom[[4]]
 
 Vamos a crear una función para simular una caja de Magic, que nos de como resultado un data frame con los 36 sobres.
 
-```{r}
+```{r funcion_simular_caja}
 simular_caja <- function(datos) {
   map(1:36, ~simular_sobre(tabla = df_dom)) %>% 
     reduce(bind_rows)
@@ -444,8 +444,98 @@ ciencajas_dom
 ciencajas_dom %>% 
   group_by(Id_caja) %>% 
   summarize(Suma = sum(Valor)) %>% 
-  summarize(Media = mean(Suma))
+  summarize(Media = median(Suma))
 ```
 
 
+# Probabilidad de recuperar inversión
+Después de simular el valor de múltiples cajas de sobres de Magic, podemos calcular la probabilidad de recuperar lo que hemos invertido en una de ellas.
+
+Para lograr esto, necesitamos calcular la función de densidad de los valores de las cajas simuladas.
+
+Primero, obtenemos el valor de cada caja, agrupando los Precios de las cartas en ellas por **Id_caja**. Una vez que hemos obtenido estos valores, los extraemos como un vector con la función `pull()` de *dplyr*.
+```{r valorcajas_dom}
+valorcajas_dom <- 
+  ciencajas_dom %>% 
+  group_by(Id_caja) %>% 
+  summarize(Suma = sum(Valor)) %>% 
+  pull(Suma)
+```
+
+Este es nuestro resultado.
+```{r valorcajas_dom_mostrar}
+valorcajas_dom
+```
+
+Usamos `density()` para obtener la función de densidad de estos valores.
+```{r}
+densidad_dom <- density(valorcajas_dom)
+```
+
+Obtenemos lo siguiente.
+```{r}
+densidad_dom
+```
+
+Si deseamos obtener una gráfica de esta función usando `ggplot()` y `geom_area()` de *ggplot2*. Pero antes necesitamos extraer la información de los ejes `x` y `y`, y después convertir eso a un data frame con `tbl_df()`.
+```{r}
+densidad_dom[c("x", "y")] %>% 
+  tbl_df() %>%
+  ggplot() +
+  aes(x, y) +
+  geom_area()
+```
+
+Con esto obtenemos un área bajo una curva. Esta área representa, aproximadamente, una distribución de todos los valores que podrían tomar las cajas de sobres Magic, a partir de la simulación que hemos realizado. Es el 100% de los casos.
+
+Podemos trazar una línea vertical que divida esta área bajo la curva en dos, justo en el valor de nuestra mediana: 104. Si hacemos esto, tendremos dos segmentos del área, uno con 50% de los valores por debajo de 104 (área a la izquierda) y 50% con los valores por encima de este valor (área a la derecha). 
+
+Como esta es una representación de una distribución, lo anterior quiere decir que si sacamos un valor al azar de esta distribución, tenemos 50% de probabilidad de que sea menor a 104 y 50% de probabilidad que sea mayor.
+
+Veamos como luce lo anterior
+```{r}
+densidad_dom[c("x", "y")] %>% 
+  tbl_df() %>%
+  ggplot() +
+  aes(x, y) +
+  geom_area() +
+  geom_vline(xintercept = 104, color = "red")
+```
+
+Por lo tanto, si queremos calcular la probabilidad de que recuperemos nuestra inversión al comprar una caja de sobres de Magic, lo único que tenemos que hacer es calcular el área que resulta de segmentar nuestra distribución en dos. 
+
+Para calcular esta área, usamos las funciones `approxfun()` e `integrate()`. 
+
+Como su nombre lo indica, la función `integrate()` usará integración para calcular un área, por lo que nos pedirá un límite inferior y uno superior. 
+
+Supongamos que que hemos comprado una caja de sobres de Dominaria en 100 dólares. Usaremos este valor como límite inferior y el valor máximo de nuestra distribución como límite superior.
+```{r integrar}
+densidad_dom %>% 
+  approxfun() %>% 
+  integrate(upper = max(valorcajas_dom), lower = 100)
+```
+
+¡Perfecto!
+
+Lo que hemos obtenido es la probabilidad de que recuperemos nuestra inversión, esto es decir, hay 54.75% de probabilidad de comprar una caja y que esta tenga un valor mayor que 100 USD.
+
+En este caso es más o menos un volado.
+
+```{r}
+ciencajas_dom %>% 
+  group_by(Id_caja) %>% 
+  summarize(Suma = sum(Valor)) %>% 
+  ggplot() +
+  aes(x = Suma) +
+  geom_histogram()
+```
+
+```{r}
+ciencajas_dom %>% 
+  group_by(Id_caja) %>% 
+  summarize(Suma = sum(Valor)) %>% 
+  pull(Suma) %>% 
+  density() %>% 
+  plot()
+```
 
