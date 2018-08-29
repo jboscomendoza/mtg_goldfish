@@ -330,7 +330,7 @@ caja_dom <- map(1:36, ~simular_sobre(tabla = df_dom))
 ```
 
 De esta manera obtenemos una lista con 36 elementos, cada uno de ellos representando un sobre de Magic. Por ejemplo, este es el cuarto sobre.
-```{r}
+```{r cuarta_caja_simulacion}
 caja_dom[[4]]
 ```
 
@@ -344,13 +344,13 @@ simular_caja <- function(datos) {
 ```
 
 Probamos nuestra función.
-```{r}
+```{r simulacion_caja}
 set.seed(8244)
 caja_dom <- simular_caja(datos = df_fom)
 ```
 
 Comprobamos que hemos generado 36 cartas Raras o Míticas.
-```{r}
+```{r test_rara_mitica}
 caja_dom %>% 
   filter(Rareza %in% c("Rare", "Mythic"))
 ```
@@ -361,7 +361,7 @@ Hora del análisis del valor monetario de la caja.
 Ahora podemos calcular, en promedio, cual es el valor de una caja de Dominaria.
 
 Usamos `map()` para repetir 100 veces la función simular caja y así obtenr esa cantidad de precios. De nuevo usamos `reduce()` para obtener como resultado un data frame.
-```{r}
+```{r simular_cien_cajas}
 set.seed(3356)
 
 ciencajas_dom <- 
@@ -373,12 +373,12 @@ ciencajas_dom <-
 ```
 
 Como anteriormente dejamos agrupados nuestros datos por rareza, obtendremos un data frame con cerca de 400 renglones, uno por rareza de cada caja de Magic simulada. No siempre será 400, pues hay una probabilidad de que una desafortunada caja no tenga ni una sola carta Mítica.
-```{r}
+```{r resultado_cien_cajas}
 ciencajas_dom
 ```
 
 De esta manera podemos otener el valor promedio por rareza de las cartas.
-```{r}
+```{r media_por_rareza}
 ciencajas_dom %>% 
   group_by(Rareza) %>% 
   summarize(Promedio = mean(Valor))
@@ -401,19 +401,19 @@ simular_ciencajas <- function(datos, iteraciones = 100) {
 ```
 
 Pongamos a prueba nuestra función.
-```{r}
+```{r test_simular_ciencajas}
 set.seed(3356)
 
 ciencajas_dom <- simular_ciencajas(datos = df_dom)
 ```
 
 Nuestro resultado es muy similar al anterior, sólo que ahora tenemos identificador por caja.
-```{r}
+```{r resultado_simular_ciencajas}
 ciencajas_dom
 ```
 
 Con este identificador podemos obtener el valor promedio de una caja de sobres de Dominaria .
-```{r}
+```{r promedio_simular_ciencajas}
 ciencajas_dom %>% 
   group_by(Id_caja) %>% 
   summarize(Suma = sum(Valor)) %>% 
@@ -425,7 +425,7 @@ La cosa marcha bien, pero nos falta considerar una característica del valor de 
 Esto es, las cartas comunes que más fácilmente pueden venderse, son las más caras. Por suerte ya las hemos etiquetado con nuestra función  `tag_outlier()`.
 
 Así que vamos a obtener la media de valor de una caja, excluyendo las cartas comunes que no tienen un Precio particularmente alto.
-```{r}
+```{r simular_ciencajas_no_comunes}
 simular_ciencajas <- function(datos, iteraciones = 100) {
   map(1:iteraciones, function(num_caja) {
     simular_caja(datos = datos) %>% 
@@ -467,18 +467,28 @@ Este es nuestro resultado.
 valorcajas_dom
 ```
 
-Usamos `density()` para obtener la función de densidad de estos valores.
-```{r}
+Definamos una función que realice lo anterior.
+```{r definir_valor_cajas}
+valor_cajas <- function(cajas_simuladas) {
+  cajas_simuladas %>% 
+    group_by(Id_caja) %>% 
+    summarize(Suma = sum(Valor)) %>% 
+    pull(Suma)
+}
+```
+
+Usamos `density()` en nuestro vector anterior para obtener la función de densidad de estos valores.
+```{r densidad_dom}
 densidad_dom <- density(valorcajas_dom)
 ```
 
 Obtenemos lo siguiente.
-```{r}
+```{r mostrar_densidad_dom}
 densidad_dom
 ```
 
 Si deseamos obtener una gráfica de esta función usando `ggplot()` y `geom_area()` de *ggplot2*. Pero antes necesitamos extraer la información de los ejes `x` y `y`, y después convertir eso a un data frame con `tbl_df()`.
-```{r}
+```{r densidad_plot}
 densidad_dom[c("x", "y")] %>% 
   tbl_df() %>%
   ggplot() +
@@ -493,7 +503,7 @@ Podemos trazar una línea vertical que divida esta área bajo la curva en dos, j
 Como esta es una representación de una distribución, lo anterior quiere decir que si sacamos un valor al azar de esta distribución, tenemos 50% de probabilidad de que sea menor a 104 y 50% de probabilidad que sea mayor.
 
 Veamos como luce lo anterior
-```{r}
+```{r densidad_plot_segmentos}
 densidad_dom[c("x", "y")] %>% 
   tbl_df() %>%
   ggplot() +
@@ -503,7 +513,6 @@ densidad_dom[c("x", "y")] %>%
 ```
 
 Por lo tanto, si queremos calcular la probabilidad de que recuperemos nuestra inversión al comprar una caja de sobres de Magic, lo único que tenemos que hacer es calcular el área que resulta de segmentar nuestra distribución en dos. 
-
 Para calcular esta área, usamos las funciones `approxfun()` e `integrate()`. 
 
 Como su nombre lo indica, la función `integrate()` usará integración para calcular un área, por lo que nos pedirá un límite inferior y uno superior. 
@@ -516,26 +525,75 @@ densidad_dom %>%
 ```
 
 ¡Perfecto!
-
+  
 Lo que hemos obtenido es la probabilidad de que recuperemos nuestra inversión, esto es decir, hay 54.75% de probabilidad de comprar una caja y que esta tenga un valor mayor que 100 USD.
 
-En este caso es más o menos un volado.
+En este caso es más o menos lanzar una moneda al aire recuperar nuestra inversión si pagamos 100 USD por una caja de Dominaria.
 
-```{r}
-ciencajas_dom %>% 
-  group_by(Id_caja) %>% 
-  summarize(Suma = sum(Valor)) %>% 
-  ggplot() +
-  aes(x = Suma) +
-  geom_histogram()
+Vamos a convertir a lo anterior a funciones.
+
+
+Primero, una función que calcule la función de densidad, la probabilidad a partir de un costo que elijamos, y el data frame de la función de densidad.
+
+Además, aprovecharemos para etiquetar los valor en el data frame de la función de densidad como menores o mayores al costo elegido.
+```{r def_magic_densidad}
+magic_densidad <- function(valor_cajas, costo_pagado) {
+  magic <- list()
+  
+  magic$costo_pagado <- costo_pagado
+  
+  magic$densidad <- 
+    density(valor_cajas)
+  
+  magic$probabilidad <- 
+    magic$densidad %>% 
+    approxfun() %>% 
+    integrate(upper = max(valor_cajas), lower = costo_pagado)
+  
+  magic$df_densidad <- 
+    magic$densidad[c("x", "y")] %>% 
+    tbl_df() %>% 
+    mutate(Tipo = ifelse(x < costo_pagado, "Menor", "Mayor"))
+  
+  magic
+}
 ```
 
-```{r}
-ciencajas_dom %>% 
-  group_by(Id_caja) %>% 
-  summarize(Suma = sum(Valor)) %>% 
-  pull(Suma) %>% 
-  density() %>% 
-  plot()
+El resultado será una lista con cuatro elementos: el costo pagado, la función de densidad, probabilidad y un data frame.
+
+```{r test_magic_densidad}
+magic_densidad(valorcajas_dom, costo_pagado = 100)
 ```
+
+Ahora, creamos una función que use esta lista para generar un gráfico.
+
+```{r def_plot_densidad}
+plot_densidad <- function(lista_densidad) {
+  
+  label_costo <- 
+    paste0("Costo pagado: ", lista_densidad$costo_pagado, " USD")
+
+  label_prob <- 
+    paste0("Probabilidad de recuperar inversión: ", 
+           round(lista_densidad$probabilidad$value, 4) * 100, 
+           "%")
+  
+  
+ lista_densidad$df_densidad %>% 
+     ggplot() +
+     aes(x, y, fill = Tipo) +
+     geom_area() +
+     labs(title =  paste0(label_costo, "\n", label_prob))
+}
+```
+
+Hecho esto, podemos probar con otros costos de una caja de Dominaria. Por ejemplo, si pagamos 90 USD, naturalmente nos irá mejor.
+```{r test_plot_densidad}
+ magic_densidad(valorcajas_dom, 90) %>% 
+   plot_densidad()
+```
+
+
+
+ 
 
