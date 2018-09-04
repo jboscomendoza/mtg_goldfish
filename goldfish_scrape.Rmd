@@ -245,7 +245,7 @@ df_dom %>%
   ggplot() +
   aes(Rareza, Precio, fill = Rareza) +
   geom_boxplot() +
-  geom_label_repel(aes(label = Outlier), size = 2.3) +
+  geom_label_repel(aes(label = Outlier), size = 2.3, color = "white") +
   theme(legend.position = "none")
 ```
 
@@ -264,14 +264,15 @@ explorar_set <- function(mtg_df) {
     ggplot() +
     aes(Rareza, Precio, fill = Rareza) +
     geom_boxplot() +
-    geom_label_repel(aes(label = Outlier), size = 2.3) +
+    geom_label_repel(aes(label = Outlier), size = 2.3, color = "white") +
     theme(legend.position = "none")
 }
 ```
 
 ```{r}
 df_dom %>% 
-  
+  group_by(Rareza) %>% 
+  summarize(Media = mean(Precio), DS = sd(Precio))
 ```
 
 
@@ -708,10 +709,23 @@ top_densidad <- magic_densidad(top_valor, costo_pagado = 90)
 plot_densidad(top_densidad)
 ```
 
-
-
-
 ```{r}
-lsf.str()
+analisis_set <- function(set_html, costo_pagado) {
+  top_kek <- leer_html("goldfish_M19.html")
+
+top_kek <- etiquetar_outlier(top_kek)
+
+explorar_set(top_kek)
+
+set.seed(25)
+top_cien <- simular_ciencajas(top_kek)
+
+top_valor <- valor_cajas(top_cien)
+
+top_densidad <- magic_densidad(top_valor, costo_pagado = 90)
+
+plot_densidad(top_densidad)
+}
 ```
+
 
