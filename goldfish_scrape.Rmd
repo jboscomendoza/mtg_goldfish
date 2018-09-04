@@ -7,6 +7,7 @@ output:
     fig_height: 6
     fig_width: 7.5
     highlight: haddock
+    number_sections: yes
     theme: yeti
     toc: yes
 ---
@@ -29,10 +30,9 @@ Vamos a realizar este análisis en varios pasos:
 * Sistematización del análisis para poder ejecutarlo eficientemente de manera repetida.
 
 # Paquetes necesarios
-
 Para este proyecto usaremos los siguientes paquetes:
 
-* **tidiverse**: Una familia de paquetes para importar, manipular, exportar y visualizar datos.
+* **tidyverse**: Una familia de paquetes para importar, manipular, exportar y visualizar datos.
 * **rvest**: Funciones para extraer información de páginas web (*scrapping*).
 * **xml2**: Este paquete nos permite importar y manipular datos con estructuras xml.
 * **scales**: Funciones para mejorar la presentación de datos en gráficos.
@@ -49,7 +49,6 @@ library(ggrepel)
 Como es usual, puedes instalar estos paquetes usando la función `install.packages()`.
 
 # Obtener la información de precios
-
 En MTG Goldfish, La información de los precios de un set de MtG es presentada en su propia pagina, usando el código del set.
 
 Los sets de MtG son identificados por un código de tres cracteres, en mayúsculas. Por ejemplo, para Dominaria, el código del set es "DOM", por lo que el URL en el que encontramos sus precios se ecuentran en:
@@ -66,14 +65,21 @@ download_html(url = "https://www.mtggoldfish.com/index/DOM",
               file = "goldfish_DOM.html")
 ```
 
-Importamos entonces el html descargado y lo asignamos al objeto mtg_dom.
+Podemos definir una función que nos permita descargar el html que corresponde a un set de manera más sencilla, proporcionando únicamente e código de tres letras de este. 
+```{r def_descargar_set}
+descargar_set <- function(clave) {
+  mtg_url <- paste0("https://www.mtggoldfish.com/index/", clave)
+  mtg_archivo <- paste0("goldfish_", clave, ".html")
+  download_html(url = mtg_url, file = mtg_archivo)
+}
+```
 
-```{r importar_fom}
+Hecho esto, importamos el archivo con el html descargado y lo asignamos al objeto mtg_dom.
+```{r importar_dom}
 mtg_dom <- read_html("goldfish_DOM.html")
 ```
 
 Si llamamos a este objeto, podremos ver que es un documento con estructura de xml.
-
 ```{r mtg_dom_xml}
 mtg_dom
 ```
@@ -120,17 +126,37 @@ Tenemos que pulir un poco nuestro data frame, seleccionando sólo las columnas q
 ```{r}
 df_dom <- 
   df_dom %>% 
-  select("Carta" = V1, "Set" = V2, "Rareza" = V3, "Precio" = V5) %>% mutate(Precio = as.numeric(as.character(Precio)),
-           Rareza = factor(Rareza, levels = c("Basic Land","Common",
-                                              "Uncommon", "Rare", "Mythic"))) %>% 
+  select("Carta" = V1, "Set" = V2, "Rareza" = V3, "Precio" = V5) %>% 
+  mutate(Precio = as.numeric(as.character(Precio)), 
+         Rareza = factor(Rareza, levels = c("Basic Land","Common",
+                                            "Uncommon", "Rare", "Mythic"))) %>% 
   mutate_at(c("Carta", "Set"), as.character) %>% 
   filter(Rareza != "Basic Land")
 ```
 
 Veamos nuestro resultado.
-
 ```{r}
 df_dom
+```
+
+Transformamos lo anterior en una función, llamada `leer_html()` para así generar fácilmente data frames a partir del html de páginas de **MTG Goldfish**.
+```{r def_leer_html}
+leer_html <- function(archivo_html) {
+  archivo_html %>% 
+    read_html() %>% 
+    html_nodes(css = ".index-price-table-paper tbody tr") %>% 
+    html_text() %>% 
+    str_split(pattern = "\\n", simplify = T) %>%
+    as.data.frame() %>%
+    select("Carta" = V1, "Set" = V2, "Rareza" = V3, "Precio" = V5) %>%
+    mutate(Precio = as.numeric(as.character(Precio)),
+           Rareza = factor(Rareza, 
+                           levels = c("Basic Land","Common", 
+                                      "Uncommon", "Rare", "Mythic"))) %>% 
+    mutate_at(c("Carta", "Set"), as.character) %>% 
+    filter(Rareza != "Basic Land") %>% 
+    tbl_df()
+}
 ```
 
 Ya casi estamos listos para continuar, pero antes tenemos que hacer una recodificación.
@@ -176,7 +202,80 @@ Nuestro resultado es el siguiente.
 df_dom
 ```
 
-Ahora sí, es hora de la simulación.
+Por supuesto, podemos crear otra función para llevar a cabo ese proceso.
+```{r def_set_outlier}
+etiquetar_outlier <- function(mtg_df) {
+  mtg_df %>% 
+  group_by(Rareza) %>% 
+  mutate(Outlier = tag_outlier(Precio)) %>% 
+  mutate(Outlier = ifelse(Outlier, Carta, NA))
+}
+```
+
+El siguiente paso es explorar este set.
+
+# Análisis  exploratorio del set
+Una vez obtenidos los precios de las cartas en Dominaria, podemos visualizar cómo se distribuyen estos en general usando *ggplot2*, con un gráfico de densidad llamado con `geom_density()`.
+
+```{r, dom_precios_densidad}
+df_dom %>% 
+  ggplot() +
+  aes(Precio) +
+  geom_density()
+```
+
+Tenemos diferencias considerables entre los precios más bajos y más altos, así que esta gráfica no nos da mucha información. 
+
+Sin embargo, como sabemos que los precios de las cartas dependen de su rareza. Las cartas más raras tienden a ser más caras podemos visualizar los precios por rareza puede ser más útil.
+
+Usamos la función `facet_wrap()` de *ggplot2* para generar un gráfico con las características anteriores. Usamos el argumento `scales = "free"` para que los ejes `x` y `y` sean escaladas de manera independiente.
+```{r dom_precios_densidad_rap}
+df_dom %>% 
+  ggplot() +
+  aes(Precio, fill = Precio) +
+  geom_density() +
+  facet_wrap(~Rareza, scales = "free")
+```
+
+Además, podemos visualizar los precios de las cartas por rareza usando diagramas de caja y bigotes (*boxplots*). La ventaja de esta visualización es que podemos etiquetar fácilemente las cartas que hemos etiquetado como *outliers* y así darnos una idea de su valor relativo.
+
+Para lo anterior, usamos la función `geom_boxplot()` de *ggplot2* para generar la gráfica y `geom_label_repel()` de *ggrepel* para agregar etiquetas. Esta última función es una versión de `geom_label()` de *ggplot2*, que tiene ajustes para evitar que las etiquetas se superpongan, mejorando así la legibilidad. 
+```{r dom_boxplot}
+df_dom %>% 
+  ggplot() +
+  aes(Rareza, Precio, fill = Rareza) +
+  geom_boxplot() +
+  geom_label_repel(aes(label = Outlier), size = 2.3) +
+  theme(legend.position = "none")
+```
+
+Con esto tenemos una idea general de los precios de Dominaria.
+
+Definimos 
+```{r def_explorar}
+explorar_set <- function(mtg_df) {
+  mtg_df %>% 
+    ggplot() +
+    aes(Precio, fill = Precio) +
+    geom_density() +
+    facet_wrap(~Rareza, scales = "free")
+  
+  mtg_df %>% 
+    ggplot() +
+    aes(Rareza, Precio, fill = Rareza) +
+    geom_boxplot() +
+    geom_label_repel(aes(label = Outlier), size = 2.3) +
+    theme(legend.position = "none")
+}
+```
+
+```{r}
+df_dom %>% 
+  
+```
+
+
+Procedemos a estimar qué tan probable es que recuperemos nuestro dinero si decidimos comprar cajas de sobres de esta expansión.
 
 # Simulaciones
 Vamos a hacer dos simulaciones, una de sobre y una de caja de sobres.
@@ -249,7 +348,7 @@ map(rareza_frecuencia, pareja, datos = df_dom) %>%
 
 Lo anterior, sin embargo, no nos permite crear sobres con cartas míticas. Necesitamos solucionar esto.
 
-### Las cartas míticas
+## Las cartas míticas
 Dado que las cartas míticas aparecen en un sobre una de cada ocho veces ($p = 1/8$), podemos simular este comportamiento con una distribución binomial.
 
 Usamos la función `rbinom()`, para generar 1 y 0 al azar, teniendo el 1 una probabilidad de $1/8$ ocurrir, esto es, 12.5%  de los casos.
@@ -321,7 +420,7 @@ simular_sobre(tabla = df_dom)
 
 Con esta función, podemos crear cajas de sobres fácilmente.
 
-# Simular caja de sobres
+## Simular caja de sobres
 Usamos la función `map()` para crear 36 sobres, repitiendo ese mismo número de veces la función `simular_sobre()`.
 
 ```{r simular_caja_dom}
@@ -355,13 +454,13 @@ caja_dom %>%
   filter(Rareza %in% c("Rare", "Mythic"))
 ```
 
-Hora del análisis del valor monetario de la caja.
+Para una simulación apropiada, necesitamos repetir lo anterior en múltiples ocasiones.
 
-# Análisis monetario
+## Simulación de múltiples cajas
 Ahora podemos calcular, en promedio, cual es el valor de una caja de Dominaria.
 
 Usamos `map()` para repetir 100 veces la función simular caja y así obtenr esa cantidad de precios. De nuevo usamos `reduce()` para obtener como resultado un data frame.
-```{r simular_cien_cajas}
+```{r simular_cien_cajas, cache=TRUE}
 set.seed(3356)
 
 ciencajas_dom <- 
@@ -401,7 +500,7 @@ simular_ciencajas <- function(datos, iteraciones = 100) {
 ```
 
 Pongamos a prueba nuestra función.
-```{r test_simular_ciencajas}
+```{r test_simular_ciencajas, cache=TRUE}
 set.seed(3356)
 
 ciencajas_dom <- simular_ciencajas(datos = df_dom)
@@ -425,7 +524,7 @@ La cosa marcha bien, pero nos falta considerar una característica del valor de 
 Esto es, las cartas comunes que más fácilmente pueden venderse, son las más caras. Por suerte ya las hemos etiquetado con nuestra función  `tag_outlier()`.
 
 Así que vamos a obtener la media de valor de una caja, excluyendo las cartas comunes que no tienen un Precio particularmente alto.
-```{r simular_ciencajas_no_comunes}
+```{r simular_ciencajas_no_comunes, cache=TRUE}
 simular_ciencajas <- function(datos, iteraciones = 100) {
   map(1:iteraciones, function(num_caja) {
     simular_caja(datos = datos) %>% 
@@ -446,7 +545,6 @@ ciencajas_dom %>%
   summarize(Suma = sum(Valor)) %>% 
   summarize(Media = median(Suma))
 ```
-
 
 # Probabilidad de recuperar inversión
 Después de simular el valor de múltiples cajas de sobres de Magic, podemos calcular la probabilidad de recuperar lo que hemos invertido en una de ellas.
@@ -593,7 +691,27 @@ Hecho esto, podemos probar con otros costos de una caja de Dominaria. Por ejempl
    plot_densidad()
 ```
 
+```{r, cache = TRUE}
+top_kek <- leer_html("goldfish_M19.html")
+
+top_kek <- etiquetar_outlier(top_kek)
+
+explorar_set(top_kek)
+
+set.seed(25)
+top_cien <- simular_ciencajas(top_kek)
+
+top_valor <- valor_cajas(top_cien)
+
+top_densidad <- magic_densidad(top_valor, costo_pagado = 90)
+
+plot_densidad(top_densidad)
+```
 
 
- 
+
+
+```{r}
+lsf.str()
+```
 
