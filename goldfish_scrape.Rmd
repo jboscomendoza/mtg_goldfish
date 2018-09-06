@@ -5,7 +5,7 @@ date: "20 de agosto de 2018"
 output: 
   html_document: 
     fig_height: 6
-    fig_width: 7.5
+    fig_width: 8
     highlight: haddock
     number_sections: yes
     theme: yeti
@@ -214,7 +214,17 @@ etiquetar_outlier <- function(mtg_df) {
 
 El siguiente paso es explorar este set.
 
-# Análisis  exploratorio del set
+# Análisis exploratorio del set
+Empeceos la exploración con los estadísticos descriptivos más elementales. La media, mediana estándar y máximo y mínimo de los precios. La desviación estándar, un estadístico descriptivo por excelencia, en este caso es poco informativo, debido a la forma en que se distribuyen los precios.
+
+Usamos las funciones `group_by()` y `summarize()` de *dplyr*, para aplicar las funciones `mean()`, `median()`, `min()` y `max()` por Rareza.
+```{r exploracion_descriptivos}
+df_dom %>% 
+  group_by(Rareza) %>% 
+  summarize(Media = mean(Precio), Mediana = median(Precio), 
+            Minimo = min(Precio), Maximo = max(Precio))
+```
+
 Una vez obtenidos los precios de las cartas en Dominaria, podemos visualizar cómo se distribuyen estos en general usando *ggplot2*, con un gráfico de densidad llamado con `geom_density()`.
 
 ```{r, dom_precios_densidad}
@@ -232,7 +242,7 @@ Usamos la función `facet_wrap()` de *ggplot2* para generar un gráfico con las 
 ```{r dom_precios_densidad_rap}
 df_dom %>% 
   ggplot() +
-  aes(Precio, fill = Precio) +
+  aes(Precio, fill = Rareza) +
   geom_density() +
   facet_wrap(~Rareza, scales = "free")
 ```
@@ -245,7 +255,7 @@ df_dom %>%
   ggplot() +
   aes(Rareza, Precio, fill = Rareza) +
   geom_boxplot() +
-  geom_label_repel(aes(label = Outlier), size = 2.3, color = "white") +
+  geom_label_repel(aes(label = Outlier, color = Rareza), size = 2.5, fill = "white") +
   theme(legend.position = "none")
 ```
 
@@ -254,27 +264,36 @@ Con esto tenemos una idea general de los precios de Dominaria.
 Definimos 
 ```{r def_explorar}
 explorar_set <- function(mtg_df) {
-  mtg_df %>% 
-    ggplot() +
-    aes(Precio, fill = Precio) +
-    geom_density() +
-    facet_wrap(~Rareza, scales = "free")
+  exploracion <- list()
   
-  mtg_df %>% 
+  exploracion$precios_resumen <- 
+    mtg_df %>% 
+    group_by(Rareza) %>% 
+    summarize(Media = mean(Precio), Mediana = median(Precio), 
+              Minimo = min(Precio), Maximo = max(Precio)) %>% 
+    mutate_if(is.numeric, ~round(., 2))
+  
+  exploracion$precios_rareza <- 
+    mtg_df %>% 
+    ggplot() +
+    aes(Precio, fill = Rareza) +
+    geom_density() +
+    facet_wrap(~Rareza, scales = "free") +
+    theme_minimal() +
+    theme(legend.position = "none")
+  
+  exploracion$boxplot <- 
+    mtg_df %>% 
     ggplot() +
     aes(Rareza, Precio, fill = Rareza) +
     geom_boxplot() +
-    geom_label_repel(aes(label = Outlier), size = 2.3, color = "white") +
+    geom_label_repel(aes(label = Outlier, color = Rareza), size = 2.5, fill = "white") +
+    theme_minimal() +
     theme(legend.position = "none")
+  
+  exploracion
 }
 ```
-
-```{r}
-df_dom %>% 
-  group_by(Rareza) %>% 
-  summarize(Media = mean(Precio), DS = sd(Precio))
-```
-
 
 Procedemos a estimar qué tan probable es que recuperemos nuestro dinero si decidimos comprar cajas de sobres de esta expansión.
 
@@ -597,7 +616,7 @@ densidad_dom[c("x", "y")] %>%
 
 Con esto obtenemos un área bajo una curva. Esta área representa, aproximadamente, una distribución de todos los valores que podrían tomar las cajas de sobres Magic, a partir de la simulación que hemos realizado. Es el 100% de los casos.
 
-Podemos trazar una línea vertical que divida esta área bajo la curva en dos, justo en el valor de nuestra mediana: 104. Si hacemos esto, tendremos dos segmentos del área, uno con 50% de los valores por debajo de 104 (área a la izquierda) y 50% con los valores por encima de este valor (área a la derecha). 
+Podemos trazar una línea vertical que divida esta área bajo la curva en dos, justo en el valor de nuestra mediana: 104. Si hacemos esto, tendremos dos segmentos del área, uno con 50% de los valores por debajo de 104 (área a la izquierda) y 50% con los valores por encima de este valor (área a la derecha).
 
 Como esta es una representación de una distribución, lo anterior quiere decir que si sacamos un valor al azar de esta distribución, tenemos 50% de probabilidad de que sea menor a 104 y 50% de probabilidad que sea mayor.
 
@@ -668,21 +687,22 @@ Ahora, creamos una función que use esta lista para generar un gráfico.
 
 ```{r def_plot_densidad}
 plot_densidad <- function(lista_densidad) {
-  
   label_costo <- 
     paste0("Costo pagado: ", lista_densidad$costo_pagado, " USD")
-
+  
   label_prob <- 
     paste0("Probabilidad de recuperar inversión: ", 
            round(lista_densidad$probabilidad$value, 4) * 100, 
            "%")
   
-  
- lista_densidad$df_densidad %>% 
-     ggplot() +
-     aes(x, y, fill = Tipo) +
-     geom_area() +
-     labs(title =  paste0(label_costo, "\n", label_prob))
+  lista_densidad$df_densidad %>% 
+    ggplot() +
+    aes(x, y, fill = Tipo) +
+    geom_area() +
+    labs(title =  paste0(label_costo, "\n", label_prob)) +
+    scale_y_continuous(expand = c(0, 0)) +
+    theme_minimal() +
+    theme(legend.position = "top")
 }
 ```
 
@@ -692,40 +712,41 @@ Hecho esto, podemos probar con otros costos de una caja de Dominaria. Por ejempl
    plot_densidad()
 ```
 
-```{r, cache = TRUE}
-top_kek <- leer_html("goldfish_M19.html")
 
-top_kek <- etiquetar_outlier(top_kek)
-
-explorar_set(top_kek)
-
-set.seed(25)
-top_cien <- simular_ciencajas(top_kek)
-
-top_valor <- valor_cajas(top_cien)
-
-top_densidad <- magic_densidad(top_valor, costo_pagado = 90)
-
-plot_densidad(top_densidad)
-```
-
+Vamos a integrar todo lo anterior en una función llamadad `analisis_set()`.
 ```{r}
-analisis_set <- function(set_html, costo_pagado) {
-  top_kek <- leer_html("goldfish_M19.html")
-
-top_kek <- etiquetar_outlier(top_kek)
-
-explorar_set(top_kek)
-
-set.seed(25)
-top_cien <- simular_ciencajas(top_kek)
-
-top_valor <- valor_cajas(top_cien)
-
-top_densidad <- magic_densidad(top_valor, costo_pagado = 90)
-
-plot_densidad(top_densidad)
+analisis_set <- function(set_html, costo_pagado = 100) {
+  analisis <- list()
+  
+  analisis$df <- leer_html(set_html) %>% etiquetar_outlier()
+  
+  analisis$explorar <- explorar_set(analisis$df)
+  
+  analisis$simulacion <- simular_ciencajas(analisis$df)
+  
+  analisis$valor <- valor_cajas(analisis$simulacion)
+  
+  analisis$densidad <- magic_densidad(analisis$valor, costo_pagado = costo_pagado)
+  
+  analisis$inversion <- plot_densidad(analisis$densidad)
+  
+  analisis
 }
 ```
+
+De esta manera, podemos realizar el análisis de cualquier set en un solo paso, siempre y cuando descarguemos primero los datos de este de *MTG Goldfish*.
+
+Por ejemplo, descargamos la información del set Ixalan, que tiene la clave "IXL" con nuestra función `descargar_set()`
+```{r download_ixl}
+descargar_set(clave = "XLN")
+```
+
+Con esos datos, podemos realizar una simulación usando nuestra función `analisis_set()`
+```{r test_fun_analisis_set, cache=TRUE}
+set.seed(25)
+analisis_set("goldfish_XLN.html", costo_pagado = 90)
+```
+
+# Conclusión
 
 
