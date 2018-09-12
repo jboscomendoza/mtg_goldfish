@@ -16,18 +16,58 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Para este análisis usaremos los datos del sitio MTG Goldfish.
+Mi juego favorito es es Magic: the Gathering. Este es un juego de cartas coleccionable, en el que armas un mazo, siguiendo ciertas limitaciones, con el objetivo de vencer los mazos de tus oponentes.
 
-Visita MTG Goldfish, es un sitio excelente.
+Este es un hobbie que requiere de una inversión relativamente alta, comparado con otros, así que pensé que sería buena idea hacer un pequeño análisis usando R y datos del sitio [MTG Goldfish](http://www.mtggoldfish.com) para estimar la posibilidades de recuperar mi inversión en MtG, en particular, al compara una caja de sobres de cartas.
 
+Y para empezar, una breve introducción a cómo funciona la economía de Magic: the Gathering.
 
+# ¿Cómo funcionan los precios de Magic: the Gathering?
+En Magic: the Gathering (MtG), cada año aparecen nuevas cartas a la venta en lo que se denomina *expansiones* o *sets*. Estos *sets* son vendidos en sobres de cartas que contienen, generalmente, 15 cartas al azar. Estos sobres a su vez, pueden ser comprados en cajas que contienen, generalmente, 36 de ellos.
 
-Vamos a realizar este análisis en varios pasos:
+Así que si una persona desea obtener las cartas más recientes de un *set* comprando sobres, depende en gran medida de la suerte.
 
-* Descarga de los precios y procesamiento para análisis.
-* Simulación de valores, por sobre abierto y por caja abierta.
-* Cálculo de probabilidad de quedar tablas.
+Como este es un juego y es coleccionable, hay cartas en cada set que son más difíciles de conseguir, pues la frecuencia con la que aparecen al azar en los sobres es menor. Es decir, son cartas más raras.
+
+En MtG las cartas se clasifican por rareza, de las menos a las más raras: 
+
+* Común (*Common*)
+* Infrecuente (*Uncommon*)
+* Rara (*Rara*)
+* Mítica (*Mythic*)
+
+Además, Magic: the Gathering tiene un sistema de juego organizado, en el que se organizan distintos eventos competitivos, que van desde torneos en tiendas locales hasta eventos comptitivos nacionales e internacionales.
+
+Lo anterior tiene como consecuencia que aquellas cartas que son efectivas en juego competitivo, pues incrementan las probabilidades de ganar o forman parte de estrategias exitosas, ven un incremento en su costo, pues su demanda se incrementa.
+
+Así, cartas que son raras de conseguir y tienen alta demanda, tienen precios más alto que cartas comunes o poco usadas en juego competitivo. Por supuesto, hay otros factores que inciden en los precios de las cartas, pero para este artículo basta esta explicación simple.
+
+También es importante tener en cuenta que los precios de las cartas, frecuentemente, son expresadas en dólares norteamericanos (USD), que es la moneda que usaremos en este análisis.
+
+## MTG Goldfish
+Naturalmente, existen sitios de internet que se encargan de dar seguimiento a los precios de las cartas y sus tendencias. Esta es una información sumamente importante para los jugadores de MtG, pues así conocen el valor de las cartas que poseen y aquellas que desean, para sí tomar decisiones de compra, venta e intercambio.
+
+Uno de estos sitios es [MTG Goldfish](http://www.mtggoldfish.com).
+
+En este sitio se encuentran disponibles información actualizada diariamente de precios de todas las cartas, de todos los *sets* de MtG, presentados en tablas que son muy convenientes para su anáisis usando R.
+
+Además, en este sitio se encuentran excelentes artículos, videos, podcast y artículos a la venta relacionados con MtG. Así que si te gusta MtG o te da curiosidad este juego, no dudes en visitar MTG Goldfish y consumir su contenido, no te arrepentirás... y es una manera de agradecer por la información que generan.
+
+Conociendo todo esto, comencemos el análisis para calcular la probabilidad de recuperar nuestra inversión en una caja de MtG.
+
+# Estructura del análisis.
+Las estapas de nuestro análisis son las siguientes
+
+* Descarga de los precios de un *set* desde MTG Goldfish.
+* Procesamiento de los precios para facilitar el análisis.
+* Análisis exploratorio del *set*.
+* Simulación de valores, por sobre de cartas y por caja de sobres.
+* Cálculo de probabilidad de recuperar inversión.
 * Sistematización del análisis para poder ejecutarlo eficientemente de manera repetida.
+
+Algunos de estás son más complejas o largas que otras, pero si abordamos el análisis dividido por pasos, es más fácil tomar decisiones sobre el anáisis y corregir errores cuando se presentan.
+
+Establecido esto, preparemos nuestro entorno de trabajo.
 
 # Paquetes necesarios
 Para este proyecto usaremos los siguientes paquetes:
@@ -48,10 +88,12 @@ library(ggrepel)
 
 Como es usual, puedes instalar estos paquetes usando la función `install.packages()`.
 
-# Obtener la información de precios
-En MTG Goldfish, La información de los precios de un set de MtG es presentada en su propia pagina, usando el código del set.
+Ahora sí, pasemos a la primera etapa del anáisis.
 
-Los sets de MtG son identificados por un código de tres cracteres, en mayúsculas. Por ejemplo, para Dominaria, el código del set es "DOM", por lo que el URL en el que encontramos sus precios se ecuentran en:
+# Descarga de los precios de un *set* desde MTG Goldfish
+En MTG Goldfish, la información de los precios de un set de MtG es presentada en su propia pagina, que es identificada usando el código del *set*.
+
+Los *sets* de MtG son identificados por un código de tres caracteres, en mayúsculas. Por ejemplo, para el *set* "Dominaria", su código es "DOM", por lo que el URL en el que encontramos sus precios se ecuentran en:
  
  * https://www.mtggoldfish.com/index/DOM
  
@@ -59,13 +101,13 @@ Una lista de los códigos de sets de Magic se encuentra disponible en:
 
 * https://mtg.gamepedia.com/Template:List_of_Magic_sets
 
-Usamos `download_html()` para descargar una página de internet a nuestra carpeta de trabajo como "goldfish_DOM.html".
+Usamos la función `download_html()` del paquete *xml2()* para descargar una página de internet a nuestra carpeta de trabajo. Llamaremos a este archivo "goldfish_DOM.html".
 ```{r descarga precios, eval = FALSE}
 download_html(url = "https://www.mtggoldfish.com/index/DOM",
               file = "goldfish_DOM.html")
 ```
 
-Podemos definir una función que nos permita descargar el html que corresponde a un set de manera más sencilla, proporcionando únicamente e código de tres letras de este. 
+Podemos definir una función que nos permita descargar el html que corresponde a un *set* de manera más sencilla, proporcionando el código de tres letras de este. 
 ```{r def_descargar_set}
 descargar_set <- function(clave) {
   mtg_url <- paste0("https://www.mtggoldfish.com/index/", clave)
@@ -74,7 +116,7 @@ descargar_set <- function(clave) {
 }
 ```
 
-Hecho esto, importamos el archivo con el html descargado y lo asignamos al objeto mtg_dom.
+Hecho esto, importamos el archivo con el html descargado y lo asignamos al objeto `mtg_dom`.
 ```{r importar_dom}
 mtg_dom <- read_html("goldfish_DOM.html")
 ```
@@ -86,18 +128,30 @@ mtg_dom
 
 Con este formato no podemos hacer mucho. Necesitamos extraer los datos que contiene y para ello, usaremos las funciones del paquete **rvest**.
 
-**rvest** extrae información de un documento que contiene html o xml usando los identificadores de **css**.
+# Procesamiento de los precios para facilitar el análisis
+**rvest** es un paquete usado para extraer y procesar información de documentos html o xml. En nuestro caso, lo haremos a través del uso de identificadores *CSS*.
 
-Como vamos a recuperar los datos de precios de las cartas, necesitamos los identificadores css de estos datos. Para obtenerlos hay distintas maneras, pero nosotros simplemente exploraremos la página original y daremos un vistazo a su código fuente.
+No nos detendremos a explicar qué son los identificadores *CSS*, pero en términos generales, podemos decir que estos describen los elementos y características de una documento html. Puedes leer más al respecto en el siguiente enlace:
 
-Bueno, para este artículo ya he hecho esa tarea, así que veamos los resultados, usando la función `html_node()`.
+* https://www.w3schools.com/css/
+
+Vamos a recuperar los datos de precios de las cartas, así que necesitamos los identificadores *CSS* de estos datos en particular. 
+
+Para obtener los identificadores hay distintos procedimientos. Puedes usar la función "Inspeccionar elemento" de tu navegador de internet y explorar la estructura del documento.
+
+También puedes usar el sitio Selector Gadget para recuperar los identificadores *CSS*:
+
+* https://selectorgadget.com/
+
+Para fines de este artículo, ya he realizado esta tarea. los identificadores *CSS* que nos interesan son: ".index-price-table-paper tbody tr".
+
+Con esta información, usamos la función `html_node()` de *rvest()*.
 ```{r css_dom}
 mtg_dom %>% 
   html_node(css = ".index-price-table-paper tbody tr")
 ```
 
-Aún no es un formato útil para el análisis necesitamos la función `html_text()`. Esto nos devolverá una cantidad considerable de texto, asi que pediremos sólo las primeras líneas con `head()`.
-
+Aún no es un formato útil para el análisis necesitamos la función `html_text()`. Hacer esto nos devolverá una cantidad considerable de texto, asi que pediremos que se nos muestren sólo las primeras líneas con `head()`.
 ```{r css_dom_text}
 mtg_dom %>% 
   html_nodes(css = ".index-price-table-paper tbody tr") %>% 
@@ -105,8 +159,9 @@ mtg_dom %>%
   head()
 ```
 
-Esto ya es más manejable. Usamos la función `str_split()` con `as.data.frame()` y `tbl_df()` para convertir estos datos a un data frame, que llamaremos df_dom
+El resultado es algo más manejable que el *xml* original, pero requiere más procesamiento.
 
+Usamos la función `str_split()` con `as.data.frame()`  de *R base* y `tbl_df()` de *dplyr*, para convertir el resultado anterior a un *data frame*, que llamaremos `df_dom`.
 ```{r css_dom_text_tbldf}
 df_dom <- 
   mtg_dom %>% 
@@ -117,13 +172,13 @@ df_dom <-
   tbl_df()
 ```
 
-Veamos el resultado.
-```{r}
+Nuestro resultado es el siguiente.
+```{r df_dom_original}
 df_dom
 ```
 
-Tenemos que pulir un poco nuestro data frame, seleccionando sólo las columnas que nos interesan con `select()` de **dplyr**
-```{r}
+Aun tenemos que pulir un poco nuestro *data frame*, en particular, seleccionando sólo las columnas que nos interesan entre todas las disponibles. Haremos esto con `select()` de **dplyr**
+```{r df_dom_procesamiento}
 df_dom <- 
   df_dom %>% 
   select("Carta" = V1, "Set" = V2, "Rareza" = V3, "Precio" = V5) %>% 
@@ -134,12 +189,13 @@ df_dom <-
   filter(Rareza != "Basic Land")
 ```
 
-Veamos nuestro resultado.
-```{r}
+Nuestro resultado será un *data frame* con cuatro columnas: el nombre de las cartas, el *set*, la rareza, y el precio.
+```{r df_dom_procesado}
 df_dom
 ```
 
-Transformamos lo anterior en una función, llamada `leer_html()` para así generar fácilmente data frames a partir del html de páginas de **MTG Goldfish**.
+## Definiendo una función para importar y procesar precios
+Podemos transformar el proceso anterior en una función, llamada `leer_html()` para así generar fácilmente data frames a partir del html de páginas de **MTG Goldfish**.
 ```{r def_leer_html}
 leer_html <- function(archivo_html) {
   archivo_html %>% 
@@ -159,25 +215,21 @@ leer_html <- function(archivo_html) {
 }
 ```
 
-Ya casi estamos listos para continuar, pero antes tenemos que hacer una recodificación.
+De este modo, casi hemos terminado el procesamiento de los precios, pero antes tenemos que hacer una recodificación.
 
 ## Identificando *outliers*
-Como nuestro interés en este proyecto es analizar el valor monetario de un set de Magic, nos conviene identificar aquellas cartas que tienen un valor excepcionalente alto, con respecto a las demás. 
+Como deseamos analizar las probabilidades de recuperar nuestra inversión en un set de MtG, nos conviene identificar aquellas cartas que tienen un valor excepcionalente alto, con respecto a las demás. Esta información no permitirá hacer un análisis más fino de los precios con los que contamos.
 
-Esto es, aquellas que son *outliers*.
-
-En cuanto a *outliers* no hay concenso 
-
-Nosotros usaremos como criterio el usando al generar gráficos de caja y bigote (*boxplot*), que es:
+Por supuesto, estas cartas con precios excepcionales, son *outliers*. En cuanto a *outliers* no hay un concenso en cómo caracterizarlos. Para fines de este proyecto,  usaremos como criterio para etiquetar un dato como. *outlier* el usando al generar gráficos de caja y bigote (*boxplot*), que es:
 
 * Un dato menor a: el valor del primer cuartil menos una vez y media el rango intercuartílico.
 * Un dato mayor a: el valor del tercer cuartil más una vez y media el rango intercuartílico.
 
-Estos son los datos que se salen de los "bigotes" de un *boxplot* y son mostrados como puntos.
+Estos son los datos que se salen de los "bigotes" de un *boxplot* y son mostrados como puntos en estos diagramas.
 
-Sólo etiquetaremos los outliers "altos", pues estos son los relevantes para el análisis que haremos.
+Sólo etiquetaremos los *outliers* "altos", pues son los relevantes para el análisis que estamos haciendo.
 
-Podemos convertir el criterio anterior en una función:
+Definimos entonces una función que implemente el criterio anterior. Al darle un vector numérico, nos será devuelto un vector lógico del mismo largo, donde el valor `TRUE` serán los *outliers* y `FALSE` los demás datos.
 ```{r tag_outliers}
 tag_outlier <- function(datos) {
   ifelse(datos > quantile(datos, .75) + IQR(datos) * 1.5, 
@@ -185,10 +237,9 @@ tag_outlier <- function(datos) {
 }
 ```
 
-Ahora aplicamos esta función, agrupando por rareza de las cartas. Nos interesa que una carta sea excepcionalmente cara o barata con respecto al mismo tipo de carta. No tiene mucho sentido comparar los precios de No comunes con Míticas, pues estas últimas *siempre* tienen un precio más alto que las primeras.
+Aplicamos esta función, agrupando por nuestras cartas por rareza. No tiene mucho sentido comparar los precios de cartas Comunes con Míticas, pues estas últimas *siempre* tienen un precio más alto que las primeras por ser más difíciles de obtener.
 
-Hacemos un `mutate()` adicional para etiquetar los outlier con el nombre de la carta, esto nos será útil más adelante (podría usar una sola llamada de `mutate()`, pero he preferido presentarlo así para hacer más claro qué está ocurriendo).
-
+Hacemos un `mutate()` adicional para etiquetar los outlier con el nombre de la carta, esto nos será útil más adelante. Podría usar una sola llamada de `mutate()`, pero he preferido presentarlo así para hacer más claro qué está ocurriendo.
 ```{r tag_outliers_name}
 df_dom <- 
   df_dom %>% 
@@ -198,11 +249,11 @@ df_dom <-
 ```
 
 Nuestro resultado es el siguiente.
-```{r}
+```{r df_dom_con_outliers}
 df_dom
 ```
 
-Por supuesto, podemos crear otra función para llevar a cabo ese proceso.
+Por supuesto, podemos definir otra función para llevar a cabo el proceso anterior. Llamaremos a esta función `etiquetar_outlier()`.
 ```{r def_set_outlier}
 etiquetar_outlier <- function(mtg_df) {
   mtg_df %>% 
@@ -212,12 +263,14 @@ etiquetar_outlier <- function(mtg_df) {
 }
 ```
 
-El siguiente paso es explorar este set.
+Nuestro siguiente paso es explorar el set "Dominaria".
 
 # Análisis exploratorio del set
-Empeceos la exploración con los estadísticos descriptivos más elementales. La media, mediana estándar y máximo y mínimo de los precios. La desviación estándar, un estadístico descriptivo por excelencia, en este caso es poco informativo, debido a la forma en que se distribuyen los precios.
+Iniciemos la exploración con los estadísticos descriptivos más elementales: la media, mediana estándar y máximo y mínimo de los precios. 
 
-Usamos las funciones `group_by()` y `summarize()` de *dplyr*, para aplicar las funciones `mean()`, `median()`, `min()` y `max()` por Rareza.
+La desviación estándar, aunque es un estadístico descriptivo por excelencia, en este caso es poco informativa debido a la forma en que se distribuyen los precios. En MtG, los precios no tienen una distribución normal o cercana a una normal, pues tienden a exitir muchas cartas con precio bajo y casi idéntico, con algunas pocas cartas con precios muy altos. Por lo tanto, una medida de dispersión como la desviación estándar no nos ayuda mucho a describir lo que nos encontraremos.
+
+Usamos las funciones `group_by()` y `summarize()` de *dplyr*, para aplicar las funciones `mean()`, `median()`, `min()` y `max()`, que corresponden a los estadísiticos ya mencionados, por rareza.
 ```{r exploracion_descriptivos}
 df_dom %>% 
   group_by(Rareza) %>% 
@@ -225,8 +278,9 @@ df_dom %>%
             Minimo = min(Precio), Maximo = max(Precio))
 ```
 
-Una vez obtenidos los precios de las cartas en Dominaria, podemos visualizar cómo se distribuyen estos en general usando *ggplot2*, con un gráfico de densidad llamado con `geom_density()`.
+Confirmamos que las cartas comunes son las menos caras de todas y las míticas las más costosas. También es evidente que hay una variación muy alta entre el precio mínimo y el máximo, en todas las rarezas, particularmente en raras y míticas.
 
+También podemos visualizar cómo se distribuyen los precios creaando un gráfico de densidad con *ggplot2*, llamando la función `geom_density()` de este paquete.
 ```{r, dom_precios_densidad}
 df_dom %>% 
   ggplot() +
@@ -234,9 +288,9 @@ df_dom %>%
   geom_density()
 ```
 
-Tenemos diferencias considerables entre los precios más bajos y más altos, así que esta gráfica no nos da mucha información. 
+Debido a que tenemos diferencias considerables entre los precios más bajos y más altos, esta gráfica no aporta mucha información. 
 
-Sin embargo, como sabemos que los precios de las cartas dependen de su rareza. Las cartas más raras tienden a ser más caras podemos visualizar los precios por rareza puede ser más útil.
+Sin embargo, ya sabemos que los precios de las cartas dependen de su rareza. Las cartas más raras tienden a ser más caras podemos visualizar los precios por rareza puede ser más útil.
 
 Usamos la función `facet_wrap()` de *ggplot2* para generar un gráfico con las características anteriores. Usamos el argumento `scales = "free"` para que los ejes `x` y `y` sean escaladas de manera independiente.
 ```{r dom_precios_densidad_rap}
@@ -246,6 +300,8 @@ df_dom %>%
   geom_density() +
   facet_wrap(~Rareza, scales = "free")
 ```
+
+De esta manera es más claro observar la distribución de los precios.También confirmamos lo que anticipabamos, los precios no tienen una distribución parecida a una normal.
 
 Además, podemos visualizar los precios de las cartas por rareza usando diagramas de caja y bigotes (*boxplots*). La ventaja de esta visualización es que podemos etiquetar fácilemente las cartas que hemos etiquetado como *outliers* y así darnos una idea de su valor relativo.
 
