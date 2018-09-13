@@ -1,7 +1,7 @@
 ---
-title: "Usando Daa"
+title: "Usando R y Data Science para analizar los precios de Magic: the Gathering"
 author: "Juan Bosco Mendoza Vega"
-date: "20 de agosto de 2018"
+date: "12 de septiembre de 2018"
 output: 
   html_document: 
     fig_height: 6
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Mi juego favorito es es Magic: the Gathering. Este es un juego de cartas coleccionable, en el que armas un mazo, siguiendo ciertas limitaciones, con el objetivo de vencer los mazos de tus oponentes.
 
-Este es un hobbie que requiere de una inversión relativamente alta, comparado con otros, así que pensé que sería buena idea hacer un pequeño proyecto de *Data Science* usando R y datos del sitio [MTG Goldfish](http://www.mtggoldfish.com) para estimar la posibilidades de recuperar mi inversión en Magic, en particular, al compara una caja de sobres de cartas.
+Este es un hobbie que requiere de una inversión relativamente alta, comparado con otros, así que pensé que sería buena idea hacer un pequeño proyecto de *Data Science* usando R y datos del sitio [MTG Goldfish](http://www.mtggoldfish.com) para estimar la posibilidades de recuperar mi inversión en Magic, en particular, al comprar una caja de sobres de cartas.
 
 Y para empezar, una breve introducción a cómo funciona la economía de Magic: the Gathering.
 
@@ -36,11 +36,11 @@ En Magic las cartas se clasifican por rareza, de las menos a las más raras:
 * Rara (*Rara*)
 * Mítica (*Mythic*)
 
-Además, Magic: the Gathering tiene un sistema de juego organizado, en el que se organizan distintos eventos competitivos, que van desde torneos en tiendas locales hasta eventos comptitivos nacionales e internacionales.
+Además, Magic: the Gathering tiene un sistema de juego organizado, en el que se organizan distintos eventos competitivos, que van desde torneos en tiendas locales hasta eventos competitivos nacionales e internacionales.
 
 Lo anterior tiene como consecuencia que aquellas cartas que son efectivas en juego competitivo, pues incrementan las probabilidades de ganar o forman parte de estrategias exitosas, ven un incremento en su costo, pues su demanda se incrementa.
 
-Así, cartas que son raras de conseguir y tienen alta demanda, tienen precios más alto que cartas comunes o poco usadas en juego competitivo. Por supuesto, hay otros factores que inciden en los precios de las cartas, pero para este artículo basta esta explicación simple.
+Así, cartas que son raras de conseguir y tienen alta demanda, tienen precio más alto que cartas comunes o poco usadas en juego competitivo. Por supuesto, hay otros factores que inciden en los precios de las cartas, pero para este artículo basta esta explicación simple.
 
 También es muy importante tener en cuenta que los precios de las cartas, frecuentemente, son expresadas en **dólares norteamericanos (USD)**, que es la moneda que usaremos en este análisis. Además, los precios que usaremos son aquellos correspondientes al **12 de Septiembre del 2018**.
 
@@ -49,14 +49,14 @@ Naturalmente, existen sitios de internet que se encargan de dar seguimiento a lo
 
 Uno de estos sitios es [MTG Goldfish](http://www.mtggoldfish.com).
 
-En este sitio se encuentran disponibles información actualizada diariamente de precios de todas las cartas, de todos los *sets* de Magic, presentados en tablas que son muy convenientes para su anáisis usando R.
+En este sitio se encuentran disponibles información actualizada diariamente de precios de todas las cartas, de todos los *sets* de Magic, presentados en tablas que son muy convenientes para su análisis usando R.
 
 Además, en este sitio se encuentran excelentes artículos, videos, podcast y artículos a la venta relacionados con Magic. Así que si te gusta Magic o te da curiosidad este juego, no dudes en visitar MTG Goldfish y consumir su contenido, no te arrepentirás... y es una manera de agradecer por la información que generan.
 
 Conociendo todo esto, comencemos el análisis para calcular la probabilidad de recuperar nuestra inversión en una caja de Magic.
 
 # Estructura del análisis.
-Las estapas de nuestro análisis son las siguientes
+Las etapas de nuestro análisis son las siguientes
 
 * Descarga de los precios de un *set* desde MTG Goldfish.
 * Procesamiento de los precios para facilitar el análisis.
@@ -65,7 +65,7 @@ Las estapas de nuestro análisis son las siguientes
 * Cálculo de probabilidad de recuperar inversión.
 * Sistematización del análisis (para ejecutarlo de manera repetida).
 
-Algunos de estás son más complejas o largas que otras, pero si abordamos el análisis dividido por pasos, es más fácil tomar decisiones sobre el anáisis y corregir errores cuando se presentan.
+Algunos de estás son más complejas o largas que otras, pero si abordamos el análisis dividido por pasos, es más fácil tomar decisiones sobre el análisis y corregir errores cuando se presentan.
 
 Establecido esto, preparemos nuestro entorno de trabajo.
 
@@ -88,12 +88,12 @@ library(ggrepel)
 
 Como es usual, puedes instalar estos paquetes usando la función `install.packages()`.
 
-Ahora sí, pasemos a la primera etapa del anáisis.
+Ahora sí, pasemos a la primera etapa del análisis.
 
 # Descarga de los precios de un *set* desde MTG Goldfish
-En MTG Goldfish, la información de los precios de un set de Magic es presentada en su propia pagina, que es identificada usando el código del *set*.
+En MTG Goldfish, la información de los precios de un set de Magic es presentada en su propia página, que es identificada usando el código del *set*.
 
-Los *sets* de Magic son identificados por un código de tres caracteres, en mayúsculas. Por ejemplo, para el *set* "Dominaria", su código es "DOM", por lo que el URL en el que encontramos sus precios se ecuentran en:
+Los *sets* de Magic son identificados por un código de tres caracteres, en mayúsculas. Por ejemplo, para el *set* "Dominaria", su código es "DOM", por lo que el URL en el que encontramos sus precios se encuentran en:
  
  * https://www.mtggoldfish.com/index/DOM
  
@@ -151,7 +151,7 @@ mtg_dom %>%
   html_node(css = ".index-price-table-paper tbody tr")
 ```
 
-Aún no es un formato útil para el análisis necesitamos la función `html_text()`. Hacer esto nos devolverá una cantidad considerable de texto, asi que pediremos que se nos muestren sólo las primeras líneas con `head()`.
+Aún no es un formato útil para el análisis necesitamos la función `html_text()`. Hacer esto nos devolverá una cantidad considerable de texto, así que pediremos que se nos muestren sólo las primeras líneas con `head()`.
 ```{r css_dom_text}
 mtg_dom %>% 
   html_nodes(css = ".index-price-table-paper tbody tr") %>% 
@@ -195,7 +195,7 @@ df_dom
 ```
 
 ## Definiendo una función para importar y procesar precios
-Podemos transformar el proceso anterior en una función, llamada `leer_html()` para así generar fácilmente data frames a partir del html de páginas de **MTG Goldfish**.
+Podemos transformar el proceso anterior en una función, llamada `leer_html()` para así generar fácilmente *data frames* a partir del html de páginas de **MTG Goldfish**.
 ```{r def_leer_html}
 leer_html <- function(archivo_html) {
   archivo_html %>% 
@@ -218,9 +218,9 @@ leer_html <- function(archivo_html) {
 De este modo, casi hemos terminado el procesamiento de los precios, pero antes tenemos que hacer una recodificación.
 
 ## Identificando *outliers*
-Como deseamos analizar las probabilidades de recuperar nuestra inversión en un set de Magic, nos conviene identificar aquellas cartas que tienen un valor excepcionalente alto, con respecto a las demás. Esta información no permitirá hacer un análisis más fino de los precios con los que contamos.
+Como deseamos analizar las probabilidades de recuperar nuestra inversión en un set de Magic, nos conviene identificar aquellas cartas que tienen un valor excepcionalmente alto, con respecto a las demás. Esta información no permitirá hacer un análisis más fino de los precios con los que contamos.
 
-Por supuesto, estas cartas con precios excepcionales, son *outliers*. En cuanto a *outliers* no hay un concenso en cómo caracterizarlos. Para fines de este proyecto,  usaremos como criterio para etiquetar un dato como. *outlier* el usando al generar gráficos de caja y bigote (*boxplot*), que es:
+Por supuesto, estas cartas con precios excepcionales, son *outliers*. En cuanto a *outliers* no hay un consenso en cómo caracterizarlos. Para fines de este proyecto,  usaremos como criterio para etiquetar un dato como. *outlier* el usando al generar gráficos de caja y bigote (*boxplot*), que es:
 
 * Un dato menor a: el valor del primer cuartil menos una vez y media el rango intercuartílico.
 * Un dato mayor a: el valor del tercer cuartil más una vez y media el rango intercuartílico.
@@ -268,7 +268,7 @@ Nuestro siguiente paso es explorar el set "Dominaria".
 # Análisis exploratorio del set
 Iniciemos la exploración con los estadísticos descriptivos más elementales: la media, mediana estándar y máximo y mínimo de los precios. 
 
-La desviación estándar, aunque es un estadístico descriptivo por excelencia, en este caso es poco informativa debido a la forma en que se distribuyen los precios. En Magic, los precios no tienen una distribución normal o cercana a una normal, pues tienden a exitir muchas cartas con precio bajo y casi idéntico, con algunas pocas cartas con precios muy altos. Por lo tanto, una medida de dispersión como la desviación estándar no nos ayuda mucho a describir lo que nos encontraremos.
+La desviación estándar, aunque es un estadístico descriptivo por excelencia, en este caso es poco informativa debido a la forma en que se distribuyen los precios. En Magic, los precios no tienen una distribución normal o cercana a una normal, pues tienden a existir muchas cartas con precio bajo y casi idéntico, con algunas pocas cartas con precios muy altos. Por lo tanto, una medida de dispersión como la desviación estándar no nos ayuda mucho a describir lo que nos encontraremos.
 
 Usamos las funciones `group_by()` y `summarize()` de *dplyr*, para aplicar las funciones `mean()`, `median()`, `min()` y `max()`, que corresponden a los estadísiticos ya mencionados, por rareza.
 ```{r exploracion_descriptivos}
@@ -280,7 +280,7 @@ df_dom %>%
 
 Confirmamos que las cartas comunes son las menos caras de todas y las míticas las más costosas. También es evidente que hay una variación muy alta entre el precio mínimo y el máximo, en todas las rarezas, particularmente en raras y míticas.
 
-También podemos visualizar cómo se distribuyen los precios creaando un gráfico de densidad con *ggplot2*, llamando la función `geom_density()` de este paquete.
+También podemos visualizar cómo se distribuyen los precios creando un gráfico de densidad con *ggplot2*, llamando la función `geom_density()` de este paquete.
 ```{r, dom_precios_densidad}
 df_dom %>% 
   ggplot() +
@@ -301,9 +301,9 @@ df_dom %>%
   facet_wrap(~Rareza, scales = "free")
 ```
 
-De esta manera es más claro observar la distribución de los precios.También confirmamos lo que anticipabamos, los precios no tienen una distribución parecida a una normal.
+De esta manera es más claro observar la distribución de los precios. También confirmamos lo que anticipábamos, los precios no tienen una distribución parecida a una normal.
 
-Finalmente, podemos explorar los precios deeste *set* por rareza usando diagramas de caja y bigotes (*boxplots*). La ventaja de emplear esta forma de visualización es que podemos ver fácilemente las cartas que hemos marcado como *outliers*.
+Finalmente, podemos explorar los precios de este *set* por rareza usando diagramas de caja y bigotes (*boxplots*). La ventaja de emplear esta forma de visualización es que podemos ver fácilemente las cartas que hemos marcado como *outliers*.
 
 Para lo anterior, usamos la función `geom_boxplot()` de *ggplot2* para generar el diagrama y `geom_label_repel()` de *ggrepel* para agregar etiquetas. Esta última función es una versión de `geom_label()` de *ggplot2*, que tiene ajustes para evitar que las etiquetas se superpongan, mejorando así la legibilidad. 
 ```{r dom_boxplot}
@@ -357,7 +357,7 @@ explorar_set <- function(mtg_df) {
 Ahora sí, estamos listos para estimar qué tan probable es que recuperemos nuestra inversión monetaria si decidimos comprar cajas de sobres de una expansión de Magic.
 
 # Simulaciones
-Necesitamos definir dos procesos de simulación, una que simule los resultados de abrir un sobre de cartas y una que simula el resultado de abrir unacaja de sobres.
+Necesitamos definir dos procesos de simulación, una que simule los resultados de abrir un sobre de cartas y una que simula el resultado de abrir una caja de sobres.
 
 Como mencionamos en la introducción de este proyecto, los *sets* de Magic, normalmente, son vendidos en sobres que contienen 15 cartas, distribuidas de la misma manera:
 
@@ -375,7 +375,7 @@ Hecho esto, podremos entonces comparar el valor monetario de una caja de Magic c
 Con estas consideraciones, comencemos simulando sobres.
 
 ## Simulación de un sobre
-Crearemos una lista de listas de pares con las rarezas de las cartas y la frecuencia con la que aparecen, tomando como referencia lo menconado en la sección anterior, de la siguiente manera.
+Crearemos una lista de listas de pares con las rarezas de las cartas y la frecuencia con la que aparecen, tomando como referencia lo mencionado en la sección anterior, de la siguiente manera.
 ```{r rareza_frecuencia}
 rareza_frecuencia <- list(
   list("Rare", 1),
@@ -392,7 +392,7 @@ Usaremos esta lista con una función anómima dentro de la función `map()` de *
 
 Lo que haremos será aplicar una función anónima para filtrar por Rareza las cartas de nuestro *data frame* con los precios de "Dominaria" (primer elemento) y luego extraer una muestra de ellas igual a la frecuencia con la que aparecen (segundo elemento).
 
-Usaremos entonces, en conjunto con `map()`, las funciones `filter()` y `sample_n()` de **dplyr**. Haremos esto con `set.seed()`, para que los resultados sean reprodicibles.
+Usaremos entonces, en conjunto con `map()`, las funciones `filter()` y `sample_n()` de **dplyr**. Haremos esto con `set.seed()`, para que los resultados sean reproducibles.
 ```{r map_rareza_frecuencia}
 set.seed(2018)
 
@@ -422,14 +422,14 @@ map(rareza_frecuencia, pareja, datos = df_dom)
 
 Como necesitamos un *data frame* para análisis posteriores, corremos lo anterior seguido de la función `reduce()` de *purrr*, que aplica una función de manera secuencial a todos los elementos de una lista, por parejas. 
 
-Aplicaremos `bind_rows()` de *dplyr* para obtener como resultado un data frame.
+Aplicaremos `bind_rows()` de *dplyr* para obtener como resultado un *data frame*.
 ```{r map_con_pareja_reduce}
 set.seed(8102)
 map(rareza_frecuencia, pareja, datos = df_dom) %>% 
   reduce(bind_rows)
 ```
 
-Lo anterior, aunque cumple nuetro cometido, no nos permite crear sobres con cartas míticas. Necesitamos solucionar esta situación.
+Lo anterior, aunque cumple nuestro cometido, no nos permite crear sobres con cartas míticas. Necesitamos solucionar esta situación.
 
 ## Las cartas míticas
 Dado que las cartas míticas aparecen en un sobre una de cada ocho veces ($p = \frac{1}{8}$), podemos simular este comportamiento con una distribución binomial.
@@ -516,7 +516,7 @@ De esta manera obtenemos una lista con 36 elementos, cada uno de ellos represent
 caja_dom[[4]]
 ```
 
-Definamos entonces una función para simular una caja de Magic, que nos de como resultado un data frame con los 36 sobres, utilizando `reduce()` y `bind_rows()`.
+Definamos entonces una función para simular una caja de Magic, que nos de como resultado un *data frame* con los 36 sobres, utilizando `reduce()` y `bind_rows()`.
 ```{r funcion_simular_caja}
 simular_caja <- function(datos) {
   map(1:36, ~simular_sobre(tabla = df_dom)) %>% 
@@ -539,7 +539,7 @@ caja_dom %>%
 Para una simulación apropiada, necesitamos repetir generar muchas cajas de sobres.
 
 ## Simulación de múltiples cajas
-Usamos `map()` para repetir 100 veces la función `simular_caja()` y así obtenr esa misma cantidad de cajas. Una vez más, empleamos `reduce()` para obtener como resultado un data frame.
+Usamos `map()` para repetir 100 veces la función `simular_caja()` y así obtener esa misma cantidad de cajas. Una vez más, empleamos `reduce()` para obtener como resultado un *data frame*.
 ```{r simular_cien_cajas, cache=TRUE}
 set.seed(3356)
 
@@ -551,7 +551,7 @@ ciencajas_dom <-
   reduce(bind_rows)
 ```
 
-Como anteriormente dejamos agrupados nuestros datos por Rareza, obtendremos un data frame con cerca de 400 renglones, uno por rareza de cada caja de Magic simulada. No siempre serán 400 renglones, pues hay una probabilidad pequeña de que alguna desafortunada caja no tenga ni una sola carta Mítica y con ello su valor se reduzca.
+Como anteriormente dejamos agrupados nuestros datos por Rareza, obtendremos un *data frame* con cerca de 400 renglones, uno por rareza de cada caja de Magic simulada. No siempre serán 400 renglones, pues hay una probabilidad pequeña de que alguna desafortunada caja no tenga ni una sola carta Mítica y con ello su valor se reduzca.
 ```{r resultado_cien_cajas}
 ciencajas_dom
 ```
@@ -559,7 +559,7 @@ ciencajas_dom
 Ahora podemos calcular el valor promedio de una caja de "Dominaria" y de las cartas por rareza.
 
 ## Valor promedio de una caja y por Rareza
-Si los deseamos,podemos obtener fácilmente el valor promedio por rareza de las cartas simuladas usando `summarize()` de *dplyr*.
+Si los deseamos, podemos obtener fácilmente el valor promedio por rareza de las cartas simuladas usando `summarize()` de *dplyr*.
 ```{r media_por_rareza}
 ciencajas_dom %>% 
   group_by(Rareza) %>% 
@@ -636,7 +636,7 @@ Nuestro promedio, naturalmente, es menor que el obtuvimos antes de excluir las c
 
 Con lo que hemos hecho hasta ahora, podríamos decir cuál es el valor promedio que esperaríamos obtener de una caja de sobres de "Dominaria". Con ello podemos hacernos una idea general sobre la posibilidad de recuperar nuestra inversión. Si compramos una caja de "Dominaria" por un precio inferior al valor promedio esperado de ellas, deberíamos recuperar nuestra inversión ¿cierto?
 
-Bueno, la cosa no es tan sencila. Calculemos, por fin, la probabilidad de recuperar nuestra inversión.
+Bueno, la cosa no es tan sencilla. Calculemos, por fin, la probabilidad de recuperar nuestra inversión.
 
 # Probabilidad de recuperar inversión
 Después de simular el valor de múltiples cajas de sobres de Magic, podemos calcular la probabilidad de recuperar lo que hemos invertido en una de ellas a partir de una función de densidad.
@@ -684,7 +684,7 @@ densidad_dom[c("x", "y")] %>%
   geom_area()
 ```
 
-Con esto obtenemos un curva de función y su respectiva área debajo de ella. Esta área representa, aproximadamente, una distribución de todos los valores que podrían tomar las cajas de sobres Magic, a partir de la simulación que hemos realizado. Es decir, el 100% de nuestros casos.
+Con esto obtenemos una curva de función y su respectiva área debajo de ella. Esta área representa, aproximadamente, una distribución de todos los valores que podrían tomar las cajas de sobres Magic, a partir de la simulación que hemos realizado. Es decir, el 100% de nuestros casos.
 
 Podemos trazar una línea vertical que divida esta área bajo la curva en dos, justo en el valor de nuestra mediana: 104. Si hacemos esto, tendremos dos segmentos del área, uno con 50% de los valores por debajo de 104 (área a la izquierda) y 50% con los valores por encima de este valor (área a la derecha).
 
@@ -708,7 +708,7 @@ Para calcular el área de un segmento bajo la curva, usamos las funciones `appro
 
 Como su nombre lo indica, la función `integrate()` usará integración para calcular un área, por lo que nos pedirá un límite inferior y uno superior. 
 
-Supongamos que que hemos comprado una caja de sobres de "Dominaria" en **100 dólares**. Usaremos este valor como límite inferior y el valor máximo de nuestra distribución como límite superior.
+Supongamos que hemos comprado una caja de sobres de "Dominaria" en **100 dólares**. Usaremos este valor como límite inferior y el valor máximo de nuestra distribución como límite superior.
 ```{r integrar}
 densidad_dom %>% 
   approxfun() %>% 
@@ -724,9 +724,9 @@ En este caso es más o menos lanzar una moneda al aire recuperar nuestra inversi
 Transformemos el proceso anterior a funciones, para repetirlo fácilmente.
 
 # Sistematización del análisis
-Primero, definimos una función que calcule la función de densidad, la probabilidad a partir de un costo que elijamos, y el data frame de la función de densidad.
+Primero, definimos una función que calcule la función de densidad, la probabilidad a partir de un costo que elijamos, y el *data frame* de la función de densidad.
 
-Además, aprovecharemos para etiquetar los valor en el data frame de la función de densidad como menores o mayores al costo elegido.
+Además, aprovecharemos para etiquetar los valor en el *data frame* de la función de densidad como menores o mayores al costo elegido.
 ```{r def_magic_densidad}
 magic_densidad <- function(valor_cajas, costo_pagado) {
   magic <- list()
@@ -750,7 +750,7 @@ magic_densidad <- function(valor_cajas, costo_pagado) {
 }
 ```
 
-El resultado será una lista con cuatro elementos: el costo pagado, la función de densidad, probabilidad y un data frame.
+El resultado será una lista con cuatro elementos: el costo pagado, la función de densidad, probabilidad y un *data frame*.
 
 ```{r test_magic_densidad}
 magic_densidad(valorcajas_dom, costo_pagado = 100)
@@ -787,7 +787,7 @@ Hecho esto, podemos probar con otros costos de una caja de Dominaria. Por ejempl
    plot_densidad()
 ```
 
-Vamos a integrar todos los pasos de nuestro análisis anterior en una sola función llamadad `analisis_set()`.
+Vamos a integrar todos los pasos de nuestro análisis anterior en una sola función llamada `analisis_set()`.
 ```{r}
 analisis_set <- function(set_html, costo_pagado = 100) {
   analisis <- list()
@@ -808,7 +808,7 @@ analisis_set <- function(set_html, costo_pagado = 100) {
 }
 ```
 
-De esta manera, podemos realizar el análisis de cualquier set en un solo paso, siempre y cuando descarguemos primero los datos de este de *MTG Goldfish*. El resultado será una lista con el data frame con los precios del *set*, el análisis exploratorio, incluidas gráficas, el resultado de las simulaciones, y el análisis de la probabilidad de recuperar información.
+De esta manera, podemos realizar el análisis de cualquier set en un solo paso, siempre y cuando descarguemos primero los datos de este de *MTG Goldfish*. El resultado será una lista con el *data frame* con los precios del *set*, el análisis exploratorio, incluidas gráficas, el resultado de las simulaciones, y el análisis de la probabilidad de recuperar información.
 
 Probemos descargando la información del set "Ixalan", que tiene la clave "IXL" con nuestra función `descargar_set()`
 ```{r download_ixl}
@@ -826,7 +826,7 @@ Veamos nuestros resultados.
 ixalan_lista
 ```
 
-¡Vaya! Parece que es mejor invertir en "Dominaria" que en "Ixalan" su compramos cajas por 90 USD, pues tenemos una probabilididad un poco mayor de recuperar el dinero gastado.
+¡Vaya! no hay mucha diferencia entre estos *sets*, así que cualquiera de los dos tendrá las mismas probabilidades de devolver nuestra inversión.
 
 # Conclusiones
 En este artículo revisamos las diferentes etapas de un pequeño proyecto de *Data Science* en el que hemos calculado la probabilidad de recuperar nuestra inversión al comprar cajas de sobres de Magic: the Gathering, a partir de la información de [MTG Goldfish](http://www.mtggoldfish.com)

@@ -20,11 +20,11 @@
 <link href='//assets1.mtggoldfish.com/assets/goldfish-32-22599602a047942143b34b034de85b0968d377caf56ff4a12c06146a4c13b989.png' rel='shortcut icon' type='image/png'>
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700,900|Open+Sans' rel='stylesheet'>
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"5bc503bb75","applicationID":"5132532","transactionName":"cFYLQBdeXQpQFBZeX19QBFoEHlgIUQNB","queueTime":0,"applicationTime":21,"agent":""}</script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"5bc503bb75","applicationID":"5132532","transactionName":"cFYLQBdeXQpQFBZeX19QBFoEHlgIUQNB","queueTime":0,"applicationTime":19,"agent":""}</script>
 <script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
 <meta content='width=device-width, initial-scale=1' name='viewport'>
 <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="TCrACFELfE/3QOtHS+yGJ6Ye8B4GJCp4Uu5STeqDZ0V3F47Z/EaIAXR/FfQEQ2MEiHGwRoG/dHftkqUwShb0nA==" />
+<meta name="csrf-token" content="oHw0lk9Hr68B8JLsJpA8U0N3b0ApAivc5FAGshvvhU3n5ckEPMgCTRWXfMoqRQKbkYGWMpkZvg1/VenW3PjcDA==" />
 <link rel="stylesheet" media="all" href="//assets1.mtggoldfish.com/assets/application-a4f1bbfc16ccbbfe4945e7730a102d58c57d678ed3bbbbd53f8c03289d0d6443.css" />
 <link rel="stylesheet" media="print" href="//assets1.mtggoldfish.com/assets/print-6ea5076dba0b9bf0a07bd1b6ba2c5f860ceb3acc4e7adac560bbaf6f8f89b26a.css" />
 <script>(function() {
@@ -1708,25 +1708,25 @@ Dominaria
 <td class='text-right'>
 <div class='index-price-header-price-box color-online'>
 <span class='index-price-header-price-label'>ONLINE</span>
-<div class='index-price-header-price'>114.32</div>
+<div class='index-price-header-price'>114.13</div>
 </div>
 </td>
 <td class='text-right'>
 <div class='index-price-header-price-box color-online'>
 <span class='index-price-header-price-label'>PRICE CHANGE</span>
-<div class='index-price-header-price'>-0.57</div>
+<div class='index-price-header-price'>-2.27</div>
 </div>
 </td>
 <td class='text-right'>
 <div class='index-price-header-price-box color-rising'>
 <span class='index-price-header-price-label'>RISING CARDS</span>
-<div class='index-price-header-price'>36▲</div>
+<div class='index-price-header-price'>28▲</div>
 </div>
 </td>
 <td class='text-right'>
 <div class='index-price-header-price-box color-declining'>
 <span class='index-price-header-price-label'>DECLINING CARDS</span>
-<div class='index-price-header-price'>26▼</div>
+<div class='index-price-header-price'>34▼</div>
 </div>
 </td>
 </tr>
@@ -1734,25 +1734,25 @@ Dominaria
 <td class='text-right'>
 <div class='index-price-header-price-box color-paper'>
 <span class='index-price-header-price-label'>PAPER</span>
-<div class='index-price-header-price'>236.79</div>
+<div class='index-price-header-price'>237.27</div>
 </div>
 </td>
 <td class='text-right'>
 <div class='index-price-header-price-box color-paper'>
 <span class='index-price-header-price-label'>PRICE CHANGE</span>
-<div class='index-price-header-price'>+0.06</div>
+<div class='index-price-header-price'>-2.13</div>
 </div>
 </td>
 <td class='text-right'>
 <div class='index-price-header-price-box color-rising'>
 <span class='index-price-header-price-label'>RISING CARDS</span>
-<div class='index-price-header-price'>44▲</div>
+<div class='index-price-header-price'>56▲</div>
 </div>
 </td>
 <td class='text-right'>
 <div class='index-price-header-price-box color-declining'>
 <span class='index-price-header-price-label'>DECLINING CARDS</span>
-<div class='index-price-header-price'>35▼</div>
+<div class='index-price-header-price'>43▼</div>
 </div>
 </td>
 </tr>
@@ -1849,37 +1849,37 @@ Columns
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-48.90
+46.99
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.02
+-1.89
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-4.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.13
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
 <td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+1.95
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+4.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Karn%252C%2BScion%2Bof%2BUrza%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Karn+Scion+of+Urza#paper">Karn, Scion of Urza</a></td>
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-31.59
+31.54
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.09
+-0.14
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
@@ -1888,13 +1888,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.33
+-0.14
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-1.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Lyra%2BDawnbringer%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Lyra+Dawnbringer#paper">Lyra Dawnbringer</a></td>
@@ -1914,7 +1914,7 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.06
++0.04
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
@@ -1927,26 +1927,26 @@ Columns
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-11.46
+11.42
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.02
+-0.06
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>-1.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.01
+-0.09
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>-1.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/History%2Bof%2BBenalia%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/History+of+Benalia#paper">History of Benalia</a></td>
@@ -1966,59 +1966,59 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.06
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+1.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Sulfur%2BFalls%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Sulfur+Falls#paper">Sulfur Falls</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-4.64
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
 +0.05
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+1.00%</td>
+<td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Sulfur%2BFalls%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Sulfur+Falls#paper">Sulfur Falls</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+4.62
+</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.13
++0.03
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+3.00%</td>
+<td class='text-right'>+1.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.10
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+2.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Jaya%2BBallard%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Jaya+Ballard#paper">Jaya Ballard</a></td>
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-4.49
+4.47
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.02
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.06
++0.03
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
@@ -2031,34 +2031,69 @@ Columns
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
-4.23
+4.20
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+-0.02
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.06
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-1.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Woodland%2BCemetery%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Woodland+Cemetery#paper">Woodland Cemetery</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+3.93
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.07
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+2.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.16
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+4.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Steel%2BLeaf%2BChampion%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Steel+Leaf+Champion#paper">Steel Leaf Champion</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
-3.91
+3.82
 </td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.10
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-3.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 -0.01
@@ -2068,58 +2103,23 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.09
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+2.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Woodland%2BCemetery%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Woodland+Cemetery#paper">Woodland Cemetery</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-3.91
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.05
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+1.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.15
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+4.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Muldrotha%252C%2Bthe%2BGravetide%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Muldrotha+the+Gravetide#paper">Muldrotha, the Gravetide</a></td>
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-3.21
+3.23
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
++0.03
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+1.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 +0.05
@@ -2135,26 +2135,26 @@ Columns
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
-3.12
+3.11
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.12
++0.09
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+4.00%</td>
+<td class='text-right'>+3.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Gilded%2BLotus%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Gilded+Lotus#paper">Gilded Lotus</a></td>
@@ -2187,32 +2187,6 @@ Columns
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-2.88
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.04
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+1.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.08
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+3.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Shalai%252C%2BVoice%2Bof%2BPlenty%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Shalai+Voice+of+Plenty#paper">Shalai, Voice of Plenty</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
 2.86
 </td>
 <td class='text-right'>
@@ -2226,39 +2200,65 @@ Columns
 <td class='text-right'>+1.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.03
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+1.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Hinterland%2BHarbor%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Hinterland+Harbor#paper">Hinterland Harbor</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-2.66
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.04
++0.06
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
 <td class='text-right'>+2.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Shalai%252C%2BVoice%2Bof%2BPlenty%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Shalai+Voice+of+Plenty#paper">Shalai, Voice of Plenty</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+2.84
+</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.16
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Hinterland%2BHarbor%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Hinterland+Harbor#paper">Hinterland Harbor</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+2.62
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.11
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+6.00%</td>
+<td class='text-right'>+4.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Helm%2Bof%2Bthe%2BHost%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Helm+of+the+Host#paper">Helm of the Host</a></td>
@@ -2291,33 +2291,7 @@ Columns
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-2.34
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.03
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+1.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Multani%252C%2BYavimaya%2527s%2BAvatar%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Multani+Yavimayas+Avatar#paper">Multani, Yavimaya&#39;s Avatar</a></td>
-<td>DOM</td>
-<td>Mythic</td>
-<td class='text-right'>
-2.04
+2.33
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
@@ -2330,24 +2304,50 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.04
++0.02
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+2.00%</td>
+<td class='text-right'>+1.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Multani%252C%2BYavimaya%2527s%2BAvatar%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Multani+Yavimayas+Avatar#paper">Multani, Yavimaya&#39;s Avatar</a></td>
+<td>DOM</td>
+<td>Mythic</td>
+<td class='text-right'>
+2.02
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.03
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-1.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Clifftop%2BRetreat%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Clifftop+Retreat#paper">Clifftop Retreat</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
-1.99
+1.98
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.02
++0.01
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
@@ -2356,39 +2356,39 @@ Columns
 <td class='text-right'>+1.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.16
++0.14
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+9.00%</td>
+<td class='text-right'>+8.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Wizard%2527s%2BLightning%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Wizards+Lightning#paper">Wizard&#39;s Lightning</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
 <td class='text-right'>
-1.75
+1.73
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.09
+-0.11
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-5.00%</td>
+<td class='text-right'>-6.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.04
++0.01
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+2.00%</td>
+<td class='text-right'>+1.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Phyrexian%2BScriptures%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Phyrexian+Scriptures#paper">Phyrexian Scriptures</a></td>
@@ -2408,13 +2408,13 @@ Columns
 <td class='text-right'>+1.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.06
++0.05
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+4.00%</td>
+<td class='text-right'>+3.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Damping%2BSphere%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Damping+Sphere#paper">Damping Sphere</a></td>
@@ -2460,13 +2460,13 @@ Columns
 <td class='text-right'>+1.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.05
++0.04
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+4.00%</td>
+<td class='text-right'>+3.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Demonlord%2BBelzenlok%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Demonlord+Belzenlok#paper">Demonlord Belzenlok</a></td>
@@ -2486,7 +2486,7 @@ Columns
 <td class='text-right'>-1.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.05
+-0.04
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
@@ -2512,13 +2512,13 @@ Columns
 <td class='text-right'>-1.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.03
+-0.02
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-2.00%</td>
+<td class='text-right'>-1.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Darigaaz%2BReincarnated%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Darigaaz+Reincarnated#paper">Darigaaz Reincarnated</a></td>
@@ -2538,23 +2538,6 @@ Columns
 <td class='text-right'>-1.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+1.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Weatherlight%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Weatherlight#paper">Weatherlight</a></td>
-<td>DOM</td>
-<td>Mythic</td>
-<td class='text-right'>
-1.12
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
 +0.02
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
@@ -2562,15 +2545,32 @@ Columns
 </div>
 </td>
 <td class='text-right'>+2.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Weatherlight%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Weatherlight#paper">Weatherlight</a></td>
+<td>DOM</td>
+<td>Mythic</td>
+<td class='text-right'>
+1.13
+</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.01
++0.03
 
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>-1.00%</td>
+<td class='text-right'>+3.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Cabal%2BStronghold%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Cabal+Stronghold#paper">Cabal Stronghold</a></td>
@@ -2616,13 +2616,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.03
+-0.02
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-3.00%</td>
+<td class='text-right'>-2.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Cast%2BDown%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Cast+Down#paper">Cast Down</a></td>
@@ -2694,21 +2694,30 @@ Columns
 <td class='text-right'>-1.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.02
+-0.01
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-2.00%</td>
+<td class='text-right'>-1.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Merfolk%2BTrickster%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Merfolk+Trickster#paper">Merfolk Trickster</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
 <td class='text-right'>
-0.77
+0.76
 </td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-1.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 0.00
@@ -2718,15 +2727,6 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+1.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Teshar%252C%2BAncestor%2527s%2BApostle%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Teshar+Ancestors+Apostle#paper">Teshar, Ancestor&#39;s Apostle</a></td>
@@ -2759,8 +2759,17 @@ Columns
 <td>DOM</td>
 <td>Uncommon</td>
 <td class='text-right'>
-0.74
+0.73
 </td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-1.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 0.00
@@ -2770,67 +2779,58 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+1.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Forebear%2527s%2BBlade%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Forebears+Blade#paper">Forebear&#39;s Blade</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
-0.73
+0.71
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
+-0.02
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>-3.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
+-0.02
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>-3.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/The%2BAntiquities%2BWar%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/The+Antiquities+War#paper">The Antiquities War</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
-0.69
+0.68
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
+-0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>-1.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
+-0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>-1.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Siege-Gang%2BCommander%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Siege-Gang+Commander#paper">Siege-Gang Commander</a></td>
@@ -2911,7 +2911,7 @@ Columns
 <td class='text-right'>-3.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Thran%2BTemporal%2BGateway%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Thran+Temporal+Gateway#paper">Thran Temporal Gateway</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Marwyn%252C%2Bthe%2BNurturer%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Marwyn+the+Nurturer#paper">Marwyn, the Nurturer</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
@@ -2928,16 +2928,16 @@ Columns
 <td class='text-right'>-2.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.02
+0.00
 
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-3.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Marwyn%252C%2Bthe%2BNurturer%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Marwyn+the+Nurturer#paper">Marwyn, the Nurturer</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Thran%2BTemporal%2BGateway%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Thran+Temporal+Gateway#paper">Thran Temporal Gateway</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
@@ -2954,13 +2954,13 @@ Columns
 <td class='text-right'>-3.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.01
+-0.02
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-2.00%</td>
+<td class='text-right'>-3.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Squee%252C%2Bthe%2BImmortal%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Squee+the+Immortal#paper">Squee, the Immortal</a></td>
@@ -3110,23 +3110,6 @@ Columns
 <td class='text-right'>-2.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.02
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-3.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Yawgmoth%2527s%2BVile%2BOffering%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Yawgmoths+Vile+Offering#paper">Yawgmoth&#39;s Vile Offering</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.54
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
 -0.01
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
@@ -3134,15 +3117,6 @@ Columns
 </div>
 </td>
 <td class='text-right'>-2.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Tempest%2BDjinn%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Tempest+Djinn#paper">Tempest Djinn</a></td>
@@ -3171,30 +3145,30 @@ Columns
 <td class='text-right'>+2.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Grand%2BWarlord%2BRadha%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Grand+Warlord+Radha#paper">Grand Warlord Radha</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Yawgmoth%2527s%2BVile%2BOffering%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Yawgmoths+Vile+Offering#paper">Yawgmoth&#39;s Vile Offering</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
-0.51
+0.52
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.01
+-0.03
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-2.00%</td>
+<td class='text-right'>-5.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+-0.02
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+2.00%</td>
+<td class='text-right'>-4.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Sylvan%2BAwakening%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Sylvan+Awakening#paper">Sylvan Awakening</a></td>
@@ -3221,6 +3195,32 @@ Columns
 </div>
 </td>
 <td class='text-right'>+2.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Grand%2BWarlord%2BRadha%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Grand+Warlord+Radha#paper">Grand Warlord Radha</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.50
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.02
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-4.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Lich%2527s%2BMastery%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Lichs+Mastery#paper">Lich&#39;s Mastery</a></td>
@@ -3266,13 +3266,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.02
++0.01
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+4.00%</td>
+<td class='text-right'>+2.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Wizard%2527s%2BRetort%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Wizards+Retort#paper">Wizard&#39;s Retort</a></td>
@@ -3431,11 +3431,11 @@ Columns
 <td class='text-right'>+20.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Knight%2Bof%2BGrace%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Knight+of+Grace#paper">Knight of Grace</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Jaya%2527s%2BImmolating%2BInferno%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Jayas+Immolating+Inferno#paper">Jaya&#39;s Immolating Inferno</a></td>
 <td>DOM</td>
-<td>Uncommon</td>
+<td>Rare</td>
 <td class='text-right'>
-0.48
+0.47
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
@@ -3483,11 +3483,11 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Jaya%2527s%2BImmolating%2BInferno%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Jayas+Immolating+Inferno#paper">Jaya&#39;s Immolating Inferno</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Precognition%2BField%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Precognition+Field#paper">Precognition Field</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
-0.46
+0.45
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
@@ -3509,30 +3509,82 @@ Columns
 <td class='text-right'>-2.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Precognition%2BField%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Precognition+Field#paper">Precognition Field</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Knight%2Bof%2BGrace%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Knight+of+Grace#paper">Knight of Grace</a></td>
 <td>DOM</td>
-<td>Rare</td>
+<td>Uncommon</td>
 <td class='text-right'>
 0.45
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.01
+-0.03
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-2.00%</td>
+<td class='text-right'>-6.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.02
+-0.03
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-4.00%</td>
+<td class='text-right'>-6.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Zahid%252C%2BDjinn%2Bof%2Bthe%2BLamp%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Zahid+Djinn+of+the+Lamp#paper">Zahid, Djinn of the Lamp</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.42
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+2.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Kamahl%2527s%2BDruidic%2BVow%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Kamahls+Druidic+Vow#paper">Kamahl&#39;s Druidic Vow</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.42
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Rite%2Bof%2BBelzenlok%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Rite+of+Belzenlok#paper">Rite of Belzenlok</a></td>
@@ -3552,16 +3604,16 @@ Columns
 <td class='text-right'>-2.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.01
+0.00
 
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-2.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Zahid%252C%2BDjinn%2Bof%2Bthe%2BLamp%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Zahid+Djinn+of+the+Lamp#paper">Zahid, Djinn of the Lamp</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Niambi%252C%2BFaithful%2BHealer%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Niambi+Faithful+Healer#paper">Niambi, Faithful Healer</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
@@ -3576,32 +3628,6 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.02
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-5.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Kamahl%2527s%2BDruidic%2BVow%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Kamahls+Druidic+Vow#paper">Kamahl&#39;s Druidic Vow</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.41
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-2.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 -0.01
@@ -3639,32 +3665,6 @@ Columns
 <td class='text-right'>-2.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Niambi%252C%2BFaithful%2BHealer%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Niambi+Faithful+Healer#paper">Niambi, Faithful Healer</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.39
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.02
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-5.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.03
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-7.00%</td>
-</tr>
-<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Primevals%2527%2BGlorious%2BRebirth%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Primevals+Glorious+Rebirth#paper">Primevals&#39; Glorious Rebirth</a></td>
 <td>DOM</td>
 <td>Rare</td>
@@ -3691,32 +3691,6 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Zhalfirin%2BVoid%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Zhalfirin+Void#paper">Zhalfirin Void</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.38
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-3.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.02
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+6.00%</td>
-</tr>
-<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Danitha%2BCapashen%252C%2BParagon%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Danitha+Capashen+Paragon#paper">Danitha Capashen, Paragon</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
@@ -3732,6 +3706,32 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Zhalfirin%2BVoid%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Zhalfirin+Void#paper">Zhalfirin Void</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.37
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.02
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-5.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 +0.01
@@ -4072,13 +4072,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+3.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Daring%2BArchaeologist%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Daring+Archaeologist#paper">Daring Archaeologist</a></td>
@@ -4133,33 +4133,59 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Swamp%2B%253C258%253E%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Swamp-258#paper">Swamp (258)</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Two-Headed%2BGiant%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Two-Headed+Giant#paper">Two-Headed Giant</a></td>
 <td>DOM</td>
-<td>Basic Land</td>
+<td>Rare</td>
+<td class='text-right'>
+0.29
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+4.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+4.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Kazarov%252C%2BSengir%2BPureblood%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Kazarov+Sengir+Pureblood#paper">Kazarov, Sengir Pureblood</a></td>
+<td>DOM</td>
+<td>Rare</td>
 <td class='text-right'>
 0.28
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.02
++0.01
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+8.00%</td>
+<td class='text-right'>+4.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.02
++0.01
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+8.00%</td>
+<td class='text-right'>+4.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Kazarov%252C%2BSengir%2BPureblood%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Kazarov+Sengir+Pureblood#paper">Kazarov, Sengir Pureblood</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/The%2BFirst%2BEruption%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/The+First+Eruption#paper">The First Eruption</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
@@ -4183,58 +4209,6 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Two-Headed%2BGiant%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Two-Headed+Giant#paper">Two-Headed Giant</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.28
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-3.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/The%2BFirst%2BEruption%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/The+First+Eruption#paper">The First Eruption</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.27
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-4.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Opt%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Opt#paper">Opt</a></td>
@@ -4313,6 +4287,32 @@ Columns
 </div>
 </td>
 <td class='text-right'>+4.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Swamp%2B%253C258%253E%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Swamp-258#paper">Swamp (258)</a></td>
+<td>DOM</td>
+<td>Basic Land</td>
+<td class='text-right'>
+0.25
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-4.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-4.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Final%2BParting%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Final+Parting#paper">Final Parting</a></td>
@@ -4575,6 +4575,58 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/In%2BBolas%2527s%2BClutches%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/In+Bolass+Clutches#paper">In Bolas&#39;s Clutches</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.24
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.02
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+9.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Jhoira%2527s%2BFamiliar%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Jhoiras+Familiar#paper">Jhoira&#39;s Familiar</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.24
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+4.00%</td>
+</tr>
+<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Champion%2Bof%2Bthe%2BFlame%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Champion+of+the+Flame#paper">Champion of the Flame</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
@@ -4601,6 +4653,32 @@ Columns
 <td class='text-right'>+4.00%</td>
 </tr>
 <tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Memorial%2Bto%2BGenius%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Memorial+to+Genius#paper">Memorial to Genius</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.24
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+4.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.02
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+9.00%</td>
+</tr>
+<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Memorial%2Bto%2BUnity%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Memorial+to+Unity#paper">Memorial to Unity</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
@@ -4625,6 +4703,84 @@ Columns
 </div>
 </td>
 <td class='text-right'>+9.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Chainer%2527s%2BTorment%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Chainers+Torment#paper">Chainer&#39;s Torment</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.24
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+4.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+4.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Tiana%252C%2BShip%2527s%2BCaretaker%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Tiana+Ships+Caretaker#paper">Tiana, Ship&#39;s Caretaker</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.24
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+4.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+4.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Valduk%252C%2BKeeper%2Bof%2Bthe%2BFlame%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Valduk+Keeper+of+the+Flame#paper">Valduk, Keeper of the Flame</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.24
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+4.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+4.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Kwende%252C%2BPride%2Bof%2BFemeref%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Kwende+Pride+of+Femeref#paper">Kwende, Pride of Femeref</a></td>
@@ -4679,30 +4835,30 @@ Columns
 <td class='text-right'>+4.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/In%2BBolas%2527s%2BClutches%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/In+Bolass+Clutches#paper">In Bolas&#39;s Clutches</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Forest%2B%253C266%253E%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Forest-266#paper">Forest (266)</a></td>
 <td>DOM</td>
-<td>Uncommon</td>
+<td>Basic Land</td>
 <td class='text-right'>
 0.23
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
++0.02
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+5.00%</td>
+<td class='text-right'>+10.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.01
+0.00
 
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-4.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Time%2Bof%2BIce%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Time+of+Ice#paper">Time of Ice</a></td>
@@ -4728,10 +4884,10 @@ Columns
 
 </div>
 </td>
-<td class='text-right'>+5.00%</td>
+<td class='text-right'>+4.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Jhoira%2527s%2BFamiliar%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Jhoiras+Familiar#paper">Jhoira&#39;s Familiar</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Weight%2Bof%2BMemory%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Weight+of+Memory#paper">Weight of Memory</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
 <td class='text-right'>
@@ -4739,22 +4895,22 @@ Columns
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.01
++0.01
 
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>-4.00%</td>
+<td class='text-right'>+5.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+5.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Fungal%2BPlots%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Fungal+Plots#paper">Fungal Plots</a></td>
@@ -4781,32 +4937,6 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Memorial%2Bto%2BGenius%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Memorial+to+Genius#paper">Memorial to Genius</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.23
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+5.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Garna%252C%2Bthe%2BBloodflame%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Garna+the+Bloodflame#paper">Garna, the Bloodflame</a></td>
@@ -4887,137 +5017,7 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Chainer%2527s%2BTorment%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Chainers+Torment#paper">Chainer&#39;s Torment</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.23
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+4.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Tiana%252C%2BShip%2527s%2BCaretaker%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Tiana+Ships+Caretaker#paper">Tiana, Ship&#39;s Caretaker</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.23
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Valduk%252C%2BKeeper%2Bof%2Bthe%2BFlame%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Valduk+Keeper+of+the+Flame#paper">Valduk, Keeper of the Flame</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.23
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Forest%2B%253C266%253E%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Forest-266#paper">Forest (266)</a></td>
-<td>DOM</td>
-<td>Basic Land</td>
-<td class='text-right'>
-0.22
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+5.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Icy%2BManipulator%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Icy+Manipulator#paper">Icy Manipulator</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.22
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Weight%2Bof%2BMemory%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Weight+of+Memory#paper">Weight of Memory</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
 <td class='text-right'>
@@ -5060,13 +5060,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+5.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Yargle%252C%2BGlutton%2Bof%2BUrborg%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Yargle+Glutton+of+Urborg#paper">Yargle, Glutton of Urborg</a></td>
@@ -5112,13 +5112,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.02
++0.01
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+10.00%</td>
+<td class='text-right'>+5.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Goblin%2BBarrage%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Goblin+Barrage#paper">Goblin Barrage</a></td>
@@ -5136,6 +5136,58 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+5.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Skizzik%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Skizzik#paper">Skizzik</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.21
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+5.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+5.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Urgoros%252C%2Bthe%2BEmpty%2BOne%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Urgoros+the+Empty+One#paper">Urgoros, the Empty One</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.21
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+5.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 +0.01
@@ -5320,13 +5372,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+5.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Serra%2BAngel%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Serra+Angel#paper">Serra Angel</a></td>
@@ -5372,13 +5424,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+5.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Sanctum%2BSpirit%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Sanctum+Spirit#paper">Sanctum Spirit</a></td>
@@ -5450,13 +5502,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.01
+0.00
 
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-5.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Amaranthine%2BWall%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Amaranthine+Wall#paper">Amaranthine Wall</a></td>
@@ -5528,13 +5580,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+5.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Slinn%2BVoda%252C%2Bthe%2BRising%2BDeep%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Slinn+Voda+the+Rising+Deep#paper">Slinn Voda, the Rising Deep</a></td>
@@ -5719,33 +5771,33 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Thallid%2BSoothsayer%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Thallid+Soothsayer#paper">Thallid Soothsayer</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Ghitu%2BLavarunner%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Ghitu+Lavarunner#paper">Ghitu Lavarunner</a></td>
 <td>DOM</td>
-<td>Uncommon</td>
+<td>Common</td>
 <td class='text-right'>
 0.20
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+5.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+5.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Skizzik%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Skizzik#paper">Skizzik</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Thallid%2BSoothsayer%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Thallid+Soothsayer#paper">Thallid Soothsayer</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
 <td class='text-right'>
@@ -5797,32 +5849,6 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Urgoros%252C%2Bthe%2BEmpty%2BOne%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Urgoros+the+Empty+One#paper">Urgoros, the Empty One</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.20
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-5.00%</td>
-</tr>
-<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Plains%2B%253C250%253E%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Plains-250#paper">Plains (250)</a></td>
 <td>DOM</td>
 <td>Basic Land</td>
@@ -5840,13 +5866,13 @@ Columns
 <td class='text-right'>+12.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+5.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Thorn%2BElemental%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Thorn+Elemental#paper">Thorn Elemental</a></td>
@@ -5892,13 +5918,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.01
+0.00
 
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-5.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Urza%2527s%2BTome%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Urzas+Tome#paper">Urza&#39;s Tome</a></td>
@@ -5930,32 +5956,6 @@ Columns
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Orcish%2BVandal%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Orcish+Vandal#paper">Orcish Vandal</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
-<td class='text-right'>
-0.19
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Ghitu%2BLavarunner%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Ghitu+Lavarunner#paper">Ghitu Lavarunner</a></td>
-<td>DOM</td>
-<td>Common</td>
 <td class='text-right'>
 0.19
 </td>
@@ -6087,17 +6087,8 @@ Columns
 <td>DOM</td>
 <td>Common</td>
 <td class='text-right'>
-0.16
+0.17
 </td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-6.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 0.00
@@ -6107,6 +6098,41 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+6.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Deep%2BFreeze%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Deep+Freeze#paper">Deep Freeze</a></td>
+<td>DOM</td>
+<td>Common</td>
+<td class='text-right'>
+0.15
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+7.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Corrosive%2BOoze%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Corrosive+Ooze#paper">Corrosive Ooze</a></td>
@@ -6178,13 +6204,13 @@ Columns
 <td class='text-right'>+7.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Sergeant-at-Arms%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Sergeant-at-Arms#paper">Sergeant-at-Arms</a></td>
@@ -6204,13 +6230,13 @@ Columns
 <td class='text-right'>+7.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Artificer%2527s%2BAssistant%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Artificers+Assistant#paper">Artificer&#39;s Assistant</a></td>
@@ -6308,13 +6334,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Temporal%2BMachinations%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Temporal+Machinations#paper">Temporal Machinations</a></td>
@@ -6346,32 +6372,6 @@ Columns
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Meandering%2BRiver%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Meandering+River#paper">Meandering River</a></td>
 <td>DOM</td>
 <td>Common</td>
-<td class='text-right'>
-0.15
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Karplusan%2BHound%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Karplusan+Hound#paper">Karplusan Hound</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
 <td class='text-right'>
 0.15
 </td>
@@ -6577,6 +6577,32 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Demonic%2BVigor%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Demonic+Vigor#paper">Demonic Vigor</a></td>
+<td>DOM</td>
+<td>Common</td>
+<td class='text-right'>
+0.15
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+7.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+7.00%</td>
+</tr>
+<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Fungal%2BInfection%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Fungal+Infection#paper">Fungal Infection</a></td>
 <td>DOM</td>
 <td>Common</td>
@@ -6707,7 +6733,7 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Academy%2BJourneymage%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Academy+Journeymage#paper">Academy Journeymage</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Invoke%2Bthe%2BDivine%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Invoke+the+Divine#paper">Invoke the Divine</a></td>
 <td>DOM</td>
 <td>Common</td>
 <td class='text-right'>
@@ -6724,30 +6750,30 @@ Columns
 <td class='text-right'>+7.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Deep%2BFreeze%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Deep+Freeze#paper">Deep Freeze</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Academy%2BJourneymage%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Academy+Journeymage#paper">Academy Journeymage</a></td>
 <td>DOM</td>
 <td>Common</td>
 <td class='text-right'>
-0.14
+0.15
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 0.00
@@ -6854,13 +6880,13 @@ Columns
 <td class='text-right'>+8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Gift%2Bof%2BGrowth%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Gift+of+Growth#paper">Gift of Growth</a></td>
@@ -6887,6 +6913,32 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Adamant%2BWill%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Adamant+Will#paper">Adamant Will</a></td>
+<td>DOM</td>
+<td>Common</td>
+<td class='text-right'>
+0.14
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+8.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+8.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Call%2Bthe%2BCavalry%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Call+the+Cavalry#paper">Call the Cavalry</a></td>
@@ -6932,13 +6984,13 @@ Columns
 <td class='text-right'>+8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Arbor%2BArmament%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Arbor+Armament#paper">Arbor Armament</a></td>
@@ -6958,13 +7010,13 @@ Columns
 <td class='text-right'>+8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Mammoth%2BSpider%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Mammoth+Spider#paper">Mammoth Spider</a></td>
@@ -7010,13 +7062,13 @@ Columns
 <td class='text-right'>+8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Cold-Water%2BSnapper%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Cold-Water+Snapper#paper">Cold-Water Snapper</a></td>
@@ -7088,13 +7140,13 @@ Columns
 <td class='text-right'>+8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Tragic%2BPoet%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Tragic+Poet#paper">Tragic Poet</a></td>
@@ -7114,13 +7166,13 @@ Columns
 <td class='text-right'>+8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Thallid%2BOmnivore%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Thallid+Omnivore#paper">Thallid Omnivore</a></td>
@@ -7244,13 +7296,13 @@ Columns
 <td class='text-right'>+8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Deathbloom%2BThallid%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Deathbloom+Thallid#paper">Deathbloom Thallid</a></td>
@@ -7426,13 +7478,13 @@ Columns
 <td class='text-right'>+8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Divination%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Divination#paper">Divination</a></td>
@@ -7487,6 +7539,32 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Karplusan%2BHound%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Karplusan+Hound#paper">Karplusan Hound</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.14
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-7.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-7.00%</td>
+</tr>
+<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Pegasus%2BCourser%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Pegasus+Courser#paper">Pegasus Courser</a></td>
 <td>DOM</td>
 <td>Common</td>
@@ -7504,13 +7582,13 @@ Columns
 <td class='text-right'>+8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Pyromantic%2BPilgrim%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Pyromantic+Pilgrim#paper">Pyromantic Pilgrim</a></td>
@@ -7536,7 +7614,7 @@ Columns
 
 </div>
 </td>
-<td class='text-right'>+7.00%</td>
+<td class='text-right'>+8.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Run%2BAmok%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Run+Amok#paper">Run Amok</a></td>
@@ -7563,6 +7641,32 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Academy%2BDrake%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Academy+Drake#paper">Academy Drake</a></td>
+<td>DOM</td>
+<td>Common</td>
+<td class='text-right'>
+0.14
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+8.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+8.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Guardians%2Bof%2BKoilos%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Guardians+of+Koilos#paper">Guardians of Koilos</a></td>
@@ -7617,7 +7721,7 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Demonic%2BVigor%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Demonic+Vigor#paper">Demonic Vigor</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Aven%2BSentry%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Aven+Sentry#paper">Aven Sentry</a></td>
 <td>DOM</td>
 <td>Common</td>
 <td class='text-right'>
@@ -7625,22 +7729,22 @@ Columns
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Bloodstone%2BGoblin%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Bloodstone+Goblin#paper">Bloodstone Goblin</a></td>
@@ -7790,13 +7894,13 @@ Columns
 <td class='text-right'>+8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Llanowar%2BEnvoy%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Llanowar+Envoy#paper">Llanowar Envoy</a></td>
@@ -7877,6 +7981,58 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Rampaging%2BCyclops%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Rampaging+Cyclops#paper">Rampaging Cyclops</a></td>
+<td>DOM</td>
+<td>Common</td>
+<td class='text-right'>
+0.14
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+8.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+8.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Fire%2BElemental%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Fire+Elemental#paper">Fire Elemental</a></td>
+<td>DOM</td>
+<td>Common</td>
+<td class='text-right'>
+0.14
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+8.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+8.00%</td>
+</tr>
+<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Caligo%2BSkin-Witch%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Caligo+Skin-Witch#paper">Caligo Skin-Witch</a></td>
 <td>DOM</td>
 <td>Common</td>
@@ -7894,13 +8050,13 @@ Columns
 <td class='text-right'>+8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Charge%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Charge#paper">Charge</a></td>
@@ -7955,32 +8111,6 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Invoke%2Bthe%2BDivine%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Invoke+the+Divine#paper">Invoke the Divine</a></td>
-<td>DOM</td>
-<td>Common</td>
-<td class='text-right'>
-0.14
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Befuddle%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Befuddle#paper">Befuddle</a></td>
 <td>DOM</td>
 <td>Common</td>
@@ -8005,58 +8135,6 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Adamant%2BWill%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Adamant+Will#paper">Adamant Will</a></td>
-<td>DOM</td>
-<td>Common</td>
-<td class='text-right'>
-0.13
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Island%2B%253C257%253E%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Island-257#paper">Island (257)</a></td>
-<td>DOM</td>
-<td>Basic Land</td>
-<td class='text-right'>
-0.13
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.02
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+19.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Krosan%2BDruid%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Krosan+Druid#paper">Krosan Druid</a></td>
@@ -8128,13 +8206,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+8.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/D%2527Avenant%2BTrapper%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/DAvenant+Trapper#paper">D&#39;Avenant Trapper</a></td>
@@ -8293,32 +8371,6 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Timber%2BGorge%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Timber+Gorge#paper">Timber Gorge</a></td>
-<td>DOM</td>
-<td>Common</td>
-<td class='text-right'>
-0.13
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Cloudreader%2BSphinx%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Cloudreader+Sphinx#paper">Cloudreader Sphinx</a></td>
 <td>DOM</td>
 <td>Common</td>
@@ -8414,13 +8466,13 @@ Columns
 <td class='text-right'>+8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
++0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+8.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Shivan%2BFire%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Shivan+Fire#paper">Shivan Fire</a></td>
@@ -8475,111 +8527,7 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Academy%2BDrake%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Academy+Drake#paper">Academy Drake</a></td>
-<td>DOM</td>
-<td>Common</td>
-<td class='text-right'>
-0.13
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Aven%2BSentry%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Aven+Sentry#paper">Aven Sentry</a></td>
-<td>DOM</td>
-<td>Common</td>
-<td class='text-right'>
-0.13
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-7.00%</td>
-</tr>
-<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Cabal%2BEvangel%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Cabal+Evangel#paper">Cabal Evangel</a></td>
-<td>DOM</td>
-<td>Common</td>
-<td class='text-right'>
-0.13
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Rampaging%2BCyclops%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Rampaging+Cyclops#paper">Rampaging Cyclops</a></td>
-<td>DOM</td>
-<td>Common</td>
-<td class='text-right'>
-0.13
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Fire%2BElemental%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Fire+Elemental#paper">Fire Elemental</a></td>
 <td>DOM</td>
 <td>Common</td>
 <td class='text-right'>
@@ -8683,7 +8631,7 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Swamp%2B%253C260%253E%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Swamp-260#paper">Swamp (260)</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Island%2B%253C257%253E%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Island-257#paper">Island (257)</a></td>
 <td>DOM</td>
 <td>Basic Land</td>
 <td class='text-right'>
@@ -8691,22 +8639,22 @@ Columns
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
+-0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>-8.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.02
++0.01
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+20.00%</td>
+<td class='text-right'>+9.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Forest%2B%253C267%253E%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Forest-267#paper">Forest (267)</a></td>
@@ -8811,6 +8759,58 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Swamp%2B%253C260%253E%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Swamp-260#paper">Swamp (260)</a></td>
+<td>DOM</td>
+<td>Basic Land</td>
+<td class='text-right'>
+0.11
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-8.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+10.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Timber%2BGorge%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Timber+Gorge#paper">Timber Gorge</a></td>
+<td>DOM</td>
+<td>Common</td>
+<td class='text-right'>
+0.11
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.02
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-15.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.02
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-15.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Plains%2B%253C251%253E%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Plains-251#paper">Plains (251)</a></td>
@@ -9078,20 +9078,20 @@ Columns
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-32.18
+32.06
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
--1.50
+-1.62
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-4.00%</td>
+<td class='text-right'>-5.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--5.75
+-5.62
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
@@ -9104,78 +9104,78 @@ Columns
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-25.50
+25.27
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.06
+-0.17
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-1.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.11
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
 <td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.23
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+1.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/History%2Bof%2BBenalia%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/History+of+Benalia#online">History of Benalia</a></td>
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-8.82
+8.59
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.57
+-0.80
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-6.00%</td>
+<td class='text-right'>-9.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--1.40
+-1.67
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-14.00%</td>
+<td class='text-right'>-16.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Lyra%2BDawnbringer%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Lyra+Dawnbringer#online">Lyra Dawnbringer</a></td>
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-8.01
+7.94
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.08
+-0.15
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-1.00%</td>
+<td class='text-right'>-2.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.12
+-0.30
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-1.00%</td>
+<td class='text-right'>-4.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Firesong%2Band%2BSunspeaker%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Firesong+and+Sunspeaker#online">Firesong and Sunspeaker</a></td>
@@ -9195,50 +9195,24 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.34
++0.16
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+7.00%</td>
+<td class='text-right'>+3.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Chandra%252C%2BBold%2BPyromancer%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Chandra+Bold+Pyromancer#online">Chandra, Bold Pyromancer</a></td>
 <td>DOM</td>
 <td></td>
 <td class='text-right'>
-3.24
+3.18
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.03
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-1.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Mox%2BAmber%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Mox+Amber#online">Mox Amber</a></td>
-<td>DOM</td>
-<td>Mythic</td>
-<td class='text-right'>
-3.16
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.05
+-0.06
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
@@ -9247,13 +9221,39 @@ Columns
 <td class='text-right'>-2.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.55
+-0.08
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-15.00%</td>
+<td class='text-right'>-2.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Mox%2BAmber%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Mox+Amber#online">Mox Amber</a></td>
+<td>DOM</td>
+<td>Mythic</td>
+<td class='text-right'>
+3.02
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.19
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-6.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.58
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-16.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Teferi%252C%2BTimebender%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Teferi+Timebender#online">Teferi, Timebender</a></td>
@@ -9282,32 +9282,6 @@ Columns
 <td class='text-right'>-1.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Goblin%2BChainwhirler%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Goblin+Chainwhirler#online">Goblin Chainwhirler</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-1.61
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.49
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+44.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.31
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+24.00%</td>
-</tr>
-<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Niambi%252C%2BFaithful%2BHealer%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Niambi+Faithful+Healer#online">Niambi, Faithful Healer</a></td>
 <td>DOM</td>
 <td>Rare</td>
@@ -9334,56 +9308,82 @@ Columns
 <td class='text-right'>+3.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Steel%2BLeaf%2BChampion%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Steel+Leaf+Champion#online">Steel Leaf Champion</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Goblin%2BChainwhirler%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Goblin+Chainwhirler#online">Goblin Chainwhirler</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
-1.42
+1.51
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.50
++0.39
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+54.00%</td>
+<td class='text-right'>+35.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.23
++0.01
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+19.00%</td>
+<td class='text-right'>+1.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Jaya%2BBallard%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Jaya+Ballard#online">Jaya Ballard</a></td>
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-1.32
+1.29
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.05
++0.02
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+4.00%</td>
+<td class='text-right'>+2.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.53
++0.45
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+67.00%</td>
+<td class='text-right'>+54.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Sulfur%2BFalls%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Sulfur+Falls#online">Sulfur Falls</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+1.29
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.18
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+16.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.08
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Chandra%2527s%2BOutburst%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Chandras+Outburst#online">Chandra&#39;s Outburst</a></td>
@@ -9412,47 +9412,21 @@ Columns
 <td class='text-right'>+2.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Sulfur%2BFalls%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Sulfur+Falls#online">Sulfur Falls</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-1.23
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.12
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+11.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-1.00%</td>
-</tr>
-<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Verix%2BBladewing%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Verix+Bladewing#online">Verix Bladewing</a></td>
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-1.20
+1.19
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.03
++0.02
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+3.00%</td>
+<td class='text-right'>+2.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 -0.01
@@ -9464,30 +9438,30 @@ Columns
 <td class='text-right'>-1.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Phyrexian%2BScriptures%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Phyrexian+Scriptures#online">Phyrexian Scriptures</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Steel%2BLeaf%2BChampion%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Steel+Leaf+Champion#online">Steel Leaf Champion</a></td>
 <td>DOM</td>
-<td>Mythic</td>
+<td>Rare</td>
 <td class='text-right'>
-1.08
+1.11
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.05
++0.19
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+5.00%</td>
+<td class='text-right'>+21.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.24
+-0.08
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+29.00%</td>
+<td class='text-right'>-7.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Pyromantic%2BPilgrim%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Pyromantic+Pilgrim#online">Pyromantic Pilgrim</a></td>
@@ -9516,82 +9490,108 @@ Columns
 <td class='text-right'>+2.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Woodland%2BCemetery%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Woodland+Cemetery#online">Woodland Cemetery</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.96
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.14
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-13.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.23
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+32.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Multani%252C%2BYavimaya%2527s%2BAvatar%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Multani+Yavimayas+Avatar#online">Multani, Yavimaya&#39;s Avatar</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Phyrexian%2BScriptures%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Phyrexian+Scriptures#online">Phyrexian Scriptures</a></td>
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-0.95
+1.03
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+1.00%</td>
+<td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.02
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+2.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Muldrotha%252C%2Bthe%2BGravetide%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Muldrotha+the+Gravetide#online">Muldrotha, the Gravetide</a></td>
-<td>DOM</td>
-<td>Mythic</td>
-<td class='text-right'>
-0.90
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.05
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+6.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.15
++0.17
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
 <td class='text-right'>+20.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Woodland%2BCemetery%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Woodland+Cemetery#online">Woodland Cemetery</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.98
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.12
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-11.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.21
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+27.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Muldrotha%252C%2Bthe%2BGravetide%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Muldrotha+the+Gravetide#online">Muldrotha, the Gravetide</a></td>
+<td>DOM</td>
+<td>Mythic</td>
+<td class='text-right'>
+0.93
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.08
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+9.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.10
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+12.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Multani%252C%2BYavimaya%2527s%2BAvatar%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Multani+Yavimayas+Avatar#online">Multani, Yavimaya&#39;s Avatar</a></td>
+<td>DOM</td>
+<td>Mythic</td>
+<td class='text-right'>
+0.92
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.02
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-2.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.02
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-2.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Meandering%2BRiver%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Meandering+River#online">Meandering River</a></td>
@@ -9611,82 +9611,56 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+1.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Hinterland%2BHarbor%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Hinterland+Harbor#online">Hinterland Harbor</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.81
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.32
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+65.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.24
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+42.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Isolated%2BChapel%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Isolated+Chapel#online">Isolated Chapel</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.75
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.05
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-6.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.16
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+27.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Naru%2BMeha%252C%2BMaster%2BWizard%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Naru+Meha+Master+Wizard#online">Naru Meha, Master Wizard</a></td>
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-0.72
+0.71
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.06
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+1.00%</td>
+<td class='text-right'>+9.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Hinterland%2BHarbor%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Hinterland+Harbor#online">Hinterland Harbor</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.68
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.19
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+39.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 +0.08
@@ -9698,82 +9672,56 @@ Columns
 <td class='text-right'>+13.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Shalai%252C%2BVoice%2Bof%2BPlenty%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Shalai+Voice+of+Plenty#online">Shalai, Voice of Plenty</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Jhoira%252C%2BWeatherlight%2BCaptain%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Jhoira+Weatherlight+Captain#online">Jhoira, Weatherlight Captain</a></td>
 <td>DOM</td>
-<td>Rare</td>
+<td>Mythic</td>
 <td class='text-right'>
-0.62
+0.59
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+2.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.04
+-0.01
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-6.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Jhoira%252C%2BWeatherlight%2BCaptain%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Jhoira+Weatherlight+Captain#online">Jhoira, Weatherlight Captain</a></td>
-<td>DOM</td>
-<td>Mythic</td>
-<td class='text-right'>
-0.62
-</td>
+<td class='text-right'>-2.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.02
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+3.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.03
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+5.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Clifftop%2BRetreat%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Clifftop+Retreat#online">Clifftop Retreat</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Shalai%252C%2BVoice%2Bof%2BPlenty%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Shalai+Voice+of+Plenty#online">Shalai, Voice of Plenty</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
-0.60
+0.55
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.04
+-0.06
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+7.00%</td>
+<td class='text-right'>-10.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.05
+-0.16
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+9.00%</td>
+<td class='text-right'>-23.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Temporal%2BMachinations%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Temporal+Machinations#online">Temporal Machinations</a></td>
@@ -9802,12 +9750,47 @@ Columns
 <td class='text-right'>+4.00%</td>
 </tr>
 <tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Clifftop%2BRetreat%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Clifftop+Retreat#online">Clifftop Retreat</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.53
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.03
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-5.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.03
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-5.00%</td>
+</tr>
+<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Weatherlight%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Weatherlight#online">Weatherlight</a></td>
 <td>DOM</td>
 <td>Mythic</td>
 <td class='text-right'>
-0.53
+0.51
 </td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-2.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 +0.01
@@ -9817,41 +9800,58 @@ Columns
 </div>
 </td>
 <td class='text-right'>+2.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.06
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+13.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Tempest%2BDjinn%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Tempest+Djinn#online">Tempest Djinn</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
-0.41
+0.49
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.17
+-0.09
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-29.00%</td>
+<td class='text-right'>-16.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.03
++0.11
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+8.00%</td>
+<td class='text-right'>+29.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Isolated%2BChapel%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Isolated+Chapel#online">Isolated Chapel</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.49
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.31
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-39.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.11
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-18.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Demonlord%2BBelzenlok%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Demonlord+Belzenlok#online">Demonlord Belzenlok</a></td>
@@ -9936,52 +9936,104 @@ Columns
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
-0.31
+0.29
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.03
++0.01
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+11.00%</td>
+<td class='text-right'>+4.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.02
+-0.01
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+7.00%</td>
+<td class='text-right'>-3.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Wizard%2527s%2BLightning%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Wizards+Lightning#online">Wizard&#39;s Lightning</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Siege-Gang%2BCommander%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Siege-Gang+Commander#online">Siege-Gang Commander</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.20
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.10
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+100.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.08
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+67.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Merfolk%2BTrickster%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Merfolk+Trickster#online">Merfolk Trickster</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
 <td class='text-right'>
-0.22
+0.15
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.12
++0.11
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+120.00%</td>
+<td class='text-right'>+275.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.16
++0.11
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+267.00%</td>
+<td class='text-right'>+250.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Damping%2BSphere%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Damping+Sphere#online">Damping Sphere</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.15
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.05
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+50.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.07
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-31.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Teferi%2527s%2BSentinel%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Teferis+Sentinel#online">Teferi&#39;s Sentinel</a></td>
@@ -10033,50 +10085,24 @@ Columns
 
 </div>
 </td>
-<td class='text-right'>-18.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Damping%2BSphere%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Damping+Sphere#online">Damping Sphere</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.13
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.03
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+30.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.07
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-35.00%</td>
+<td class='text-right'>-19.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/The%2BAntiquities%2BWar%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/The+Antiquities+War#online">The Antiquities War</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
-0.11
+0.10
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
+-0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>-9.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 -0.01
@@ -10092,95 +10118,17 @@ Columns
 <td>DOM</td>
 <td>Uncommon</td>
 <td class='text-right'>
-0.08
+0.10
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.04
++0.06
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+100.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-11.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Siege-Gang%2BCommander%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Siege-Gang+Commander#online">Siege-Gang Commander</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.08
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.02
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-20.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.04
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-34.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Naban%252C%2BDean%2Bof%2BIteration%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Naban+Dean+of+Iteration#online">Naban, Dean of Iteration</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.07
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.02
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+40.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.02
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+42.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Dread%2BShade%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Dread+Shade#online">Dread Shade</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.07
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.02
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+40.00%</td>
+<td class='text-right'>+150.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 0.00
@@ -10190,6 +10138,84 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Wizard%2527s%2BLightning%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Wizards+Lightning#online">Wizard&#39;s Lightning</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.10
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.03
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+43.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Naban%252C%2BDean%2Bof%2BIteration%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Naban+Dean+of+Iteration#online">Naban, Dean of Iteration</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.06
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+20.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+19.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Dread%2BShade%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Dread+Shade#online">Dread Shade</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.06
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+20.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-14.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Cabal%2BStronghold%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Cabal+Stronghold#online">Cabal Stronghold</a></td>
@@ -10209,65 +10235,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+19.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Seal%2BAway%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Seal+Away#online">Seal Away</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.05
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+25.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+25.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Merfolk%2BTrickster%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Merfolk+Trickster#online">Merfolk Trickster</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.05
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+25.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+23.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Wizard%2527s%2BRetort%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Wizards+Retort#online">Wizard&#39;s Retort</a></td>
@@ -10287,13 +10261,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+23.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Fight%2Bwith%2BFire%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Fight+with+Fire#online">Fight with Fire</a></td>
@@ -10319,12 +10293,12 @@ Columns
 
 </div>
 </td>
-<td class='text-right'>+28.00%</td>
+<td class='text-right'>+26.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/The%2BFlame%2Bof%2BKeld%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/The+Flame+of+Keld#online">The Flame of Keld</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Llanowar%2BElves%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Llanowar+Elves#online">Llanowar Elves</a></td>
 <td>DOM</td>
-<td>Uncommon</td>
+<td>Common</td>
 <td class='text-right'>
 0.05
 </td>
@@ -10339,13 +10313,39 @@ Columns
 <td class='text-right'>+25.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+23.00%</td>
+<td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Seal%2BAway%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Seal+Away#online">Seal Away</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.04
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Blink%2Bof%2Ban%2BEye%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Blink+of+an+Eye#online">Blink of an Eye</a></td>
@@ -10371,33 +10371,7 @@ Columns
 
 </div>
 </td>
-<td class='text-right'>+33.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Opt%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Opt#online">Opt</a></td>
-<td>DOM</td>
-<td>Common</td>
-<td class='text-right'>
-0.04
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>+36.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Syncopate%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Syncopate#online">Syncopate</a></td>
@@ -10469,6 +10443,32 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+29.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/The%2BFlame%2Bof%2BKeld%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/The+Flame+of+Keld#online">The Flame of Keld</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.04
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
 0.00
 
 <span class='color-clear glyphicon glyphicon-arrow-down'></span>
@@ -10504,9 +10504,9 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Llanowar%2BElves%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Llanowar+Elves#online">Llanowar Elves</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Adeliz%252C%2Bthe%2BCinder%2BWind%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Adeliz+the+Cinder+Wind#online">Adeliz, the Cinder Wind</a></td>
 <td>DOM</td>
-<td>Common</td>
+<td>Uncommon</td>
 <td class='text-right'>
 0.04
 </td>
@@ -10519,6 +10519,23 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Tatyova%252C%2BBenthic%2BDruid%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Tatyova+Benthic+Druid#online">Tatyova, Benthic Druid</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.04
+</td>
 <td class='text-right'>
 <div class='common-price-change'>
 -0.01
@@ -10527,50 +10544,7 @@ Columns
 
 </div>
 </td>
-<td class='text-right'>-22.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Zhalfirin%2BVoid%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Zhalfirin+Void#online">Zhalfirin Void</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.04
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+33.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Dauntless%2BBodyguard%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Dauntless+Bodyguard#online">Dauntless Bodyguard</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.04
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>-20.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 +0.01
@@ -10608,30 +10582,30 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Urza%2527s%2BRuinous%2BBlast%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Urzas+Ruinous+Blast#online">Urza&#39;s Ruinous Blast</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Opt%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Opt#online">Opt</a></td>
 <td>DOM</td>
-<td>Rare</td>
+<td>Common</td>
 <td class='text-right'>
 0.03
 </td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.02
+-0.01
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+200.00%</td>
+<td class='text-right'>-25.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+-0.01
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+63.00%</td>
+<td class='text-right'>-28.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Divest%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Divest#online">Divest</a></td>
@@ -10651,13 +10625,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+42.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/The%2BEldest%2BReborn%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/The+Eldest+Reborn#online">The Eldest Reborn</a></td>
@@ -10703,13 +10677,39 @@ Columns
 <td class='text-right'>+50.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Squee%252C%2Bthe%2BImmortal%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Squee+the+Immortal#online">Squee, the Immortal</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.03
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
 +0.01
 
 <span class='color-rising glyphicon glyphicon-arrow-up'></span>
 
 </div>
 </td>
-<td class='text-right'>+42.00%</td>
+<td class='text-right'>+50.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Adventurous%2BImpulse%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Adventurous+Impulse#online">Adventurous Impulse</a></td>
@@ -10764,32 +10764,6 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Adeliz%252C%2Bthe%2BCinder%2BWind%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Adeliz+the+Cinder+Wind#online">Adeliz, the Cinder Wind</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.03
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-25.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-25.00%</td>
-</tr>
-<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Shanna%252C%2BSisay%2527s%2BLegacy%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Shanna+Sisays+Legacy#online">Shanna, Sisay&#39;s Legacy</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
@@ -10813,59 +10787,7 @@ Columns
 
 </div>
 </td>
-<td class='text-right'>+45.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Tatyova%252C%2BBenthic%2BDruid%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Tatyova+Benthic+Druid#online">Tatyova, Benthic Druid</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.03
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.02
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-40.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Gilded%2BLotus%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Gilded+Lotus#online">Gilded Lotus</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.03
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+50.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-+0.01
-
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
-
-</div>
-</td>
-<td class='text-right'>+50.00%</td>
+<td class='text-right'>+42.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Memorial%2Bto%2BGenius%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Memorial+to+Genius#online">Memorial to Genius</a></td>
@@ -10894,6 +10816,32 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Zhalfirin%2BVoid%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Zhalfirin+Void#online">Zhalfirin Void</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.03
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-26.00%</td>
+</tr>
+<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Danitha%2BCapashen%252C%2BParagon%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Danitha+Capashen+Paragon#online">Danitha Capashen, Paragon</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
@@ -10909,6 +10857,32 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Dauntless%2BBodyguard%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Dauntless+Bodyguard#online">Dauntless Bodyguard</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.03
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-25.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
 0.00
@@ -10946,7 +10920,7 @@ Columns
 <td class='text-right'>-43.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Karn%2527s%2BTemporal%2BSundering%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Karns+Temporal+Sundering#online">Karn&#39;s Temporal Sundering</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Urza%2527s%2BRuinous%2BBlast%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Urzas+Ruinous+Blast#online">Urza&#39;s Ruinous Blast</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
@@ -10963,13 +10937,13 @@ Columns
 <td class='text-right'>+100.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+83.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/The%2BMirari%2BConjecture%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/The+Mirari+Conjecture#online">The Mirari Conjecture</a></td>
@@ -10989,13 +10963,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.03
+-0.04
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-58.00%</td>
+<td class='text-right'>-71.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Josu%2BVess%252C%2BLich%2BKnight%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Josu+Vess+Lich+Knight#online">Josu Vess, Lich Knight</a></td>
@@ -11041,42 +11015,16 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-+0.01
+0.00
 
-<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>+71.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Torgaar%252C%2BFamine%2BIncarnate%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Torgaar+Famine+Incarnate#online">Torgaar, Famine Incarnate</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.02
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Yawgmoth%2527s%2BVile%2BOffering%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Yawgmoths+Vile+Offering#online">Yawgmoth&#39;s Vile Offering</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
@@ -11125,10 +11073,36 @@ Columns
 
 </div>
 </td>
-<td class='text-right'>-33.00%</td>
+<td class='text-right'>-36.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Squee%252C%2Bthe%2BImmortal%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Squee+the+Immortal#online">Squee, the Immortal</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Grow%2Bfrom%2Bthe%2BAshes%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Grow+from+the+Ashes#online">Grow from the Ashes</a></td>
+<td>DOM</td>
+<td>Common</td>
+<td class='text-right'>
+0.02
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+100.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Marwyn%252C%2Bthe%2BNurturer%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Marwyn+the+Nurturer#online">Marwyn, the Nurturer</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
@@ -11145,16 +11119,16 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.01
+0.00
 
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-38.00%</td>
+<td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Marwyn%252C%2Bthe%2BNurturer%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Marwyn+the+Nurturer#online">Marwyn, the Nurturer</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/The%2BMending%2Bof%2BDominaria%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/The+Mending+of+Dominaria#online">The Mending of Dominaria</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
@@ -11203,10 +11177,10 @@ Columns
 
 </div>
 </td>
-<td class='text-right'>+83.00%</td>
+<td class='text-right'>+71.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Aryel%252C%2BKnight%2Bof%2BWindgrace%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Aryel+Knight+of+Windgrace#online">Aryel, Knight of Windgrace</a></td>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Verdant%2BForce%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Verdant+Force#online">Verdant Force</a></td>
 <td>DOM</td>
 <td>Rare</td>
 <td class='text-right'>
@@ -11255,6 +11229,84 @@ Columns
 
 </div>
 </td>
+<td class='text-right'>+100.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Slimefoot%252C%2Bthe%2BStowaway%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Slimefoot+the+Stowaway#online">Slimefoot, the Stowaway</a></td>
+<td>DOM</td>
+<td>Uncommon</td>
+<td class='text-right'>
+0.02
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+100.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+100.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Helm%2Bof%2Bthe%2BHost%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Helm+of+the+Host#online">Helm of the Host</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.02
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Thran%2BTemporal%2BGateway%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Thran+Temporal+Gateway#online">Thran Temporal Gateway</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.02
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
+<td class='text-right'>+100.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
++0.01
+
+<span class='color-rising glyphicon glyphicon-arrow-up'></span>
+
+</div>
+</td>
 <td class='text-right'>+83.00%</td>
 </tr>
 <tr>
@@ -11281,7 +11333,7 @@ Columns
 
 </div>
 </td>
-<td class='text-right'>-36.00%</td>
+<td class='text-right'>-38.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Memorial%2Bto%2BFolly%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Memorial+to+Folly#online">Memorial to Folly</a></td>
@@ -11437,7 +11489,7 @@ Columns
 
 </div>
 </td>
-<td class='text-right'>-56.00%</td>
+<td class='text-right'>-63.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Pegasus%2BCourser%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Pegasus+Courser#online">Pegasus Courser</a></td>
@@ -11847,13 +11899,13 @@ Columns
 <td class='text-right'>-50.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
--0.02
+-0.01
 
 <span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>-71.00%</td>
+<td class='text-right'>-42.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Diligent%2BExcavator%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Diligent+Excavator#online">Diligent Excavator</a></td>
@@ -11937,6 +11989,32 @@ Columns
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/In%2BBolas%2527s%2BClutches%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/In+Bolass+Clutches#online">In Bolas&#39;s Clutches</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
+<td class='text-right'>
+0.01
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Karn%2527s%2BTemporal%2BSundering%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Karns+Temporal+Sundering#online">Karn&#39;s Temporal Sundering</a></td>
+<td>DOM</td>
+<td>Rare</td>
 <td class='text-right'>
 0.01
 </td>
@@ -12211,13 +12289,13 @@ Columns
 <td class='text-right'>0.00%</td>
 <td class='text-right'>
 <div class='common-price-change'>
-0.00
+-0.01
 
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
 
 </div>
 </td>
-<td class='text-right'>0.00%</td>
+<td class='text-right'>-63.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Vodalian%2BArcanist%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Vodalian+Arcanist#online">Vodalian Arcanist</a></td>
@@ -12946,6 +13024,32 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Yawgmoth%2527s%2BVile%2BOffering%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Yawgmoths+Vile+Offering#online">Yawgmoth&#39;s Vile Offering</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.01
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-50.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-63.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Bloodstone%2BGoblin%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Bloodstone+Goblin#online">Bloodstone Goblin</a></td>
@@ -13936,32 +14040,6 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Grow%2Bfrom%2Bthe%2BAshes%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Grow+from+the+Ashes#online">Grow from the Ashes</a></td>
-<td>DOM</td>
-<td>Common</td>
-<td class='text-right'>
-0.01
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-45.00%</td>
-</tr>
-<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Grunn%252C%2Bthe%2BLonely%2BKing%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Grunn+the+Lonely+King#online">Grunn, the Lonely King</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
@@ -14116,32 +14194,6 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/The%2BMending%2Bof%2BDominaria%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/The+Mending+of+Dominaria#online">The Mending of Dominaria</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.01
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-50.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-63.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Nature%2527s%2BSpiral%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Natures+Spiral#online">Nature&#39;s Spiral</a></td>
@@ -14378,32 +14430,6 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Verdant%2BForce%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Verdant+Force#online">Verdant Force</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.01
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Wild%2BOnslaught%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Wild+Onslaught#online">Wild Onslaught</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
@@ -14459,6 +14485,32 @@ Columns
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Arvad%2Bthe%2BCursed%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Arvad+the+Cursed#online">Arvad the Cursed</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
+<td class='text-right'>
+0.01
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+0.00
+
+<span class='color-clear glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>0.00%</td>
+</tr>
+<tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Aryel%252C%2BKnight%2Bof%2BWindgrace%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Aryel+Knight+of+Windgrace#online">Aryel, Knight of Windgrace</a></td>
+<td>DOM</td>
+<td>Rare</td>
 <td class='text-right'>
 0.01
 </td>
@@ -14664,32 +14716,6 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Slimefoot%252C%2Bthe%2BStowaway%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Slimefoot+the+Stowaway#online">Slimefoot, the Stowaway</a></td>
-<td>DOM</td>
-<td>Uncommon</td>
-<td class='text-right'>
-0.01
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Tiana%252C%2BShip%2527s%2BCaretaker%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Tiana+Ships+Caretaker#online">Tiana, Ship&#39;s Caretaker</a></td>
 <td>DOM</td>
 <td>Uncommon</td>
@@ -14846,6 +14872,32 @@ Columns
 <td class='text-right'>0.00%</td>
 </tr>
 <tr>
+<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Gilded%2BLotus%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Gilded+Lotus#online">Gilded Lotus</a></td>
+<td>DOM</td>
+<td>Rare</td>
+<td class='text-right'>
+0.01
+</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-50.00%</td>
+<td class='text-right'>
+<div class='common-price-change'>
+-0.01
+
+<span class='color-declining glyphicon glyphicon-arrow-down'></span>
+
+</div>
+</td>
+<td class='text-right'>-50.00%</td>
+</tr>
+<tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Guardians%2Bof%2BKoilos%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Guardians+of+Koilos#online">Guardians of Koilos</a></td>
 <td>DOM</td>
 <td>Common</td>
@@ -14870,32 +14922,6 @@ Columns
 </div>
 </td>
 <td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Helm%2Bof%2Bthe%2BHost%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Helm+of+the+Host#online">Helm of the Host</a></td>
-<td>DOM</td>
-<td>Rare</td>
-<td class='text-right'>
-0.01
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-50.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
--0.01
-
-<span class='color-declining glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>-63.00%</td>
 </tr>
 <tr>
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Howling%2BGolem%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Howling+Golem#online">Howling Golem</a></td>
@@ -15239,32 +15265,6 @@ Columns
 <td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Sparring%2BConstruct%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Sparring+Construct#online">Sparring Construct</a></td>
 <td>DOM</td>
 <td>Common</td>
-<td class='text-right'>
-0.01
-</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-<td class='text-right'>
-<div class='common-price-change'>
-0.00
-
-<span class='color-clear glyphicon glyphicon-arrow-down'></span>
-
-</div>
-</td>
-<td class='text-right'>0.00%</td>
-</tr>
-<tr>
-<td class='card'><a data-full-image="https://cdn1.mtggoldfish.com/images/gf/Thran%2BTemporal%2BGateway%2B%255BDOM%255D.jpg" rel="popover" data-trigger="hover" data-html="true" href="/price/Dominaria/Thran+Temporal+Gateway#online">Thran Temporal Gateway</a></td>
-<td>DOM</td>
-<td>Rare</td>
 <td class='text-right'>
 0.01
 </td>
@@ -16638,7 +16638,7 @@ var d = "Date,DOM";
   d += "\n2018-09-09, 237.14";
   d += "\n2018-09-10, 237.82";
   d += "\n2018-09-11, 237.81";
-  d += "\n2018-09-12, 236.79";
+  d += "\n2018-09-12, 237.27";
 g = new Dygraph(
   // containing div
   document.getElementById("graphdiv-paper"),
@@ -16836,7 +16836,7 @@ var d = "Date,DOM";
   d += "\n2018-09-09, 121.36";
   d += "\n2018-09-10, 120.35";
   d += "\n2018-09-11, 116.24";
-  d += "\n2018-09-12, 114.32";
+  d += "\n2018-09-12, 114.13";
 g = new Dygraph(
   // containing div
   document.getElementById("graphdiv-online"),
@@ -16983,7 +16983,7 @@ Available!
 <div class='layout-newsletter-panel'>
 <h4>Keep in Touch</h4>
 <p>Sign up to receive email updates from us!</p>
-<form class="form" action="/subscriptions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="6ZANHgvKqCUIpgMg8q9BFps66Via7EqISrsq/q/1QBzSrUPPpodca4uZ/ZO9AKQ1tVWpAB13FIf1x92DD2DTxQ==" />
+<form class="form" action="/subscriptions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="40CdihDh81hjLw6jnlPTVXMc10APnLu/Eit792J55zik2WAYY25eundI4IWShu2doeouMr+HLm6JLpSTpW6+eQ==" />
 <input type="text" name="subscription[email]" id="subscription_email" value="" class="form-control layout-newsletter-input" />
 <input type="hidden" name="source" id="source" value="nav_footer" />
 <input type="hidden" name="agreement" id="agreement" value="Sign up to receive email updates from us! All emails include an unsubscribe link. You may opt-out at any time. See our privacy policy." />
@@ -17067,7 +17067,7 @@ Remember me
 </div>
 <hr>
 <h4>Sign in Using an MTGGoldfish Email Account</h4>
-<form class="form layout-auth-identity-form" action="/auth/identity/callback" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="bwAwoSVDaib2JalfgcQyonkBdWvEC3l/n5XO1mI6tjlUPX5wiA6eaHUaV+zOa9eBV241M0OQJ3Ag6Tmrwq8l4A==" />
+<form class="form layout-auth-identity-form" action="/auth/identity/callback" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="THgOkd5pqRPXrtARPkadfxi3EuccOL5kgOXxbF4q3pYL4fMDreYE8cPJPjcyk6O3ykHrlawjK7Ub4B4ImT2H1w==" />
 <input type="hidden" name="override_origin" id="override_origin" value="" class="login-override_origin" />
 <div class='form-group'>
 <label>Email Address</label>
